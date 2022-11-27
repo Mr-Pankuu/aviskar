@@ -5,9 +5,6 @@ MDScreen:
     MDFloatLayout:
         md_bg_color: 1,1,1,1
         Image:
-            source:"logo.png"
-            pos_hint: {"center_x":0.18,"center_y":0.95}
-        Image:
             source:"can_logo.png"
             size_hint: .8,.8
             pos_hint: {"center_x":0.5,"center_y":0.65}
@@ -30,11 +27,11 @@ MDScreen:
             text: "LOGIN"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .18}
-            background_color:0,0,0,0
+            # background_color:0,0,0,0
             font_name: "Lato"
             on_release:
-                root.manager.transition.direction ="left"
-                root.manager.current: "login" 
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
             canvas.before:
                 Color:
                     rgb: (52,0,231,255)
@@ -46,15 +43,16 @@ MDScreen:
             text: "SIGUP"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .09}
-            background_color: 0,0,0,0
+            # background_color: 0,0,0,0
             font_name: "Lato"
-            color: (52,0,231,255)
             on_release:
-                root.manager.transition.direction ="left"
-                root.manager.current: "signup"
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup"
+                
             canvas.before:
                 Color:
                     rgb: (52,0,231,255)
-                Line:
-                    width: 1.2
-                    rounded_rectangle: self.x,self.y, self.width, self.height,5,5,5,5,100
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius:[5]

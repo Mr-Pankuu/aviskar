@@ -24,3 +24,4 @@ if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato\\Lato-Bold.ttf")
 
     SlopeApp().run()
+print("Hello World!!!")

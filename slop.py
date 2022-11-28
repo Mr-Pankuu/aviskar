@@ -4,7 +4,8 @@ from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivy.core.text import LabelBase
 from kivy.config import Config
-Config.set('kivy', 'keyboard_mode', 'systemanddock')
+
+Config.set("kivy", "keyboard_mode", "systemanddock")
 
 Window.size = (310, 500)
 
@@ -23,3 +24,4 @@ if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato\\Lato-Bold.ttf")
 
     SlopeApp().run()
+print("Hello World!!!")

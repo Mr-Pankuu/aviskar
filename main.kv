@@ -3,31 +3,25 @@
 MDScreen:
     name: "main"
     MDFloatLayout:
-        md_bg_color: 1,1,1,1
+        md_bg_color: 135,206,235,1
         Image:
-            source:"can_logo.png"
+            source:"restor.jpg"
             size_hint: .8,.8
             pos_hint: {"center_x":0.5,"center_y":0.65}
-        MDLabel:
-            text: "Hello!"
-            font_name: "Lato"
-            font_size: "23sp"
-            pos_hint: {"center_y": .38}
-            halign:"center"
-            color: (34,34,34,255)
-        MDLabel:
-            text: "Hello! Best place for ordering food"
-            font_name: "Lato"
-            font_size: "13sp"
-            size_hint_x: .85
-            pos_hint: {"center_x": .5,"center_y": .3}
-            halign:"center"
-            color: (127,127,127,255)
+        Image:
+            source:"images.png"
+            size_hint: .1,.1
+            pos_hint: {"center_x":0.05,"center_y":0.93}
+        # MDLabel:
+        #     text: "Welcome!"
+        #     font_name: "Lato"
+        #     font_size: "23sp"
+        #     pos_hint: {"center_x": 0.5,"center_y":0.90}
         Button:
             text: "LOGIN"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .18}
-            # background_color:0,0,0,0
+            background_color:0,0,0,0
             font_name: "Lato"
             on_release:
                 root.manager.transition.direction = "left"
@@ -40,10 +34,10 @@ MDScreen:
                     pos: self.pos
                     radius:[5]
         Button:
-            text: "SIGUP"
+            text: "SIGN-UP"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .09}
-            # background_color: 0,0,0,0
+            background_color: 0,0,0,0
             font_name: "Lato"
             on_release:
                 root.manager.transition.direction = "left"

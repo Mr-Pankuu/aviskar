@@ -14,7 +14,7 @@ MDScreen:
             font_size: "23sp"
             pos_hint: {"center_y": .38}
             halign:"center"
-            color: (34,34,34,255)
+            color: rgba(34,34,34,255)
         MDLabel:
             text: "Hello! Best place for ordering food"
             font_name: "Lato"
@@ -22,12 +22,11 @@ MDScreen:
             size_hint_x: .85
             pos_hint: {"center_x": .5,"center_y": .3}
             halign:"center"
-            color: (127,127,127,255)
+            color: rgba(127,127,127,255)
         Button:
             text: "LOGIN"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .18}
-            # background_color:0,0,0,0
             font_name: "Lato"
             on_release:
                 root.manager.transition.direction = "left"
@@ -43,7 +42,6 @@ MDScreen:
             text: "SIGUP"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .09}
-            # background_color: 0,0,0,0
             font_name: "Lato"
             on_release:
                 root.manager.transition.direction = "left"

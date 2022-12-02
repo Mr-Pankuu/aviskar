@@ -31,58 +31,27 @@ MDScreen:
         MDFloatLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .68}
-            TextInput:
-                hint_text: "username"
+            MDTextField:
+                hint_text: "Username"
                 font_name: "Lato"
-                size_hint_y: .75
-                pos_hint: {"center_x": .43,"center_y": .5}
-                background_color: 1,1,1,0
-                foreground_color: rgba(0,0,59,255)
-                cursor_color: rgba(0,0,59,255)
-                font_size: "14sp"
-                cursor_width: "2sp"
-                multiline: False
-            MDFloatLayout:
-                pos_hint: {"center_x": .45,"center_y":0}
-                size_hint_y: .03
-                md_bg_color: rgba(178, 178, 178, 255)
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
         MDFloatLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .56}
-            TextInput:
+            MDTextField:
                 hint_text: "Email"
                 font_name: "Lato"
-                size_hint_y: .75
-                pos_hint: {"center_x": .43,"center_y": .5}
-                background_color: 1,1,1,0
-                foreground_color: rgba(0,0,59,255)
-                cursor_color: rgba(0,0,59,255)
-                font_size: "14sp"
-                cursor_width: "2sp"
-                multiline: False
-            MDFloatLayout:
-                pos_hint: {"center_x": .45,"center_y":0}
-                size_hint_y: .03
-                md_bg_color: rgba(178, 178, 178, 255)
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
         MDFloatLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .44}
-            TextInput:
+            MDTextField:
                 hint_text: "Password"
                 font_name: "Lato"
-                size_hint_y: .75
-                pos_hint: {"center_x": .43,"center_y": .5}
-                background_color: 1,1,1,0
-                foreground_color: rgba(0,0,59,255)
-                cursor_color: rgba(0,0,59,255)
-                font_size: "14sp"
-                cursor_width: "2sp"
-                multiline: False
-                password: True
-            MDFloatLayout:
-                pos_hint: {"center_x": .45,"center_y":0}
-                size_hint_y: .03
-                md_bg_color: rgba(178, 178, 178, 255)
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
         Button:
             text: "SIGNUP"
             size_hint: .66, .065

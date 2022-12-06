@@ -18,6 +18,10 @@ class SlopeApp(MDApp):
         screen_manager.add_widget(Builder.load_file("signup.kv"))
         return screen_manager
 
+    def email(self):
+        print("Helo world!!!")
+        pass
+
 
 if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Regular.ttf")

@@ -32,6 +32,7 @@ MDScreen:
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .18}
             font_name: "Lato"
+            on_press: root.root.email()
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current = "login"

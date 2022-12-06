@@ -11,12 +11,15 @@ Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 
 
-class Main(MDScreen):
+class Main():
     def email(self):
         print("Helo world!!!")
         pass
+class Login():
+    pass
 
-
+class Signup():
+    pass
 class ScreenManage(MDScreenManager):
     pass
 

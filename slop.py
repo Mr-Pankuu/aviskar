@@ -2,6 +2,7 @@ from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
+from kivymd.uix.screen import MDScreen
 from kivy.core.text import LabelBase
 from kivy.config import Config
 
@@ -10,21 +11,22 @@ Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 
 
-class SlopeApp(MDApp):
-    def build(self):
-        screen_manager = MDScreenManager()
-        screen_manager.add_widget(Builder.load_file("main.kv"))
-        screen_manager.add_widget(Builder.load_file("login.kv"))
-        screen_manager.add_widget(Builder.load_file("signup.kv"))
-        return screen_manager
-
+class Main(MDScreen):
     def email(self):
         print("Helo world!!!")
         pass
+
+
+class ScreenManage(MDScreenManager):
+    pass
+
+
+class MainApp(MDApp):
+    pass
 
 
 if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Regular.ttf")
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Bold.ttf")
 
-    SlopeApp().run()
+    MainApp().run()

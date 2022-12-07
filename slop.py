@@ -5,21 +5,37 @@ from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
 from kivy.core.text import LabelBase
 from kivy.config import Config
+import pymongo
+from pymongo import MongoClient
 
+CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 
 Window.size = (310, 500)
 
 
-class Main():
+class Main(MDScreen):
     def email(self):
         print("Helo world!!!")
+
+
+class Login(MDScreen):
+    def check_and_upload(self):
         pass
-class Login():
+
+    def upload_data(self):
+        data = {
+            "email": self.ids.email_data.text,
+            "password": self.ids.password_data.text,
+        }
+        CLIENT["aviskar"]["users_data"].insert_one(data)
+        print(data)
+
+
+class Signup(MDScreen):
     pass
 
-class Signup():
-    pass
+
 class ScreenManage(MDScreenManager):
     pass
 

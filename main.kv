@@ -1,7 +1,13 @@
-#:kivy 2.1.0
+#:include login.kv
+#:include signup.kv
 
-MDScreen:
-    name: "main"
+ScreenManage:
+    Main:
+    Login:
+    Signup:
+
+<Main>
+    name:"main"
     MDFloatLayout:
         md_bg_color: 135,206,235,1
         Image:
@@ -50,7 +56,6 @@ MDScreen:
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current = "signup"
-                
             canvas.before:
                 Color:
                     rgb: (52,0,231,255)

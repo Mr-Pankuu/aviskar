@@ -1,7 +1,4 @@
-#:kivy 2.1.0
-
-
-MDScreen:
+<Signup>
     name: "signup"
     MDFloatLayout:
         md_bg_color: 1,1,1,1
@@ -32,6 +29,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .68}
             MDTextField:
+                id: user_name_data
                 hint_text: "Username"
                 font_name: "Lato"
                 helper_text_mode: "on_error"
@@ -40,6 +38,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .56}
             MDTextField:
+                id: email_data
                 hint_text: "Email"
                 font_name: "Lato"
                 helper_text_mode: "on_error"
@@ -48,19 +47,31 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .44}
             MDTextField:
+                id: password_data
                 hint_text: "Password"
                 font_name: "Lato"
                 icon_right: 'eye-off'
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
                 password: True
-
+        MDLabel:
+            id: info
+            text: root.already_exist_message
+            font_name: "Lato"
+            font_size: "18sp"
+            pos_hint: {"center_x": .5,"center_y": .38}
+            halign:"center"
+            color: rgba(255 ,0,0, 170)
         Button:
             text: "SIGNUP"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .3}
             background_color: 0,0,0,0
             font_name: "Lato"
+            on_press:
+                root.sign_up()
+                # root.manager.transition.direction = "left"
+                # root.manager.current = "login"
             canvas.before:
                 Color:
                     rgb: rgba(52,0,231,255)

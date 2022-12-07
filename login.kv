@@ -1,6 +1,4 @@
-#:kivy 2.1.0
-
-MDScreen:
+<Login>
     name: "login"
     MDFloatLayout:
         md_bg_color: 1,1,1,1
@@ -31,6 +29,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .63}
             MDTextField:
+                id: email_data
                 hint_text: "Email"
                 font_name: "Lato"
                 helper_text_mode: "on_error"
@@ -39,18 +38,28 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .5}
             MDTextField:
+                id: password_data
                 hint_text: "Password"
                 font_name: "Lato"
                 icon_right: 'eye-off'
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
                 password: True
+        MDLabel:
+            id: info
+            text: root.invalid_message
+            font_name: "Lato"
+            font_size: "18sp"
+            pos_hint: {"center_x": .5,"center_y": .42}
+            halign:"center"
+            color: rgba(255 ,0,0, 170)
         Button:
             text: "LOGIN"
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .34}
             background_color: 0,0,0,0
             font_name: "Lato"
+            on_press: root.login()
             canvas.before:
                 Color:
                     rgb: rgba(52,0,231,255)
@@ -109,4 +118,3 @@ MDScreen:
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current="signup"
-                

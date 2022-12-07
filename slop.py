@@ -1,5 +1,4 @@
 from kivy.core.window import Window
-from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
@@ -20,20 +19,34 @@ class Main(MDScreen):
 
 
 class Login(MDScreen):
-    def check_and_upload(self):
-        pass
-
-    def upload_data(self):
-        data = {
-            "email": self.ids.email_data.text,
-            "password": self.ids.password_data.text,
-        }
-        CLIENT["aviskar"]["users_data"].insert_one(data)
-        print(data)
+    def login(self):
+        email = self.ids.email_data.text
+        password = self.ids.password_data.text
+        user = CLIENT["aviskar"]["users_data"].find_one(
+            {"email": email, "password": password}
+        )
+        if user == None:
+            print("Invalid username or password.")
+        else:
+            print(user)
 
 
 class Signup(MDScreen):
-    pass
+    def sign_up(self):
+        data = {
+            "username": self.ids.user_name_data.text,
+            "email": self.ids.email_data.text,
+            "password": self.ids.password_data.text,
+            "privilege": "user",
+        }
+        if (
+            CLIENT["aviskar"]["users_data"].find_one({"username": data["username"]})
+            != None
+        ):
+            print("User of this name already exists.")
+        else:
+            CLIENT["aviskar"]["users_data"].insert_one(data)
+            print(data)
 
 
 class ScreenManage(MDScreenManager):

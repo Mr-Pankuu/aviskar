@@ -11,28 +11,13 @@ CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 
 Window.size = (310, 500)
-last_screen = []
 
 
 class Main(MDScreen):
-    def on_enter(self):
-        global last_screen
-        last_screen = []
-        last_screen.append("main")
-        print("this" + self.name + "this")
+    pass
+
 
 class Login(MDScreen):
-    def back(self):
-        global last_screen
-        last_screen.pop()
-        print(last_screen)
-        self.manager.current = last_screen[-1]
-
-    def enter(self):
-        last_screen.append(self.name)
-        print("jj")
-        print(last_screen)
-
     def login(self):
         email = self.ids.email_data.text
         password = self.ids.password_data.text
@@ -46,18 +31,6 @@ class Login(MDScreen):
 
 
 class Signup(MDScreen):
-    def back(self):
-        global last_screen
-        last_screen.pop()
-        print(last_screen)
-        self.manager.current = last_screen[-1]
-
-    def enter(self):
-        last_screen.append(self.name)
-        print("jj")
-        print(last_screen)
-
-
     def sign_up(self):
         data = {
             "username": self.ids.user_name_data.text,

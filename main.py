@@ -3,6 +3,7 @@ from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
 from kivy.core.text import LabelBase
+from kivy.properties import StringProperty
 from kivy.config import Config
 import pymongo
 from pymongo import MongoClient
@@ -18,6 +19,8 @@ class Main(MDScreen):
 
 
 class Login(MDScreen):
+    invalid_message = StringProperty("")
+
     def login(self):
         email = self.ids.email_data.text
         password = self.ids.password_data.text
@@ -25,12 +28,16 @@ class Login(MDScreen):
             {"email": email, "password": password}
         )
         if user == None:
+            self.invalid_message = "Invalid username or password."
             print("Invalid username or password.")
         else:
+            self.invalid_message = ""
             print(user)
 
 
 class Signup(MDScreen):
+    already_exist_message = StringProperty("")
+
     def sign_up(self):
         data = {
             "username": self.ids.user_name_data.text,
@@ -43,8 +50,10 @@ class Signup(MDScreen):
             != None
         ):
             print("User of this name already exists.")
+            self.already_exist_message = "User of this name already exists."
         else:
             CLIENT["aviskar"]["users_data"].insert_one(data)
+            self.already_exist_message = ""
             print(data)
 
 

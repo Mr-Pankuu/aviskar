@@ -54,7 +54,14 @@
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
                 password: True
-
+        MDLabel:
+            id: info
+            text: root.already_exist_message
+            font_name: "Lato"
+            font_size: "18sp"
+            pos_hint: {"center_x": .5,"center_y": .42}
+            halign:"center"
+            color: rgba(255 ,0,0, 170)
         Button:
             text: "SIGNUP"
             size_hint: .66, .065
@@ -63,8 +70,8 @@
             font_name: "Lato"
             on_press:
                 root.sign_up()
-                root.manager.transition.direction = "left"
-                root.manager.current = "login"
+                # root.manager.transition.direction = "left"
+                # root.manager.current = "login"
             canvas.before:
                 Color:
                     rgb: rgba(52,0,231,255)

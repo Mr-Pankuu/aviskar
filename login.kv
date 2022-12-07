@@ -9,11 +9,9 @@
             user_font_size: "30sp"
             theme_text_color: "Custom"
             text_color: rgba(26, 24, 58, 255)
-            on_press: root.email(last_screen)
             on_release:
                 root.manager.transition.direction = "right"
-                root.manager.current = root.name
-                last_screen = root.name
+                root.back()
         MDLabel:
             text: "w e l c o m e "
             font_name: "Lato"
@@ -113,3 +111,4 @@
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current="signup"
+                root.enter()

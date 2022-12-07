@@ -1,3 +1,7 @@
+#:set last_screen None
+#:include login.kv
+#:include signup.kv
+
 ScreenManage:
     Main:
     Login:
@@ -35,8 +39,8 @@ ScreenManage:
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .18}
             font_name: "Lato"
-            on_press: root.email()
             on_release:
+                last_screen = root.name
                 root.manager.transition.direction = "left"
                 root.manager.current = "login"
             canvas.before:
@@ -52,9 +56,9 @@ ScreenManage:
             pos_hint: {"center_x": .5,"center_y": .09}
             font_name: "Lato"
             on_release:
+                last_screen = root.name
                 root.manager.transition.direction = "left"
                 root.manager.current = "signup"
-                
             canvas.before:
                 Color:
                     rgb: (52,0,231,255)
@@ -62,239 +66,3 @@ ScreenManage:
                     size: self.size
                     pos: self.pos
                     radius:[5]
-
-<Login>
-    name: "login"
-    MDFloatLayout:
-        md_bg_color: 1,1,1,1
-        MDIconButton:
-            icon: "arrow-left"
-            pos_hint: {"center_y": .95}
-            user_font_size: "30sp"
-            theme_text_color: "Custom"
-            text_color: rgba(26, 24, 58, 255)
-            on_release:
-                root.manager.transition.direction = "right"
-                root.manager.current = "main"
-        MDLabel:
-            text: "w e l c o m e "
-            font_name: "Lato"
-            font_size: "26sp"
-            pos_hint: {"center_x": .5,"center_y": .85}
-            halign:"center"
-            color: rgba(0,0,59,255)
-        MDLabel:
-            text: "Sign in to continue"
-            font_name: "Lato"
-            font_size: "18sp"
-            pos_hint: {"center_x": .5,"center_y": .79}
-            halign:"center"
-            color: rgba(135 ,133,193, 255)
-        MDFloatLayout:
-            size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .63}
-            MDTextField:
-                id: email_data
-                hint_text: "Email"
-                font_name: "Lato"
-                helper_text_mode: "on_error"
-                pos_hint: {"center_x": .5,"center_y": .5}
-        MDFloatLayout:
-            size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .5}
-            MDTextField:
-                id: password_data
-                hint_text: "Password"
-                font_name: "Lato"
-                icon_right: 'eye-off'
-                helper_text_mode: "on_error"
-                pos_hint: {"center_x": .5,"center_y": .5}
-                password: True
-        Button:
-            text: "LOGIN"
-            size_hint: .66, .065
-            pos_hint: {"center_x": .5,"center_y": .34}
-            background_color: 0,0,0,0
-            font_name: "Lato"
-            on_press: root.login()
-            canvas.before:
-                Color:
-                    rgb: rgba(52,0,231,255)
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius:[5]    
-        MDTextButton:
-            text: "Frogot Password?"
-            pos_hint: {"center_x": .5,"center_y": .28}
-            color: rgba(68, 78, 132, 255) 
-            font_size: "12sp"
-            font_name: "Lato"
-        MDLabel:
-            text: "or"
-            color: rgba(52, 0, 231, 255)
-            pos_hint: {"center_y": .22}
-            font_size: "13sp"
-            font_name: "Lato"
-            halign: "center"
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .3,"center_y": .218}
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .7,"center_y": .218}
-        MDLabel:
-            text: "Social media login"
-            font_name: "Lato"
-            font_size: "13sp"
-            halign: "center"
-            pos_hint: {"center_y": .16}
-            color: rgba(135, 133, 193, 255)
-        MDGridLayout:
-            cols: 3
-            size_hint: .48, .07
-            pos_hint: {"center_x": .5,"center_y": .1}
-            Image:
-                source: "google.png"   
-            Image:
-                source: "facebook.png" 
-        MDLabel:
-            text: "Don't have an account?"
-            font_name: "Lato"
-            font_size: "11sp"
-            pos_hint: {"center_x": .68,"center_y": .04}
-            color: rgba(135, 133, 193, 255)
-        MDTextButton:
-            text: "sign -up"
-            font_name: "Lato"
-            font_size: "11sp"
-            pos_hint: {"center_x": .75,"center_y": .04}
-            color: rgba(135, 133, 193, 255)
-            on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current="signup"
-
-
-<Signup>
-    name: "signup"
-    MDFloatLayout:
-        md_bg_color: 1,1,1,1
-        MDIconButton:
-            icon: "arrow-left"
-            pos_hint: {"center_y": .95}
-            user_font_size: "30sp"
-            theme_text_color: "Custom"
-            text_color: rgba(26, 24, 58, 255)
-            on_release:
-                root.manager.transition.direction = "right"
-                root.manager.current = "main"
-        MDLabel:
-            text: "HELLO"
-            font_name: "Lato"
-            font_size: "26sp"
-            pos_hint: {"center_x": .5,"center_y": .85}
-            halign:"center"
-            color: rgba(0,0,59,255)
-        MDLabel:
-            text: "Create a new account"
-            font_name: "Lato"
-            font_size: "18sp"
-            pos_hint: {"center_x": .5,"center_y": .79}
-            halign:"center"
-            color: rgba(135 ,133,193, 255)
-        MDFloatLayout:
-            size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .68}
-            MDTextField:
-                id: user_name_data
-                hint_text: "Username"
-                font_name: "Lato"
-                helper_text_mode: "on_error"
-                pos_hint: {"center_x": .5,"center_y": .5}
-        MDFloatLayout:
-            size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .56}
-            MDTextField:
-                id: email_data
-                hint_text: "Email"
-                font_name: "Lato"
-                helper_text_mode: "on_error"
-                pos_hint: {"center_x": .5,"center_y": .5}
-        MDFloatLayout:
-            size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .44}
-            MDTextField:
-                id: password_data
-                hint_text: "Password"
-                font_name: "Lato"
-                icon_right: 'eye-off'
-                helper_text_mode: "on_error"
-                pos_hint: {"center_x": .5,"center_y": .5}
-                password: True
-
-        Button:
-            text: "SIGNUP"
-            size_hint: .66, .065
-            pos_hint: {"center_x": .5,"center_y": .3}
-            background_color: 0,0,0,0
-            font_name: "Lato"
-            on_press:
-                root.sign_up()
-                root.manager.transition.direction = "left"
-                root.manager.current = "login"
-            canvas.before:
-                Color:
-                    rgb: rgba(52,0,231,255)
-                RoundedRectangle:
-                    size: self.size
-                    pos: self.pos
-                    radius:[5]
-        MDLabel:
-            text: "or"
-            color: rgba(52, 0, 231, 255)
-            pos_hint: {"center_y": .22}
-            font_size: "13sp"
-            font_name: "Lato"
-            halign: "center"
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .3,"center_y": .218}
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .7,"center_y": .218}
-        MDLabel:
-            text: "Social media login"
-            font_name: "Lato"
-            font_size: "13sp"
-            halign: "center"
-            pos_hint: {"center_y": .16}
-            color: rgba(135, 133, 193, 255)
-        MDGridLayout:
-            cols: 3
-            size_hint: .48, .07
-            pos_hint: {"center_x": .5,"center_y": .1}
-            Image:
-                source: "google.png"   
-            Image:
-                source: "facebook.png" 
-            Image:
-                source: "apple.png" 
-        MDLabel:
-            text: "Allready have an account?"
-            font_name: "Lato"
-            font_size: "11sp"
-            pos_hint: {"center_x": .68,"center_y": .04}
-            color: rgba(135, 133, 193, 255)
-        MDTextButton:
-            text: "sign-in"
-            font_name: "Lato"
-            font_size: "11sp"
-            pos_hint: {"center_x": .79,"center_y": .04}
-            color: rgba(52, 0 ,231, 255)
-            on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current = "login"

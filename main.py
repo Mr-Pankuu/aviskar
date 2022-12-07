@@ -14,11 +14,14 @@ Window.size = (310, 500)
 
 
 class Main(MDScreen):
-    def email(self):
-        print("Helo world!!!")
+    def email(self, data):
+        print(type(data))
 
 
 class Login(MDScreen):
+    def email(self, data):
+        print(data)
+
     def login(self):
         email = self.ids.email_data.text
         password = self.ids.password_data.text

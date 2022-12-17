@@ -43,7 +43,7 @@ class Table(MDScreen):
         super().__init__(**kwargs)
 
         self.data_tables = MDDataTable(
-            pos_hint={'center_y': 0.5, 'center_x': 0.5},
+            pos_hint={"center_y": 0.5, "center_x": 0.5},
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
@@ -52,10 +52,10 @@ class Table(MDScreen):
                 ("Head 1", dp(30)),
                 ("Head 2", dp(30)),
                 ("Head 3", dp(30)),
-                ("Head 4", dp(30)), ],
-            row_data=(
-                (f"{i + 1}", "C", "C++", "JAVA", "Python")
-                for i in range(50)), )
+                ("Head 4", dp(30)),
+            ],
+            row_data=((f"{i + 1}", "C", "C++", "JAVA", "Python") for i in range(50)),
+        )
         self.add_widget(self.data_tables)
 
 
@@ -71,7 +71,7 @@ class Adminhelp(BoxLayout):
 class Login(MDScreen):
     invalid_message = StringProperty("")
 
-    def login(self):
+    def check_user(self):
         email = self.ids.email_data.text
         password = self.ids.password_data.text
         user = CLIENT["aviskar"]["users_data"].find_one(
@@ -115,6 +115,7 @@ class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.theme_cls.theme_style = "Dark"
+
 
 if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Regular.ttf")

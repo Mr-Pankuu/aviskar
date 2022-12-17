@@ -2,18 +2,21 @@ from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
 from kivymd.uix.datatables import MDDataTable
 from kivy.properties import StringProperty
 from kivy.config import Config
+from kivy.metrics import dp
+from kivy.uix.button import Button
 import pymongo
 from pymongo import MongoClient
 from kivy.animation import Animation
 
 CLIENT = MongoClient("mongodb://localhost:27017")
-Config.set("kivy","keyboard_mode","systemanddock")
+Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 
 
@@ -24,11 +27,12 @@ class Main(MDScreen):
 class Men(MDScreen):
     pass
 
-class  MyLayout(MDWidget):
+
+class MyLayout(MDWidget):
     def spinner_clicked(self, value):
-            self.ids.click_label.text = f'You select {value}'
-            
-            
+        self.ids.click_label.text = f"You select {value}"
+
+
 class Admin(MDScreen):
     pass
 
@@ -37,6 +41,15 @@ class Table(MDScreen):
     table=MDDataTable
     screen.add_widget(table)
     
+
+class Adminhelp(BoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        for i in range(1, 20):
+            size = dp(100)
+            b = Button(text=f"{i}", size_hint=(None, None), size=(size, size))
+            self.add_widget(b)
+
 
 class Login(MDScreen):
     invalid_message = StringProperty("")

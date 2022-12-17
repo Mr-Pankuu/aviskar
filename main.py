@@ -5,6 +5,7 @@ from kivymd.uix.screen import MDScreen
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
+from kivymd.uix.datatables import MDDataTable
 from kivy.properties import StringProperty
 from kivy.config import Config
 import pymongo
@@ -31,6 +32,11 @@ class  MyLayout(MDWidget):
 class Admin(MDScreen):
     pass
 
+class Table(MDScreen):
+    screen= MDScreen()
+    table=MDDataTable
+    screen.add_widget(table)
+    
 
 class Login(MDScreen):
     invalid_message = StringProperty("")

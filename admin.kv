@@ -1,9 +1,12 @@
 <Admin>
     name:"admin"
     MDBoxLayout:
-        Button:
-            text: "Dashboard"
-            size_hint: .66, .085
-            pos_hint: {"center_x": .5,"center_y": .98}
-            font_name: "Lato"
-            background_color: rgba(255,127,80,255)
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: "Title"
+            left_action_items: [["menu",lambda x:x]]
+        ScrollView:
+            Adminhelp:
+                orientation: 'vertical'
+                size_hint:1,None
+                height: self.minimum_height

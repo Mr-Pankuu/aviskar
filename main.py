@@ -3,10 +3,11 @@ from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import BoxLayout
-from kivymd.uix.navigationdrawer import MDNavigationDrawer
+from kivy.uix.anchorlayout import AnchorLayout
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
+from kivymd.uix.datatables import MDDataTable
 from kivy.properties import StringProperty
 from kivy.config import Config
 from kivy.metrics import dp
@@ -35,6 +36,27 @@ class MyLayout(MDWidget):
 
 class Admin(MDScreen):
     pass
+
+
+class Table(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.data_tables = MDDataTable(
+            pos_hint={'center_y': 0.5, 'center_x': 0.5},
+            size_hint=(1, 1),
+            use_pagination=True,
+            # check=True,
+            column_data=[
+                ("No.", dp(30)),
+                ("Head 1", dp(30)),
+                ("Head 2", dp(30)),
+                ("Head 3", dp(30)),
+                ("Head 4", dp(30)), ],
+            row_data=(
+                (f"{i + 1}", "C", "C++", "JAVA", "Python")
+                for i in range(50)), )
+        self.add_widget(self.data_tables)
 
 
 class Adminhelp(BoxLayout):
@@ -90,8 +112,9 @@ class ScreenManage(MDScreenManager):
 
 
 class MainApp(MDApp):
-    pass
-
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.theme_cls.theme_style = "Dark"
 
 if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Regular.ttf")

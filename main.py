@@ -9,8 +9,7 @@ import pymongo
 from pymongo import MongoClient
 
 CLIENT = MongoClient("mongodb://localhost:27017")
-Config.set("kivy", "keyboard_mode", "systemanddock")
-
+Config.set("kivy","keyboard_mode","systemanddock")
 Window.size = (310, 500)
 
 

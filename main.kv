@@ -1,7 +1,11 @@
+#:include admin.kv
+#:include men.kv
 #:include login.kv
 #:include signup.kv
 
 ScreenManage:
+    Admin:
+    Men:
     Main:
     Login:
     Signup:
@@ -38,12 +42,13 @@ ScreenManage:
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .18}
             font_name: "Lato"
+            background_color: 0,0,0,0
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current = "login"
             canvas.before:
                 Color:
-                    rgb: (52,0,231,255)
+                    rgb: rgba(52,0,231,255)
                 RoundedRectangle:
                     size: self.size
                     pos: self.pos
@@ -53,12 +58,13 @@ ScreenManage:
             size_hint: .66, .065
             pos_hint: {"center_x": .5,"center_y": .09}
             font_name: "Lato"
+            background_color: 0,0,0,0
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current = "signup"
             canvas.before:
                 Color:
-                    rgb: (52,0,231,255)
+                    rgb: rgba(52,0,231,255)
                 RoundedRectangle:
                     size: self.size
                     pos: self.pos

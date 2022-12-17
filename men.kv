@@ -1,0 +1,84 @@
+<Men>
+    name:"menu"
+    MDBoxLayout:
+        MDLabel:
+            text:"Welcome"
+            font_name:"Lato"
+            font_size:"36sp"
+            pos_hint: {"center_x": .5,"center_y": .95}
+            halign: "center"
+            text_color: rgba(0,0,59,255)
+            canvas.before:
+                Line:
+                    width: 5
+                    points: (self.x, self.y+50, self.x+200, self.y+100, self.x+300, self.y+200)
+                Color:
+                    rgb: (0,0,59,255)
+            
+    MDGridLayout:
+        cols:9
+        rows:10
+        Image:
+            source:"Collage\samosa.jpg"
+            size_hint: (.8,.2)
+            #pos_hint:{"center_x": 0.089, "center_y": .79}
+
+        Image:
+            source:"Collage\idli.jpg"
+            size_hint: (.8,.2)
+            pos_hint:{"center_x": 0.089, "center_y": .55}
+
+        Image:
+            source:"Collage\sambhar.jpg"
+            size_hint: (.8,.2)
+            pos_hint:{"center_x": 0.089, "center_y": .30}
+
+        Image:
+            source:"Collage\dosa.jpg"
+            size_hint: (.8,.2)
+            pos_hint:{"center_x": 0.089, "center_y": .10}
+        
+        Image:
+            source:"Collage\plain_dosa.jpg"
+            size_hint: (.8,.2)
+            pos_hint:{"center_x": 0.75, "center_y": .55}
+
+        Image:
+            source:"Collage\sand.jpg"
+            size_hint: (.8,.2)
+            pos_hint:{"center_x": 0.75, "center_y": .30}
+
+        
+        Image:
+            source:"Collage\sand.jpg"
+            size_hint: (.8,.2)
+            pos_hint:{"center_x": 0.75, "center_y": .79}
+
+        # Image:
+        #     source:"Collage\.jpg"
+        #     size_hint: (.8,.2)
+        #     pos_hint:{"center_x": 0.75, "center_y": .55}
+
+        # Image:
+        #     source:"Collage\plain_dosa.jpg"
+        #     size_hint: (.8,.2)
+        #     pos_hint:{"center_x": 0.75, "center_y": .55}
+# <MyLayout>
+#     BoxLayout:
+#         orientation:'vertical'
+#         size: (.5, .5)
+#         pos_hint: {"center_x": 0.70, "center_y": .79}
+#         MDLabel:
+#             id:spinner_id 
+#             text:"Quantity"
+#             font_size: (10)
+
+#         MDSpinner:
+#             id: spinner_id
+#             text: "Select"
+#             values: ["1", "2", "3","4","5"]
+
+#             on_text: root.spinner_clicked(spinner_id)
+
+
+    

@@ -2,11 +2,14 @@ from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
+from kivy.lang import Builder
+from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
 from kivy.properties import StringProperty
 from kivy.config import Config
 import pymongo
 from pymongo import MongoClient
+from kivy.animation import Animation
 
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
@@ -15,6 +18,18 @@ Window.size = (310, 500)
 
 
 class Main(MDScreen):
+    pass
+
+
+class Men(MDScreen):
+    pass
+
+class  MyLayout(MDWidget):
+    def spinner_clicked(self, value):
+            self.ids.click_label.text = f'You select {value}'
+            
+            
+class Admin(MDScreen):
     pass
 
 

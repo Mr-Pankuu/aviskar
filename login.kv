@@ -59,7 +59,8 @@
             pos_hint: {"center_x": .5,"center_y": .34}
             background_color: 0,0,0,0
             font_name: "Lato"
-            on_press: root.login()
+            on_press:root.check_user()
+            on_release:root.login()
             canvas.before:
                 Color:
                     rgb: rgba(52,0,231,255)

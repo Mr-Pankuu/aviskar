@@ -3,6 +3,7 @@ from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import BoxLayout
+from kivymd.uix.navigationdrawer import MDNavigationDrawer
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase

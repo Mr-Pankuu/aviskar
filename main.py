@@ -114,7 +114,7 @@ class ScreenManage(MDScreenManager):
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.theme_cls.theme_style = "Dark"
+        # self.theme_cls.theme_style = "Dark"
 
 
 if __name__ == "__main__":

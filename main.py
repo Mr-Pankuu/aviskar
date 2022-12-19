@@ -35,7 +35,9 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
-    pass
+    def spinner_clicked(self, value):
+        self.ids.spinner_label.text = value
+        print(value)
 
 
 class Table(MDScreen):

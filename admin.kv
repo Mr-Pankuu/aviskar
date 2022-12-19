@@ -15,3 +15,15 @@
                             height: self.minimum_height
         MDNavigationDrawer:
             id: nav_drawer
+            BoxLayout:
+                orientation:'vertical'
+                MDLabel:
+                    id: spinner_label
+                    text:"nicozero"
+                    font_style:"Subtitle1"
+                Spinner:
+                    id: spinner_id
+                    text: "Content"
+                    values:["Profile","Data Anylies","Morning Sales","Evening Sales","About"]
+
+                    on_text: root.spinner_clicked(spinner_id.text)

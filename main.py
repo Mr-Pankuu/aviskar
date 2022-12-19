@@ -126,4 +126,3 @@ if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Bold.ttf")
 
     MainApp().run()
-

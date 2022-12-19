@@ -83,6 +83,8 @@ class Login(MDScreen):
         else:
             self.invalid_message = ""
             print(user)
+            self.manager.transition.direction = "left"
+            self.manager.current = "admin"
 
 
 class Signup(MDScreen):

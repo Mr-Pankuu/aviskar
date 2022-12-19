@@ -85,8 +85,15 @@ class Login(MDScreen):
         else:
             self.invalid_message = ""
             print(user)
-            self.manager.transition.direction = "left"
-            self.manager.current = "admin"
+            if user["privilege"] == "admin":
+                self.manager.transition.direction = "left"
+                self.manager.current = "admin"
+            elif user["privilege"] == "employee":
+                self.manager.transition.direction = "left"
+                self.manager.current = "employee"
+            elif user["privilege"] == "user":
+                self.manager.transition.direction = "left"
+                self.manager.current = "menu"
 
 
 class Signup(MDScreen):

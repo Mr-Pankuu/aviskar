@@ -83,6 +83,8 @@ class Login(MDScreen):
         else:
             self.invalid_message = ""
             print(user)
+            self.manager.transition.direction = "left"
+            self.manager.current = "admin"
 
 
 class Signup(MDScreen):
@@ -114,7 +116,7 @@ class ScreenManage(MDScreenManager):
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.theme_cls.theme_style = "Dark"
+        # self.theme_cls.theme_style = "Dark"
 
 
 if __name__ == "__main__":

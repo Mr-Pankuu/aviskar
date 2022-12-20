@@ -6,7 +6,7 @@
                 MDBoxLayout:
                     orientation: 'vertical'
                     MDTopAppBar:
-                        title: "Title"
+                        title: "Welcome Administrator"
                         left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
                     ScrollView:
                         Admin_main:
@@ -17,13 +17,37 @@
             id: nav_drawer
             BoxLayout:
                 orientation:'vertical'
-                MDLabel:
-                    id: spinner_label
-                    text:"nicozero"
-                    font_style:"Subtitle1"
                 Spinner:
                     id: spinner_id
+                    size_hint: (.98,.02)
                     text: "Content"
-                    values:["Profile","Data Anylies","Morning Sales","Evening Sales","About"]
+                    values:["Ready Meal","Sales"]
 
                     on_text: root.spinner_clicked(spinner_id.text)
+
+            # id: nav_drawer1
+                Button:
+                    id: spinner_id
+                    size_hint: (.98,.02)
+                    text: "Raw Materials"
+                    on_press:          
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "table"
+                Spinner:
+                    id: spinner_id
+                    size_hint: (.98,.02)
+                    text: "Analysis"
+                    values:["Raw Materials analysis","Product analysis","Sales analysis"]
+
+                    on_text: root.spinner_clicked(spinner_id.text)
+
+
+                MDLabel:
+                    id: spinner_label
+                    size_hint: (.98,.03)
+                    text:root.spinner_text
+                    font_name:"Lato"
+        
+                
+
+

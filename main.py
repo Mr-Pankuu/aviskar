@@ -35,9 +35,21 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
+    spinner_text = StringProperty("Hello")
     def spinner_clicked(self, value):
-        self.ids.spinner_label.text = value
-        print(value)
+        data = '''You are enter in the admin site'''
+        if value.lower() == "raw materials":
+            # on_release:
+                self.manager.transition.direction = "left"
+                self.manager.current = "table"
+            
+        # elif value.lower() == "data analysis":
+            
+        # elif value.lower() == "sales":
+        #     data= '''Now , You can see the sales analysis.'''
+            
+        self.spinner_text = data
+        print(value) 
 
 
 class Table(MDScreen):
@@ -64,10 +76,10 @@ class Table(MDScreen):
 class Admin_main(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        for i in range(1, 20):
-            size = dp(100)
-            b = Button(text=f"{i}", size_hint=(None, None), size=(size, size))
-            self.add_widget(b)
+            
+            # size = dp(100)
+            # b = Button(text=f"{i}", size_hint=(None, None), size=(size, size))
+            # self.add_widget(b)
 
 
 class Login(MDScreen):

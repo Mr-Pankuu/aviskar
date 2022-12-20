@@ -35,7 +35,9 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
-    pass
+    def spinner_clicked(self, value):
+        self.ids.spinner_label.text = value
+        print(value)
 
 
 class Table(MDScreen):
@@ -83,8 +85,15 @@ class Login(MDScreen):
         else:
             self.invalid_message = ""
             print(user)
-            self.manager.transition.direction = "left"
-            self.manager.current = "admin"
+            if user["privilege"] == "admin":
+                self.manager.transition.direction = "left"
+                self.manager.current = "admin"
+            elif user["privilege"] == "employee":
+                self.manager.transition.direction = "left"
+                self.manager.current = "employee"
+            elif user["privilege"] == "user":
+                self.manager.transition.direction = "left"
+                self.manager.current = "menu"
 
 
 class Signup(MDScreen):

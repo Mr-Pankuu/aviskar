@@ -61,7 +61,7 @@ class Table(MDScreen):
         self.add_widget(self.data_tables)
 
 
-class Adminhelp(BoxLayout):
+class Admin_main(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         for i in range(1, 20):

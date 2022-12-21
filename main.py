@@ -65,20 +65,20 @@ class Admin_main(BoxLayout):
 class Table(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        users_data = CLIENT["aviskar"]["users_data"].find({},limit=100)
+        name = list(dict(users_data[0]).keys())
+        data = (tuple(dict(i).values())[1:] for i in users_data)
 
         self.data_tables = MDDataTable(
             pos_hint={"center_y": 0.5, "center_x": 0.5},
             size_hint=(1, 1),
             use_pagination=True,
-            # check=True,
+            check=True,
             column_data=[
-                ("No.", dp(30)),
-                ("Head 1", dp(30)),
-                ("Head 2", dp(30)),
-                ("Head 3", dp(30)),
-                ("Head 4", dp(30)),
+                (name[i], dp(30))
+                for i in range(1,len(name))
             ],
-            row_data=((f"{i + 1}", "C", "C++", "JAVA", "Python") for i in range(50)),
+            row_data=data,
         )
         self.add_widget(self.data_tables)
 

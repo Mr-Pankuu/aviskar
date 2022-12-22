@@ -10,16 +10,28 @@ from kivy.core.text import LabelBase
 from kivymd.uix.datatables import MDDataTable
 from kivy.properties import StringProperty
 from kivy.config import Config
+from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.metrics import dp
 from kivy.uix.button import Button
 import pymongo
 from pymongo import MongoClient
 from kivy.animation import Animation
+import  matplotlib.pyplot as plt
+import numpy as np
+from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 
-# CLIENT = MongoClient("mongodb://localhost:27017")
+
+CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 
+x=[1,2,3,4,5,6]
+y=[5,12,32,4,6,8]
+
+plt.plot(x,y)
+plt.ylabel("Y Axis")
+plt.xlabel("X Axis")
+                 
 
 class Main(MDScreen):
     pass
@@ -53,6 +65,18 @@ class Admin(MDScreen):
         print(value)
 
 
+class Matty(MDFloatLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        
+        box=self.ids.box
+        # box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+    
+    
+    def save_it(self):
+        pass
+
+
 class Admin_main(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -65,20 +89,20 @@ class Admin_main(BoxLayout):
 class Table(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        users_data = CLIENT["aviskar"]["users_data"].find({},limit=100)
-        name = list(dict(users_data[0]).keys())
-        data = (tuple(dict(i).values())[1:] for i in users_data)
 
         self.data_tables = MDDataTable(
             pos_hint={"center_y": 0.5, "center_x": 0.5},
             size_hint=(1, 1),
             use_pagination=True,
-            check=True,
+            # check=True,
             column_data=[
-                (name[i], dp(30))
-                for i in range(1,len(name))
+                ("No.", dp(30)),
+                ("Head 1", dp(30)),
+                ("Head 2", dp(30)),
+                ("Head 3", dp(30)),
+                ("Head 4", dp(30)),
             ],
-            row_data=data,
+            row_data=((f"{i + 1}", "C", "C++", "JAVA", "Python") for i in range(50)),
         )
         self.add_widget(self.data_tables)
 

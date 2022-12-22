@@ -2,19 +2,40 @@
     name:"admin"
     MDNavigationLayout:
         ScreenManage:
-            Screen:
+            Screen: 
                 MDBoxLayout:
                     orientation: 'vertical'
                     MDTopAppBar:
                         title: "Welcome Administrator"
                         left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
-                    ScrollView:
-                        # Admin_main:
-                        #     orientation: 'vertical'
-                        #     size_hint:1,None
-                        #     height: self.minimum_height
-                        MDBoxLayout:
+                
+                    MDFloatLayout:
+                        ScrollView:
+                            Admin_main:
+                                orientation: 'vertical'
+                                size_hint:1,None
+                                height: self.minimum_height
 
+                            Matty:
+                                BoxLayout:
+                                    orientation:'vertical'
+                                    id:box
+                                    size_hint_y:.8
+                                    pos_hint:{"tor":1}
+
+                                BoxLayout:
+                                    size_hint_y:.2
+                                    TextInput:
+                                        id:namer
+                                        multline:False
+                                    
+                                    Button:
+                                        text:'save it'
+                                        on_release:root.save_it()
+       
+       
+       
+       
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -31,7 +52,7 @@
                 Button:
                     id: spinner_id
                     size_hint: (.98,.02)
-                    text: "User Data"
+                    text: "Raw Materials"
                     on_press:          
                         root.manager.transition.direction = "left"
                         root.manager.current = "table"

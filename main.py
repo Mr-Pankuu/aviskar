@@ -16,7 +16,7 @@ import pymongo
 from pymongo import MongoClient
 from kivy.animation import Animation
 
-CLIENT = MongoClient("mongodb://localhost:27017")
+# CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 

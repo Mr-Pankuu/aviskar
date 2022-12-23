@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from faker import Faker
 from random import randint, choice
 import datetime
+import time
 
 raw_matirals = [
     "Salt",
@@ -262,8 +263,21 @@ user_data = CLIENT["aviskar"]["users_data"]
 # print(str(today))
 # print(*user_data.find({}, limit=1), sep="\n")
 
-users_data = CLIENT["aviskar"]["users_data"].find({}, limit=100)
-names = users_data[0]
+# users_data = CLIENT["aviskar"]["users_data"].find({}, limit=100)
+# names = users_data[0]
 
 # print(list(dict(names["you_are"]).keys()))
-print(len(raw_matirals))
+# print(len(raw_matirals))
+print(time.time())
+raw_mar_data = CLIENT["aviskar"]["in_out"]
+
+
+raw_mar_data.insert_one(
+    {
+        str(datetime.date.today()): {
+            "in": {"salt": {"quantity": 50, "unit": "kg"}},
+            "out": {"suger": {"quantity": 20, "unit": "kg"}},
+        }
+    }
+)
+print(list(raw_mar_data.find({})))

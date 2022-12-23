@@ -265,4 +265,5 @@ user_data = CLIENT["aviskar"]["users_data"]
 users_data = CLIENT["aviskar"]["users_data"].find({}, limit=100)
 names = users_data[0]
 
-print(list(dict(names["you_are"]).keys()))
+# print(list(dict(names["you_are"]).keys()))
+print(len(raw_matirals))

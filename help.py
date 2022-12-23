@@ -3,6 +3,143 @@ from pymongo import MongoClient
 from faker import Faker
 from random import randint, choice
 import datetime
+import time
+
+raw_matirals = [
+    "Salt",
+    "Papad (Sagun)",
+    "Sugar",
+    "Poha",
+    "Maida",
+    "Atta",
+    "Sooji",
+    "Shabi Biryani Masala",
+    "Kitchen King",
+    "Paw Bhaji Masala",
+    "Sambhar Masala",
+    "Chiken Masala",
+    "Chana Masala Chole Masala)",
+    "Chat Masala (100gm) 1Pkt",
+    "Kasoori Methi(250gm) 1pkt",
+    "Jeera",
+    "Hing",
+    "Rose Water",
+    "Orange Red Powder",
+    "Apple Green Powder",
+    "Gole Marij Kali Mirch)",
+    "Orange Red Powder Apple Green Powder",
+    "Gole Marij(Kali Mirch)",
+    "Kala Jeera",
+    "Bada",
+    "Ajwain",
+    "Mirchi Powder",
+    "Haldi Powder",
+    "Sendha Namak (500gm) 1pkt",
+    "Dhaniya Powder",
+    "Bourn Vita",
+    "Horlicks",
+    "Javitri",
+    "Dal Chini",
+    "Sewai",
+    "Arhar Dal (Toor Dal)",
+    "Kabuli Chana",
+    "Besan",
+    "Rajma",
+    "Chay Patti (Tea Leaves)",
+    "Chay Patti (Tea Leaves)",
+    "Phalli Dana (Peanut)",
+    "Moong Dal",
+    "Urad Dal",
+    "Chana Dal",
+    "Green Moong (Khada Moong)",
+    "White Matar",
+    "Dhaniya Khada",
+    "Black Chana",
+    "Sabudana",
+    "Rice",
+    "Idly Rice",
+    "Soyabin Bari",
+    "Tomato Souce",
+    "Pickle",
+    "Green Chilli (Souce)",
+    "Red Chilli (Souce)",
+    "Oll Dalda",
+    "Soya Souce",
+    "Vinegar",
+    "Tomato Souce (Pouch)",
+    "Water Tulsi",
+    "oil",
+    "Maza",
+    "Sprite",
+    "Thums Up",
+    "Maza",
+    "Maza",
+    "Sprite",
+    "Thums Up",
+    "Magaj",
+    "Methi",
+    "Masoor Dal",
+    "Mastered Seed Ajina Moto Salt",
+    "(Raai)",
+    "Kewada Water",
+    "Corn Flower (Makka Atta Ararot)",
+    "Frymes (Tikona Papad)",
+    "Tamrind (imali)",
+    "Sattu Atta",
+    "Rosted Chana",
+    "Ghadi Powder",
+    "V-Hari Mirch-K",
+    "V-Karela",
+    "V-Kheera",
+    "V-Khekhasi",
+    "V-Lauki",
+    "V-Parval",
+    "V-Mooli",
+    "V-Methi bhaji",
+    "V-Green Matar",
+    "V-Palak Bhaji",
+    "V-Kadhi Leaves V-Spring Onion",
+    "V-Kela",
+    "V-Nibu (PIC/NOS)",
+    "V-Kundru",
+    "-Kaddu",
+    "V-Hari Mirchi Big-K",
+    "V-Shimla",
+    "V-Tamatar",
+    "V-Lal Bhaji",
+    "V-Semi",
+    "V-Hari Mirchi Big-K",
+    "V-Shimla",
+    "V-Tamatar",
+    "V-Lal Bhaji",
+    "V-Semi V-Pyaj",
+    "V-Aloo",
+    "Lahspon",
+    "Green Elaichi",
+    "Sauf",
+    "Kaju Tukada",
+    "Long",
+    "Kismis",
+    "Soda",
+    "Tartari",
+    "Mastered Oil",
+    "Coffee (90gm) 1pkt Gulab Jal (250ml) 1Bott",
+    "Pairie-G (Rs-5/-)",
+    "Good Day (Rs-10/-)",
+    "Chicken",
+    "Amul Butter",
+    "Amul Cheese",
+    "Chocolate Syrup",
+    "Pizza Souce",
+    "Veg Mayonmise",
+    "Sweet Corn",
+    "GREEN MATAR",
+    "Burger Tikki",
+    "French Fries",
+    "Yellow Color",
+    "Maggi (280g",
+]
+
 
 CLIENT = MongoClient("mongodb://localhost:27017")
 user_data = CLIENT["aviskar"]["users_data"]
@@ -99,7 +236,7 @@ user_data = CLIENT["aviskar"]["users_data"]
 # elif genrate_data_of == "sales":
 #     data = list(user_data.find({}, limit=int(input("Number of user:- "))))
 #     menu_data = list(CLIENT["aviskar"]["menu_item"].find({}))
-    
+
 #     for i in data:
 #         item = {}
 #         for _ in range(randint(1, 10)):
@@ -126,7 +263,21 @@ user_data = CLIENT["aviskar"]["users_data"]
 # print(str(today))
 # print(*user_data.find({}, limit=1), sep="\n")
 
-users_data = CLIENT["aviskar"]["users_data"].find({},limit=100)
-names = dict(users_data[0]).keys()
+# users_data = CLIENT["aviskar"]["users_data"].find({}, limit=100)
+# names = users_data[0]
 
-print(tuple(names))
+# print(list(dict(names["you_are"]).keys()))
+# print(len(raw_matirals))
+print(time.time())
+raw_mar_data = CLIENT["aviskar"]["in_out"]
+
+
+raw_mar_data.insert_one(
+    {
+        str(datetime.date.today()): {
+            "in": {"salt": {"quantity": 50, "unit": "kg"}},
+            "out": {"suger": {"quantity": 20, "unit": "kg"}},
+        }
+    }
+)
+print(list(raw_mar_data.find({})))

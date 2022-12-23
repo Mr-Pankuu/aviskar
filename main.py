@@ -18,7 +18,7 @@ from pymongo import MongoClient
 from kivy.animation import Animation
 import  matplotlib.pyplot as plt
 import numpy as np
-from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+# from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 
 
 CLIENT = MongoClient("mongodb://localhost:27017")
@@ -106,6 +106,26 @@ class Table(MDScreen):
         )
         self.add_widget(self.data_tables)
 
+
+class Raw_material(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.data_tables = MDDataTable(
+            pos_hint={"center_y": 0.5, "center_x": 0.5},
+            size_hint=(1, 1),
+            use_pagination=True,
+            # check=True,
+            column_data=[
+                ("No.", dp(30)),
+                ("Head 1", dp(30)),
+                ("Head 2", dp(30)),
+                ("Head 3", dp(30)),
+                ("Head 4", dp(30)),
+            ],
+            row_data=((f"{i + 1}", "Salt", "Besan", "Maida", "Aata") for i in range(60)),
+        )
+        self.add_widget(self.data_tables)
 
 class Login(MDScreen):
     invalid_message = StringProperty("")

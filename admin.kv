@@ -15,25 +15,14 @@
                                 orientation: 'vertical'
                                 size_hint:1,None
                                 height: self.minimum_height
+ 
 
-                            Matty:
                                 BoxLayout:
                                     orientation:'vertical'
-                                    id:box
-                                    size_hint_y:.8
-                                    pos_hint:{"tor":1}
-
-                                BoxLayout:
-                                    size_hint_y:.2
-                                    TextInput:
-                                        id:namer
-                                        multline:False
-                                    
-                                    Button:
-                                        text:'save it'
-                                        on_release:root.save_it()
-       
-       
+                                    Image:
+                                        source:"ch.png"
+                                        size_hint: .4,.7
+                                        # pos_hint: {"center_x":0.06,"center_y":0.93}
        
        
         MDNavigationDrawer:
@@ -45,10 +34,8 @@
                     size_hint: (.98,.02)
                     text: "Content"
                     values:["Ready Meal","Sales"]
-
                     on_text: root.spinner_clicked(spinner_id.text)
-
-            # id: nav_drawer1
+                            # id: nav_drawer1
                 Button:
                     id: spinner_id
                     size_hint: (.98,.02)
@@ -61,16 +48,11 @@
                     size_hint: (.98,.02)
                     text: "Analysis"
                     values:["Raw Materials analysis","Product analysis","Sales analysis"]
-
                     on_text: root.spinner_clicked(spinner_id.text)
-
-
                 MDLabel:
                     id: spinner_label
                     size_hint: (.98,.03)
                     text:root.spinner_text
                     font_name:"Lato"
         
-                
-
-
+        

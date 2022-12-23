@@ -58,22 +58,19 @@
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .35}
             MDTextField:
-                id: password_data
+                id: confirm_password_data
                 hint_text: "Cofirm Password"
                 font_name: "Lato"
                 icon_right: 'eye-off'
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
                 password: True
-        
-        
-
         MDLabel:
             id: info
-            text: root.already_exist_message
+            text: root.message
             font_name: "Lato"
             font_size: "18sp"
-            pos_hint: {"center_x": .5,"center_y": .24}
+            pos_hint: {"center_x": .5,"center_y": .21}
             halign:"center"
             color: rgba(255 ,0,0, 170)
         Button:
@@ -96,18 +93,18 @@
         MDLabel:
             text: "or"
             color: rgba(52, 0, 231, 255)
-            pos_hint: {"center_y": .20}
+            pos_hint: {"center_y": .18}
             font_size: "13sp"
             font_name: "Lato"
             halign: "center"
         MDFloatLayout:
             md_bg_color: rgba(178, 178, 178, 255)
             size_hint: .3, .002
-            pos_hint: {"center_x": .3,"center_y": .216}
+            pos_hint: {"center_x": .3,"center_y": .18}
         MDFloatLayout:
             md_bg_color: rgba(178, 178, 178, 255)
             size_hint: .3, .002
-            pos_hint: {"center_x": .7,"center_y": .216}
+            pos_hint: {"center_x": .7,"center_y": .18}
         # MDLabel:
         #     text: "Social media login"
         #     font_name: "Lato"

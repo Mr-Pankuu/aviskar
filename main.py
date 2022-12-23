@@ -178,7 +178,7 @@ class Login(MDScreen):
 
 
 class Signup(MDScreen):
-    already_exist_message = StringProperty("")
+    message = StringProperty("")
 
     def sign_up(self):
         data = {
@@ -192,10 +192,12 @@ class Signup(MDScreen):
             != None
         ):
             print("User of this name already exists.")
-            self.already_exist_message = "User of this name already exists."
+            self.message = "User of this name already exists."
+        elif self.ids.password_data.text != self.ids.confirm_password_data.text:
+            self.message = "Password are not equal."
         else:
             CLIENT["aviskar"]["users_data"].insert_one(data)
-            self.already_exist_message = ""
+            self.message = ""
             print(data)
 
 

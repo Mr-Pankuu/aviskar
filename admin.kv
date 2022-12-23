@@ -11,19 +11,50 @@
                 
                     MDFloatLayout:
                         ScrollView:
-                            Admin_main:
-                                orientation: 'vertical'
-                                size_hint:1,None
-                                height: self.minimum_height
- 
+                            # Admin_main:
+                                # orientation: 'vertical'
+                                # size_hint:1,None
+                                # height: self.minimum_height
+#  
+# 
+                            MDFloatLayout:
+                                orientation:'vertical'
+                                Image:
+                                    source:"farmer.png"
+                                    size_hint: .12,.38
+                                    pos_hint: {"center_x":0.06,"center_y":0.94}
 
-                                BoxLayout:
-                                    orientation:'vertical'
-                                    Image:
-                                        source:"ch.png"
-                                        size_hint: .4,.7
-                                        # pos_hint: {"center_x":0.06,"center_y":0.93}
-       
+                                MDLabel:
+                                    text: "Raw Materials:"
+                                    font_name: "Lato"
+                                    font_size: "20sp"
+                                    pos_hint: {"center_y": .94}
+                                    halign:"center"
+                                    color: rgba(34,34,34,255)
+
+                                Image:
+                                    source:"ready-meal.png"
+                                    size_hint: .12,.38
+                                    pos_hint: {"center_x":0.06,"center_y":0.54}
+                                MDLabel:
+                                    text: "Ready Meal:"
+                                    font_name: "Lato"
+                                    font_size: "20sp"
+                                    pos_hint: {"center_y": .54}
+                                    halign:"center"
+                                    color: rgba(34,34,34,255)
+
+                                Image:
+                                    source:"sales.png"
+                                    size_hint: .12,.38
+                                    pos_hint: {"center_x":0.06,"center_y":0.14}
+                                MDLabel:
+                                    text: "Sales:"
+                                    font_name: "Lato"
+                                    font_size: "20sp"
+                                    pos_hint: {"center_y": .14}
+                                    halign:"center"
+                                    color: rgba(34,34,34,255)
        
         MDNavigationDrawer:
             id: nav_drawer
@@ -49,6 +80,14 @@
                     text: "Analysis"
                     values:["Raw Materials analysis","Product analysis","Sales analysis"]
                     on_text: root.spinner_clicked(spinner_id.text)
+
+                Button:
+                    id: spinner_id
+                    size_hint: (.98,.02)
+                    text: "Manage Account"
+                    on_press:          
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "account"
                 MDLabel:
                     id: spinner_label
                     size_hint: (.98,.03)

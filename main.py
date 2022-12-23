@@ -86,28 +86,28 @@ class Admin_main(BoxLayout):
         # self.add_widget(b)
 
 
+# class Table(MDScreen):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
+
+#         self.data_tables = MDDataTable(
+#             pos_hint={"center_y": 0.5, "center_x": 0.5},
+#             size_hint=(1, 1),
+#             use_pagination=True,
+#             # check=True,
+#             column_data=[
+#                 ("No.", dp(30)),
+#                 ("Head 1", dp(30)),
+#                 ("Head 2", dp(30)),
+#                 ("Head 3", dp(30)),
+#                 ("Head 4", dp(30)),
+#             ],
+#             row_data=((f"{i + 1}", "C", "C++", "JAVA", "Python") for i in range(50)),
+#         )
+#         self.add_widget(self.data_tables)
+
+
 class Table(MDScreen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-        self.data_tables = MDDataTable(
-            pos_hint={"center_y": 0.5, "center_x": 0.5},
-            size_hint=(1, 1),
-            use_pagination=True,
-            # check=True,
-            column_data=[
-                ("No.", dp(30)),
-                ("Head 1", dp(30)),
-                ("Head 2", dp(30)),
-                ("Head 3", dp(30)),
-                ("Head 4", dp(30)),
-            ],
-            row_data=((f"{i + 1}", "C", "C++", "JAVA", "Python") for i in range(50)),
-        )
-        self.add_widget(self.data_tables)
-
-
-class Raw_material(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -179,6 +179,30 @@ class ScreenManage(MDScreenManager):
     pass
 
 
+class Account(MDScreen):
+    already_exist_message = StringProperty("")
+
+    def account(self):
+        data = {
+            "username": self.ids.user_name_data.text,
+            "email": self.ids.email_data.text,
+            "password": self.ids.password_data.text,
+            "privilege": "user",
+            "privilege": "emplyoee",
+            "privilege": "admin",
+        }
+        if (
+            CLIENT["aviskar"]["users_data"].find_one({"username": data["username"]})
+            != None
+        ):
+            print("User of this name already exists.")
+            self.already_exist_message = "User of this name already exists."
+        else:
+            CLIENT["aviskar"]["users_data"].insert_one(data)
+            self.already_exist_message = ""
+            print(data)
+
+
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -190,4 +214,3 @@ if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Bold.ttf")
 
     MainApp().run()
-

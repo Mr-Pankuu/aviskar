@@ -1,5 +1,5 @@
-<Signup>
-    name: "signup"
+<Account>
+    name: "account"
     MDFloatLayout:
         md_bg_color: 1,1,1,1
         MDIconButton:
@@ -11,17 +11,23 @@
             on_release:
                 root.manager.transition.direction = "right"
                 root.manager.current = "main"
+        # MDLabel:
+        #     text: "HELLO"
+        #     font_name: "Lato"
+        #     font_size: "26sp"
+        #     pos_hint: {"center_x": .5,"center_y": .85}
+        #     halign:"center"
+        #     color: rgba(0,0,59,255)
         Image:
-            source: "namaste.png"
-            size_hint: (".25sp", ".25sp")
-            pos_hint: {"center_x": .5,"center_y": .86}
+            source: "private-act.png"
+            size_hint: (.25 , .25)
+            pos_hint: {"center_x": .5,"center_y": .87}
             halign:"center"
-            # color: rgba(0,0,59,255)
         MDLabel:
             text: "Create a new account"
             font_name: "Lato"
-            font_size: "18dp"
-            pos_hint: {"center_x": .5,"center_y": .75}
+            font_size: "18sp"
+            pos_hint: {"center_x": .5,"center_y": .77}
             halign:"center"
             color: rgba(135 ,133,193, 255)
         MDFloatLayout:
@@ -35,7 +41,7 @@
                 pos_hint: {"center_x": .5,"center_y": .5}
         MDFloatLayout:
             size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .57}
+            pos_hint: {"center_x": .5,"center_y": .56}
             MDTextField:
                 id: email_data
                 hint_text: "Email / Phone number"
@@ -44,7 +50,7 @@
                 pos_hint: {"center_x": .5,"center_y": .5}
         MDFloatLayout:
             size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .46}
+            pos_hint: {"center_x": .5,"center_y": .44}
             MDTextField:
                 id: password_data
                 hint_text: "Password"
@@ -56,30 +62,27 @@
 
         MDFloatLayout:
             size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .35}
+            pos_hint: {"center_x": .5,"center_y": .32}
             MDTextField:
                 id: password_data
-                hint_text: "Cofirm Password"
+                hint_text: " Confirm Password"
                 font_name: "Lato"
                 icon_right: 'eye-off'
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
                 password: True
-        
-        
-
         MDLabel:
             id: info
             text: root.already_exist_message
             font_name: "Lato"
             font_size: "18sp"
-            pos_hint: {"center_x": .5,"center_y": .24}
+            pos_hint: {"center_x": .5,"center_y": .38}
             halign:"center"
             color: rgba(255 ,0,0, 170)
         Button:
             text: "SIGNUP"
             size_hint: .66, .065
-            pos_hint: {"center_x": .5,"center_y": .27}
+            pos_hint: {"center_x": .5,"center_y": .2}
             background_color: 0,0,0,0
             font_name: "Lato"
             on_press:
@@ -93,28 +96,28 @@
                     size: self.size
                     pos: self.pos
                     radius:[5]
-        MDLabel:
-            text: "or"
-            color: rgba(52, 0, 231, 255)
-            pos_hint: {"center_y": .20}
-            font_size: "13sp"
-            font_name: "Lato"
-            halign: "center"
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .3,"center_y": .216}
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .7,"center_y": .216}
         # MDLabel:
-        #     text: "Social media login"
-        #     font_name: "Lato"
+        #     text: "or"
+        #     color: rgba(52, 0, 231, 255)
+        #     pos_hint: {"center_y": .22}
         #     font_size: "13sp"
+        #     font_name: "Lato"
         #     halign: "center"
-        #     pos_hint: {"center_y": .143}
-        #     color: rgba(135, 133, 193, 255)
+        # MDFloatLayout:
+        #     md_bg_color: rgba(178, 178, 178, 255)
+        #     size_hint: .3, .002
+        #     pos_hint: {"center_x": .3,"center_y": .218}
+        # MDFloatLayout:
+        #     md_bg_color: rgba(178, 178, 178, 255)
+        #     size_hint: .3, .002
+        #     pos_hint: {"center_x": .7,"center_y": .218}
+        MDLabel:
+            text: "Admin can create another accounts"
+            font_name: "Lato"
+            font_size: "13sp"
+            halign: "center"
+            pos_hint: {"center_y": .10}
+            color: rgba(135, 133, 193, 255)
         # MDGridLayout:
         #     cols: 3
         #     size_hint: .48, .07
@@ -124,7 +127,7 @@
         #     Image:
         #         source: "facebook.png"  
         MDLabel:
-            text: "Allready have an account ->"
+            text: "Already have an account ->"
             font_name: "Lato"
             font_size: "11sp"
             pos_hint: {"center_x": .68,"center_y": .04}

@@ -99,7 +99,7 @@ user_data = CLIENT["aviskar"]["users_data"]
 # elif genrate_data_of == "sales":
 #     data = list(user_data.find({}, limit=int(input("Number of user:- "))))
 #     menu_data = list(CLIENT["aviskar"]["menu_item"].find({}))
-    
+
 #     for i in data:
 #         item = {}
 #         for _ in range(randint(1, 10)):
@@ -127,6 +127,6 @@ user_data = CLIENT["aviskar"]["users_data"]
 # print(*user_data.find({}, limit=1), sep="\n")
 
 users_data = CLIENT["aviskar"]["users_data"].find({},limit=100)
-names = dict(users_data[0]).keys()
+names = users_data[0]
 
-print(tuple(names))
+print(list(dict(names["you_are"]).keys()))

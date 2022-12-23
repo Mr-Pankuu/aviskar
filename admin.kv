@@ -15,8 +15,7 @@
                                 # orientation: 'vertical'
                                 # size_hint:1,None
                                 # height: self.minimum_height
-#  
-# 
+
                             MDFloatLayout:
                                 orientation:'vertical'
                                 Image:
@@ -55,7 +54,6 @@
                                     pos_hint: {"center_y": .14}
                                     halign:"center"
                                     color: rgba(34,34,34,255)
-       
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
@@ -70,10 +68,10 @@
                 Button:
                     id: spinner_id
                     size_hint: (.98,.02)
-                    text: "Raw Materials"
+                    text: "User-Data"
                     on_press:          
                         root.manager.transition.direction = "left"
-                        root.manager.current = "table"
+                        root.manager.current = "userdatatable"
                 Spinner:
                     id: spinner_id
                     size_hint: (.98,.02)

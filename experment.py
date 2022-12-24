@@ -7,8 +7,8 @@ from kivy.lang import Builder
 import numpy as np
 
 
-x = np.array([0, 6,10,20,30,40,50,60,70,80,90,100])
-y = np.array([0, 250,500,750,1000,1250,1500,1750,2000,2050,2250,2500])
+x = np.array([0, 6, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
+y = np.array([0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2050, 2250, 2500])
 
 # x = [
 #     1,
@@ -29,22 +29,15 @@ plt.xlabel("X Axis")
 # plt.show()
 
 
-class Test(FloatLayout):
+class Test(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        box = self.ids.box
-        box.add_widget(FigureCanvasKivyAgg(plt.gcf()))
-        
-        
+        self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
     def save_it(self):
         pass
 
-class ExpApp(MDApp):
-    def build(self):
-        self.theme_cls.theme_style = "Dark"
-        self.theme_cls.primary_palette = "BlueGray"
-        Builder.load_file("exp.kv")
-        return Test()
 
-ExpApp().run()
+class GraphApp(MDApp):
+    pass
 
+GraphApp().run()

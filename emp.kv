@@ -29,12 +29,21 @@
             id: nav_drawer
             BoxLayout:
                 orientation:'vertical'
-                Spinner:
+                Button:
                     id: spinner_id
                     bg_color: rgba(1,1,1,1)
                     size_hint: (.98,.02)
-                    text: "Content"
-                    values:["Ready Meal","Sales"]
+                    text: "Ready Meal"
+                    # values:["Ready Meal","Sales"]
+                    on_text: root.spinner_clicked(spinner_id.text)
+                            # id: nav_drawer1
+
+                Button:
+                    id: spinner_id
+                    bg_color: rgba(1,1,1,1)
+                    size_hint: (.98,.02)
+                    text: "Sales"
+                    # values:["Ready Meal","Sales"]
                     on_text: root.spinner_clicked(spinner_id.text)
                             # id: nav_drawer1
                 

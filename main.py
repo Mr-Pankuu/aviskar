@@ -63,6 +63,23 @@ class Admin_main(BoxLayout):
         # b = Button(text=f"{i}", size_hint=(None, None), size=(size, size))
         # self.add_widget(b)
 
+class Employee(MDScreen):
+    spinner_text = StringProperty("Hello")
+
+    def spinner_clicked(self, value):
+        data = """You are enter in the admin site"""
+        if value.lower() == "raw materials":
+            # on_release:
+            self.manager.transition.direction = "left"
+            self.manager.current = "table"
+
+        # elif value.lower() == "data analysis":
+
+        # elif value.lower() == "sales":
+        #     data= '''Now , You can see the sales analysis.'''
+
+        self.spinner_text = data
+        print(value)
 
 class UserDataTable(MDScreen):
     def __init__(self, **kwargs):

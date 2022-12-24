@@ -1,0 +1,40 @@
+<Employee>
+    name:"employee"
+    MDNavigationLayout:
+        ScreenManage:
+            Screen: 
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: "Welcome"
+                        left_action_items: [["menu",lambda x: nav_drawer.set_state("open")]]
+                
+                    MDFloatLayout:
+                        ScrollView:
+                            MDFloatLayout:
+                                orientation:'vertical'
+                                Image:
+                                    source:"sales.png"
+                                    size_hint: .12,.38
+                                    pos_hint: {"center_x":0.06,"center_y":0.94}
+                                MDLabel:
+                                    text: "Sales:"
+                                    font_name: "Lato"
+                                    font_size: "20sp"
+                                    pos_hint: {"center_y": .94}
+                                    halign:"center"
+                                    color: rgba(34,34,34,255)
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation:'vertical'
+                Spinner:
+                    id: spinner_id
+                    bg_color: rgba(1,1,1,1)
+                    size_hint: (.98,.02)
+                    text: "Content"
+                    values:["Ready Meal","Sales"]
+                    on_text: root.spinner_clicked(spinner_id.text)
+                            # id: nav_drawer1
+                

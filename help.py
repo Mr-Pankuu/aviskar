@@ -7,6 +7,7 @@ import datetime
 import time
 import randomtimestamp
 from os import system
+
 system("clear")
 
 raw_matirals = [
@@ -247,8 +248,16 @@ while True:
             item = {}
             for _ in range(randint(1, 10)):
                 x = choice(menu_data)
+                price = x["price"]
+                quantity = randint(1, 10)
                 item.update(
-                    {x["name"]: {"price": x["price"], "quantity": randint(1, 10)}}
+                    {
+                        x["name"]: {
+                            "price": price,
+                            "quantity": quantity,
+                            "total": price * quantity,
+                        }
+                    }
                 )
 
             bought = {

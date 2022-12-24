@@ -290,4 +290,7 @@ elif genrate_data_of == "in out":
     raw_mar_data.insert_many(i_data)
 
     print(raw_mar_data.find({}))
+
+elif genrate_data_of == "raw material":
     
+    pass

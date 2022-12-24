@@ -11,11 +11,6 @@
                 
                     MDFloatLayout:
                         ScrollView:
-                            # Admin_main:
-                                # orientation: 'vertical'
-                                # size_hint:1,None
-                                # height: self.minimum_height
-
                             MDFloatLayout:
                                 orientation:'vertical'
                                 Image:
@@ -54,12 +49,14 @@
                                     pos_hint: {"center_y": .14}
                                     halign:"center"
                                     color: rgba(34,34,34,255)
+
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
                 orientation:'vertical'
                 Spinner:
                     id: spinner_id
+                    bg_color: rgba(1,1,1,1)
                     size_hint: (.98,.02)
                     text: "Content"
                     values:["Ready Meal","Sales"]
@@ -91,5 +88,12 @@
                     size_hint: (.98,.03)
                     text:root.spinner_text
                     font_name:"Lato"
+
+                Spinner:
+                    id: spinner_id
+                    size_hint: (.98,.02)
+                    text: "About"
+                    values:{"Made for Rungta Campus"}
+                    # on_text: root.spinner_clicked(spinner_id.text)
         
         

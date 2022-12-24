@@ -292,5 +292,4 @@ elif genrate_data_of == "in out":
     print(raw_mar_data.find({}))
 
 elif genrate_data_of == "raw material":
-    
     pass

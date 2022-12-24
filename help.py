@@ -5,6 +5,8 @@ from faker import Faker
 from random import randint, choice
 import datetime
 import time
+import randomtimestamp
+
 
 raw_matirals = [
     ("Salt", "kg", 10),
@@ -240,14 +242,24 @@ elif genrate_data_of == "sales":
             "items": item,
             "total": sum([i["price"] * i["quantity"] for i in item.values()]),
         }
-        date_time = str(faker_data.date_time_this_year()).split(" ")
+        date = str(faker_data.date_this_year())
+
+        start_time_object = datetime.datetime.strptime(
+            "09::00::00", "%H::%M::%S"
+        ).time()
+        end_time_object = datetime.datetime.strptime("18::00::00", "%H::%M::%S").time()
+
+        rand_time = str(
+            randomtimestamp.random_time(start=start_time_object, end=end_time_object)
+        )
+
         item_data = {
             "username": i["username"],
             "email": i["email"],
             "phone": i["phone"],
             "bought": bought,
-            "date": date_time[0],
-            "time": date_time[1],
+            "date": date,
+            "time": rand_time,
         }
         user_data = CLIENT["aviskar"]["sales"].insert_one(item_data)
 

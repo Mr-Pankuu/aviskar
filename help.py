@@ -7,6 +7,7 @@ import datetime
 import time
 import randomtimestamp
 from os import system
+system("clear")
 
 raw_matirals = [
     ("Salt", "kg", 10),
@@ -134,10 +135,8 @@ raw_matirals = [
     ("Gulab Jal (250ml Bott)", "bott", 50),
 ]
 
-system("clear")
 
 CLIENT = MongoClient("mongodb://localhost:27017")
-user_data = CLIENT["aviskar"]["users_data"]
 
 faker_data = Faker(locale="en_IN")
 while True:
@@ -175,8 +174,8 @@ while True:
 
             user = {
                 "username": faker_data.name(),
-                "email": "nico.zero.0x@gmail.com",
-                "password": "nicozero",
+                "email": faker_data.email(),
+                "password": faker_data.password(),
                 "date_of_birth": dob,
                 "you_are": {
                     you_are: {
@@ -195,7 +194,7 @@ while True:
                 "privilege": "user",
             }
             print(user)
-            user_data.insert_one(user)
+            CLIENT["aviskar"]["users_data"].insert_one(user)
     elif genrate_data_of == "menu":
         food_list = {
             "plain dosa": 20,
@@ -235,11 +234,15 @@ while True:
             for i, j in food_list.items()
         ]
         print(food)
-        user_data = CLIENT["aviskar"]["menu_item"].insert_many(food)
+        CLIENT["aviskar"]["menu_item"].insert_many(food)
 
     elif genrate_data_of == "sales":
-        data = list(user_data.find({}, limit=int(input("Number of user:- "))))        menu_data = list(CLIENT["aviskar"]["menu_item"].find({}))
-
+        data = list(
+            CLIENT["aviskar"]["users_data"].find(
+                {}, limit=int(input("Number of user:- "))
+            )
+        )
+        menu_data = list(CLIENT["aviskar"]["menu_item"].find({}))
         for i in data:
             item = {}
             for _ in range(randint(1, 10)):
@@ -276,7 +279,7 @@ while True:
                 "time": rand_time,
             }
             print(item_data)
-            user_data = CLIENT["aviskar"]["sales"].insert_one(item_data)
+            CLIENT["aviskar"]["sales"].insert_one(item_data)
 
     elif genrate_data_of == "in out":
 
@@ -322,8 +325,7 @@ while True:
             print(di)
             i_data.append(di)
 
-        raw_mar_data = CLIENT["aviskar"]["in_out"]
-        raw_mar_data.insert_many(i_data)
+        CLIENT["aviskar"]["in_out"].insert_many(i_data)
 
     elif genrate_data_of == "raw material":
         raw_matiral_name = [i[0] for i in raw_matirals]
@@ -375,8 +377,8 @@ while True:
         ]
 
         print(org_raw_matiral_data)
-        raw_material = CLIENT["aviskar"]["raw_material"]
-        raw_material.insert_many(org_raw_matiral_data)
+
+        CLIENT["aviskar"]["raw_material"].insert_many(org_raw_matiral_data)
 
     if input("Want to insert more data (Yes or No):- ").lower() in ["yes", "y"]:
         system("clear")

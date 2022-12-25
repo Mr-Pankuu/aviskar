@@ -8,7 +8,7 @@ import time
 import randomtimestamp
 from os import system
 
-system("clear")
+system("cls")
 
 raw_matirals = [
     ("Salt", "kg", 10),
@@ -390,9 +390,9 @@ while True:
         CLIENT["aviskar"]["raw_material"].insert_many(org_raw_matiral_data)
 
     if input("Want to insert more data (Yes or No):- ").lower() in ["yes", "y"]:
-        system("clear")
+        system("cls")
         continue
     else:
-        system("clear")
+        system("cls")
         print("Thank you for using my services.")
         break

@@ -21,17 +21,18 @@ from kivy.animation import Animation
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 import matplotlib.pyplot as plt
 import numpy as np
+from kivymd.uix.screen import Screen
 
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 
 
-x = np.array([0, 6,10,20,30,40,50,60,70,80,90,100])
-y = np.array([0, 250,500,750,1000,1250,1500,1750,2000,2050,2250,2500])
-plt.plot(x, y)
-plt.ylabel("Y Axis")
-plt.xlabel("X Axis")
+# x = np.array([0, 6,10,20,30,40,50,60,70,80,90,100])
+# y = np.array([0, 250,500,750,1000,1250,1500,1750,2000,2050,2250,2500])
+# plt.plot(x, y)
+# plt.ylabel("Y Axis")
+# plt.xlabel("X Axis")
 
 
 class Test(MDBoxLayout):
@@ -140,26 +141,86 @@ class UserDataTable(MDScreen):
         )
         self.add_widget(self.data_tables)
 
+    
+class Sales(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        sales = list(CLIENT["aviskar"]["sales"].find({}, limit=100))
+        self.data_tables = MDDataTable(
+            pos_hint={"center_x": 0.5, "center_y": 0.47},
+            size_hint=(0.5, 0.7),
+            use_pagination=True,
+            # check=True,
+            column_data=[
+                ("username",dp(30)),
+                ("email",dp(30)),
+                ("phone",dp(30)),
+                ("bought",dp(30)),
+                ("date",dp(30)),
+                ("time",dp(30))
+            ],
+            row_data=[
+                (
+                    i["username"],
+                    i["email"],
+                    i["phone"],
+                    i["bought"],
+                    # list(i["you_are"].keys())[0],
+                    i["date"],
+                    i["time"],
+                )
+                for i in sales
+            ],
+        )
+        self.add_widget(self.data_tables)    
+        
+class Raw_material(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        raw_material = list(CLIENT["aviskar"]["raw_material"].find({}, limit=100))
+        self.data_tables = MDDataTable(
+            pos_hint={"center_x": 0.5, "center_y": 0.47},
+            size_hint=(0.35, 0.65),
+            use_pagination=True,
+            # check=True,
+            column_data=[
+                ("item_name",dp(30)),
+                ("item_price",dp(30)),
+                ("item_in_stock",dp(30)),
+                ("total_items_worth",dp(30)),
+            ],
+            row_data=[
+                (
+                    i["item_name"],
+                    i["item_price"],
+                    i["item_in_stock"],
+                    i["total_items_worth"],
+                )
+                for i in raw_material
+            ],
+        )
+        self.add_widget(self.data_tables)
 
-# class Table(MDScreen):
-#     def __init__(self, **kwargs):
-#         super().__init__(**kwargs)
-
-#         self.data_tables = MDDataTable(
-#             pos_hint={"center_y": 0.5, "center_x": 0.5},
-#             size_hint=(1, 1),
-#             use_pagination=True,
-#             # check=True,
-#             column_data=[
-#                 ("No.", dp(30)),
-#                 ("Head 1", dp(30)),
-#                 ("Head 2", dp(30)),
-#                 ("Head 3", dp(30)),
-#                 ("Head 4", dp(30)),
-#             ],
-#             row_data=((f"{i + 1}", "Salt", "Besan", "Maida", "Aata") for i in range(60)),
-#         )
-#         self.add_widget(self.data_tables)
+class In_out(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        in_out = list(CLIENT["aviskar"]["in_out"].find({}, limit=100))
+        self.data_tables = MDDataTable(
+            pos_hint={"center_x": 0.5, "center_y": 0.47},
+            size_hint=(0.35, 0.65),
+            use_pagination=True,
+            # check=True,
+            column_data=[
+                ("_id",dp(30)),
+            ],
+            row_data=[
+                (
+                    i["_id"],
+                )
+                for i in in_out
+            ],
+        )
+        self.add_widget(self.data_tables)
 
 
 class Account(MDScreen):

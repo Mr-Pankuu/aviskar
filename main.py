@@ -102,7 +102,7 @@ class Employee(MDScreen):
 class UserDataTable(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        user_data = list(CLIENT["aviskar"]["users_data"].find({}, limit=1000))
+        user_data = list(CLIENT["aviskar"]["users_data"].find({}, limit=100))
         self.data_tables = MDDataTable(
             pos_hint={"center_y": 0.5, "center_x": 0.5},
             size_hint=(1, 1),

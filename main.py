@@ -3,7 +3,9 @@ from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.boxlayout import BoxLayout
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
+from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
@@ -16,13 +18,29 @@ from kivy.uix.button import Button
 import pymongo
 from pymongo import MongoClient
 from kivy.animation import Animation
-
+from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+import matplotlib.pyplot as plt
+import numpy as np
 
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 
 
+x = np.array([0, 6,10,20,30,40,50,60,70,80,90,100])
+y = np.array([0, 250,500,750,1000,1250,1500,1750,2000,2050,2250,2500])
+plt.plot(x, y)
+plt.ylabel("Y Axis")
+plt.xlabel("X Axis")
+
+
+class Test(MDBoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+    def save_it(self):
+        pass
+    
 class Main(MDScreen):
     pass
 

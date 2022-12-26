@@ -41,33 +41,36 @@
                 font_name: "Lato"
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
-        MDFloatLayout:
+        MDBoxLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .44}
             MDTextField:
                 id: password_data
                 hint_text: "Password"
                 font_name: "Lato"
-                icon_right: 'eye-off'
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
                 password: True
+            MDIconButton:
+                id: p_password_icon
+                icon: "eye-off"
+                on_press: root.p_show_unshow()
 
         MDFloatLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .32}
             MDTextField:
-                id: confirm_password_data
+                id: privilege_data
                 hint_text: " Privilage"
                 font_name: "Lato"
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
         MDLabel:
             id: info
-            text: "hrhrtbtetgergreg"
+            text: root.already_exist_message
             font_name: "Lato"
             font_size: "18sp"
-            pos_hint: {"center_x": .5,"center_y": .38}
+            pos_hint: {"center_x": .5,"center_y": .26}
             halign:"center"
             color: rgba(255 ,0,0, 170)
         Button:

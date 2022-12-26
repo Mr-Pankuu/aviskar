@@ -242,9 +242,7 @@ class Account(MDScreen):
             "username": self.ids.user_name_data.text,
             "email": self.ids.email_data.text,
             "password": self.ids.password_data.text,
-            "privilege": "user",
-            "privilege": "emplyoee",
-            "privilege": "admin",
+            "privilege": self.ids.privilege_data.text,
         }
         if (
             CLIENT["aviskar"]["users_data"].find_one({"username": data["username"]})
@@ -257,6 +255,14 @@ class Account(MDScreen):
             self.already_exist_message = ""
             print(data)
 
+    def p_show_unshow(self):
+        if self.ids.password_data.password == True:
+            self.ids.password_data.password = False
+            self.ids.p_password_icon.icon = "eye"
+
+        elif self.ids.password_data.password == False:
+            self.ids.password_data.password = True
+            self.ids.p_password_icon.icon = "eye-off"
 
 class Login(MDScreen):
     invalid_message = StringProperty("")

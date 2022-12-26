@@ -31,7 +31,7 @@
                                     size_hint: .12,.38
                                     pos_hint: {"center_x":0.06,"center_y":0.54}
                                 MDLabel:
-                                    text: "Ready Meal:"
+                                    text: "Product:"
                                     font_name: "Lato"
                                     font_size: "20sp"
                                     pos_hint: {"center_y": .54}
@@ -54,18 +54,26 @@
             id: nav_drawer
             BoxLayout:
                 orientation:'vertical'
-                Spinner:
-                    id: spinner_id
-                    bg_color: rgba(1,1,1,1)
-                    size_hint: (.98,.02)
-                    text: "Content"
-                    values:["Ready Meal","Sales"]
-                    on_text: root.spinner_clicked(spinner_id.text)
+                MDFillRoundFlatIconButton:
+                    text: "Menu"
+                    size_hint: (.9,.02)
+                    pos_hint: {"center_y": .95}
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "36sp"
+                    theme_text_color: "Custom"
+                    text_color: rgba(26, 24, 58, 255)
+                    on_press:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "menu"
                             # id: nav_drawer1
-                Button:
-                    id: spinner_id
+                MDFillRoundFlatIconButton:
+                    text: "User Data"
                     size_hint: (.98,.02)
-                    text: "User-Data"
+                    pos_hint: {"center_y": .95}
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "36sp"
+                    theme_text_color: "Custom"
+                    text_color: rgba(26, 24, 58, 255)
                     on_press:          
                         root.manager.transition.direction = "left"
                         root.manager.current = "userdatatable"
@@ -76,10 +84,14 @@
                     values:["Raw Materials analysis","Product analysis","Sales analysis"]
                     on_text: root.spinner_clicked(spinner_id.text)
 
-                Button:
-                    id: spinner_id
+                MDFillRoundFlatIconButton:
+                    text: "Manage Accounts"
                     size_hint: (.98,.02)
-                    text: "Manage Account"
+                    pos_hint: {"center_y": .95}
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "36sp"
+                    theme_text_color: "Custom"
+                    text_color: rgba(26, 24, 58, 255)
                     on_press:          
                         root.manager.transition.direction = "left"
                         root.manager.current = "account"
@@ -95,3 +107,14 @@
                     text: "About"
                     values:{"Made for Rungta Campus"}
                     # on_text: root.spinner_clicked(spinner_id.text)
+                MDFillRoundFlatIconButton:
+                    text: "Sign out"
+                    # icon: "sign out"
+                    pos_hint: {"center_y": .95}
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "30sp"
+                    theme_text_color: "Custom"
+                    text_color: rgba(26, 24, 58, 255)
+                    on_release:
+                        root.manager.transition.direction = "right"
+                        root.manager.current = "main"

@@ -39,15 +39,27 @@ class Test(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+
     def save_it(self):
         pass
-    
+
+
 class Main(MDScreen):
     pass
 
 
-class Men(MDScreen):
-    pass
+class Menu(MDScreen):
+    spinner_text = StringProperty("Hello")
+
+    def spinner_clicked(self, value):
+        data = """You are enter in the Menuu site"""
+        if value.lower() == "menu":
+            # on_release:
+            self.manager.transition.direction = "left"
+            self.manager.current = "table"
+
+        self.spinner_text = data
+        print(value)
 
 
 class MyLayout(MDWidget):
@@ -82,6 +94,7 @@ class Admin_main(BoxLayout):
         # b = Button(text=f"{i}", size_hint=(None, None), size=(size, size))
         # self.add_widget(b)
 
+
 class Employee(MDScreen):
     spinner_text = StringProperty("Hello")
 
@@ -99,6 +112,7 @@ class Employee(MDScreen):
 
         self.spinner_text = data
         print(value)
+
 
 class UserDataTable(MDScreen):
     def __init__(self, **kwargs):
@@ -141,7 +155,7 @@ class UserDataTable(MDScreen):
         )
         self.add_widget(self.data_tables)
 
-    
+
 class Sales(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -152,12 +166,12 @@ class Sales(MDScreen):
             use_pagination=True,
             # check=True,
             column_data=[
-                ("username",dp(30)),
-                ("email",dp(30)),
-                ("phone",dp(30)),
-                ("bought",dp(30)),
-                ("date",dp(30)),
-                ("time",dp(30))
+                ("username", dp(30)),
+                ("email", dp(30)),
+                ("phone", dp(30)),
+                ("bought", dp(30)),
+                ("date", dp(30)),
+                ("time", dp(30)),
             ],
             row_data=[
                 (
@@ -172,8 +186,9 @@ class Sales(MDScreen):
                 for i in sales
             ],
         )
-        self.add_widget(self.data_tables)    
-        
+        self.add_widget(self.data_tables)
+
+
 class Raw_material(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -184,10 +199,10 @@ class Raw_material(MDScreen):
             use_pagination=True,
             # check=True,
             column_data=[
-                ("item_name",dp(30)),
-                ("item_price",dp(30)),
-                ("item_in_stock",dp(30)),
-                ("total_items_worth",dp(30)),
+                ("item_name", dp(30)),
+                ("item_price", dp(30)),
+                ("item_in_stock", dp(30)),
+                ("total_items_worth", dp(30)),
             ],
             row_data=[
                 (
@@ -201,6 +216,7 @@ class Raw_material(MDScreen):
         )
         self.add_widget(self.data_tables)
 
+
 class In_out(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -211,14 +227,9 @@ class In_out(MDScreen):
             use_pagination=True,
             # check=True,
             column_data=[
-                ("_id",dp(30)),
+                ("_id", dp(30)),
             ],
-            row_data=[
-                (
-                    i["_id"],
-                )
-                for i in in_out
-            ],
+            row_data=[(i["_id"],) for i in in_out],
         )
         self.add_widget(self.data_tables)
 
@@ -270,7 +281,16 @@ class Login(MDScreen):
                 self.manager.current = "employee"
             elif user["privilege"] == "user":
                 self.manager.transition.direction = "left"
-                self.manager.current = "menu"
+                self.manager.current = "Menuu"
+
+    def p_show_unshow(self):
+        if self.ids.password_data.password == True:
+            self.ids.password_data.password = False
+            self.ids.p_password_icon.icon = "eye"
+
+        elif self.ids.password_data.password == False:
+            self.ids.password_data.password = True
+            self.ids.p_password_icon.icon = "eye-off"
 
 
 class Signup(MDScreen):
@@ -295,6 +315,24 @@ class Signup(MDScreen):
             CLIENT["aviskar"]["users_data"].insert_one(data)
             self.message = ""
             print(data)
+
+    def p_show_unshow(self):
+        if self.ids.password_data.password == True:
+            self.ids.password_data.password = False
+            self.ids.p_password_icon.icon = "eye"
+
+        elif self.ids.password_data.password == False:
+            self.ids.password_data.password = True
+            self.ids.p_password_icon.icon = "eye-off"
+
+    def cp_show_unshow(self):
+        if self.ids.confirm_password_data.password == True:
+            self.ids.confirm_password_data.password = False
+            self.ids.cp_password_icon.icon = "eye"
+
+        elif self.ids.confirm_password_data.password == False:
+            self.ids.confirm_password_data.password = True
+            self.ids.cp_password_icon.icon = "eye-off"
 
 
 class ScreenManage(MDScreenManager):

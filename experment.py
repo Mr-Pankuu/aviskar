@@ -28,7 +28,6 @@ plt.ylabel("Y Axis")
 plt.xlabel("X Axis")
 # plt.show()
 
-
 class Test(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

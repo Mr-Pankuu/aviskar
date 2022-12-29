@@ -1,4 +1,4 @@
-#:include table.kv
+#:include userdata.kv
 #:include admin.kv
 #:include men.kv
 #:include login.kv
@@ -6,25 +6,25 @@
 #:include account.kv
 #:include emp.kv
 #:include graph.kv
-#:include sales.kv
-#:include raw.kv
-#:include in_out.kv
-
+#:include salesdata.kv
+#:include rawmaterialdata.kv
+#:include inoutdata.kv
+#:include menudata.kv
 
 ScreenManage:
-    UserDataTable:
-    Sales:
+    Admin:
     Main:
-    Account:
     Login:
     Signup:
+    Account:
+    UserData:
+    RawMaterial:
+    SalesData:
     Employee:
-    In_out:
-    Admin:
-    Raw_material:
+    InOut:
     Menu:
     Graph:
-    
+    MenuData:
 <Main>
     name:"main"
     MDFloatLayout:

@@ -54,59 +54,51 @@
             id: nav_drawer
             BoxLayout:
                 orientation:'vertical'
+                spacing: '8dp'
+                padding: '8dp'
                 MDFillRoundFlatIconButton:
-                    text: "Menu"
-                    size_hint: (.9,.02)
-                    pos_hint: {"center_y": .95}
+                    text: "YOUR PROFILE"
                     pos_hint: {"center_x": .5}
-                    user_font_size: "36sp"
-                    theme_text_color: "Custom"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_press:
-                        root.manager.transition.direction = "left"
-                        root.manager.current = "menudata"
-                Spinner:
-                    id: spinner_id
-                    size_hint: (.98,.02)
-                    text: "Analysis"
-                    values:["Raw Materials analysis","Product analysis","Sales analysis","User Data Analysis"]
-                    on_text: root.spinner_clicked(spinner_id.text)
+                    user_font_size: "38sp"
 
-                MDFillRoundFlatIconButton:
-                    text: "Manage Accounts"
-                    size_hint: (.98,.02)
-                    pos_hint: {"center_y": .95}
+                Image: 
+                    source: "software-engineer.png"
+                    size_hint: .5, .5
                     pos_hint: {"center_x": .5}
-                    user_font_size: "36sp"
-                    theme_text_color: "Custom"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_press:          
-                        root.manager.transition.direction = "left"
-                        root.manager.current = "account"
+
                 MDLabel:
-                    id: spinner_label
-                    size_hint: (.98,.03)
-                    text:root.spinner_text
-                    font_name:"Lato"
+                    text: "               Pankaj Gupta"
+                    size_hint_y: None
+                    pos_hint: {"center_x": .5}
+                    height: self.texture_size[1] 
+                ScrollView: 
+                    MDList:
+                        OneLineListItem:
+                            text: 'Account Management'
+                        OneLineListItem:
+                            text: 'MENU'
+                            on_press: 
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "menudata"
 
-                MDFillRoundFlatIconButton:
-                    text: "About"
-                    pos_hint: {"center_y": .95}
-                    pos_hint: {"center_x": .5}
-                    user_font_size: "30sp"
-                    theme_text_color: "Custom"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_release:
-                        root.manager.transition.direction = "right"
-                        root.manager.current = "about"
-                MDFillRoundFlatIconButton:
-                    text: "Sign out"
-                    # icon: "sign out"
-                    pos_hint: {"center_y": .95}
-                    pos_hint: {"center_x": .5}
-                    user_font_size: "30sp"
-                    theme_text_color: "Custom"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_release:
-                        root.manager.transition.direction = "right"
-                        root.manager.current = "main"
+                        OneLineListItem:
+                            text: 'RAW DATA ANALYSIS'
+                        OneLineListItem:
+                            text: 'SALES DATA ANALYSIS'
+                        OneLineListItem:
+                            text: 'PRODUCT DATA ANALYSIS'
+                        OneLineListItem:
+                            text: 'USER DATA ANALYSIS'
+
+                BoxLayout:
+                    orientation:'vertical'
+                    MDFillRoundFlatIconButton:
+                        text: "About"
+                        pos_hint: {"center_x": .5}
+                        user_font_size: "50sp"
+    
+                    MDIconButton:
+                        Image:
+                            source: "Admin-image\log-out.png"
+                            size_hint: .9, .9
+                            pos_hint: {"center_x": .5}

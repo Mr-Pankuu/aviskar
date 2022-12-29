@@ -30,11 +30,11 @@ class Test(BoxLayout):
         print(account_data_on_count)
         print(account_data_at_count)
         
-        x = [i[0] for i in account_data_on_count]
-        y = [i[1] for i in account_data_on_count]
+        # x = [i[0] for i in account_data_on_count]
+        # y = [i[1] for i in account_data_on_count]
 
-        # x = [i[0] for i in account_data_at_count]
-        # y = [i[1] for i in account_data_at_count]
+        x = [i[0] for i in account_data_at_count]
+        y = [i[1] for i in account_data_at_count]
 
         plt.plot(x, y)
         plt.ylabel("Y Axis")

@@ -19,7 +19,7 @@
 
                     ScrollView:
                         MDGridLayout:
-                            cols: 3
+                            cols: 2
                             size_hint_y: 2.4
                             MDCard:
                                 size_hint_x: .5
@@ -210,53 +210,44 @@
             id: nav_drawer
             BoxLayout:
                 orientation:'vertical'  
-                Spinner:
-                    id: spinner_id
-                    bg_color: rgba(1,1,1,1)
-                    size_hint: (.98,.02)
-                    text: "Content"
-                    values:["Menu","Sales"]
-                    on_text: root.spinner_clicked(spinner_id.text)
-                            # id: nav_drawer1
-                Button:
-                    id: spinner_id
-                    size_hint: (.98,.02)
-                    text: "User-Data"
-                    on_press:          
-                        root.manager.transition.direction = "left"
-                        root.manager.current = "userdatatable"
-                Spinner:
-                    id: spinner_id
-                    size_hint: (.98,.02)
-                    text: "Analysis"
-                    values:["Raw Materials analysis","Product analysis","Sales analysis"]
-                    on_text: root.spinner_clicked(spinner_id.text)
+                spacing: '8dp'
+                padding: '8dp'
+                MDFillRoundFlatIconButton:
+                    text: "YOUR PROFILE"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "38sp"
 
-                MDFillRoundFlatIconButton:
-                    text: "Manage Accounts"
-                    size_hint: (.98,.02)
-                    pos_hint: {"center_y": .95}
+                Image: 
+                    source: "Menu\man.png"
+                    size_hint: .5, .5
                     pos_hint: {"center_x": .5}
-                    user_font_size: "30sp"
-                    theme_text_color: "Custom"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_press:          
-                        root.manager.transition.direction = "left"
-                        root.manager.current = "account"
+
                 MDLabel:
-                    id: spinner_label
-                    size_hint: (.98,.03)
-                    text:root.spinner_text
-                    font_name:"Lato"
-                
-                MDFillRoundFlatIconButton:
-                    text: "Sign out"
-                    # icon: "sign out"
-                    pos_hint: {"center_y": .95}
+                    text: "               Pankaj Gupta"
+                    size_hint_y: None
                     pos_hint: {"center_x": .5}
-                    user_font_size: "30sp"
-                    theme_text_color: "Custom"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_release:
-                        root.manager.transition.direction = "right"
-                        root.manager.current = "main"
+                    height: self.texture_size[1] 
+                ScrollView: 
+                    MDList:
+                        OneLineListItem:
+                            text: 'SOUTH INDIAN'
+                        OneLineListItem:
+                            text: 'NORTH INDIAN'
+                        OneLineListItem:
+                            text: 'SNACKS'
+                        OneLineListItem:
+                            text: 'BEVARAGE'
+                        OneLineListItem:
+                            text: 'FAST TIME'
+
+            
+                MDFillRoundFlatIconButton:
+                    text: "About"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "50sp"
+
+                MDIconButton:
+                    Image:
+                        source: "Admin-image\log-out.png"
+                        size_hint: .9, .9
+                        pos_hint: {"center_x": .5}

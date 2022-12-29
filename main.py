@@ -28,11 +28,11 @@ Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 
 
-# x = np.array([0, 6,10,20,30,40,50,60,70,80,90,100])
-# y = np.array([0, 250,500,750,1000,1250,1500,1750,2000,2050,2250,2500])
-# plt.plot(x, y)
-# plt.ylabel("Y Axis")
-# plt.xlabel("X Axis")
+x = np.array([0, 6,10,20,30,40,50,60,70,80,90,100])
+y = np.array([0, 250,500,750,1000,1250,1500,1750,2000,2050,2250,2500])
+plt.plot(x, y)
+plt.ylabel("Y Axis")
+plt.xlabel("X Axis")
 
 
 class Test(MDBoxLayout):
@@ -406,6 +406,9 @@ class Signup(MDScreen):
         elif self.ids.confirm_password_data.password == False:
             self.ids.confirm_password_data.password = True
             self.ids.cp_password_icon.icon = "eye-off"
+            
+class LoadingPage(MDScreen):
+    pass
 
 
 class ScreenManage(MDScreenManager):

@@ -123,6 +123,7 @@ class UserDataTable(MDScreen):
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
+            rows_num=10,
             column_data=[
                 ("username", dp(30)),
                 ("email", dp(30)),
@@ -134,6 +135,8 @@ class UserDataTable(MDScreen):
                 ("favorite color", dp(30)),
                 ("address", dp(30)),
                 ("phone", dp(30)),
+                ("account_created_on",dp(30)),
+                ("account_created_at",dp(30)),
                 ("privilege", dp(30)),
             ],
             row_data=[
@@ -148,6 +151,8 @@ class UserDataTable(MDScreen):
                     i["favorite_color"],
                     i["address"],
                     i["phone"],
+                    i["account_created_on"],
+                    i["account_created_at"],
                     i["privilege"],
                 )
                 for i in user_data
@@ -155,8 +160,11 @@ class UserDataTable(MDScreen):
         )
         self.add_widget(self.data_tables)
 
-
 class Sales(MDScreen):
+    pass
+
+
+class SalesTableData(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         sales = list(CLIENT["aviskar"]["sales"].find({}, limit=100))
@@ -320,6 +328,8 @@ class Signup(MDScreen):
         else:
             CLIENT["aviskar"]["users_data"].insert_one(data)
             self.message = ""
+            self.manager.transition.direction = "left"
+            self.manager.current = "login"
             print(data)
 
     def p_show_unshow(self):

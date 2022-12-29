@@ -64,24 +64,12 @@
                     text_color: rgba(26, 24, 58, 255)
                     on_press:
                         root.manager.transition.direction = "left"
-                        root.manager.current = "menu"
-                            # id: nav_drawer1
-                MDFillRoundFlatIconButton:
-                    text: "User Data"
-                    size_hint: (.98,.02)
-                    pos_hint: {"center_y": .95}
-                    pos_hint: {"center_x": .5}
-                    user_font_size: "36sp"
-                    theme_text_color: "Custom"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_press:          
-                        root.manager.transition.direction = "left"
-                        root.manager.current = "userdatatable"
+                        root.manager.current = "menudata"
                 Spinner:
                     id: spinner_id
                     size_hint: (.98,.02)
                     text: "Analysis"
-                    values:["Raw Materials analysis","Product analysis","Sales analysis"]
+                    values:["Raw Materials analysis","Product analysis","Sales analysis","User Data Analysis"]
                     on_text: root.spinner_clicked(spinner_id.text)
 
                 MDFillRoundFlatIconButton:
@@ -101,12 +89,16 @@
                     text:root.spinner_text
                     font_name:"Lato"
 
-                Spinner:
-                    id: spinner_id
-                    size_hint: (.98,.02)
+                MDFillRoundFlatIconButton:
                     text: "About"
-                    values:{"Made for Rungta Campus"}
-                    # on_text: root.spinner_clicked(spinner_id.text)
+                    pos_hint: {"center_y": .95}
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "30sp"
+                    theme_text_color: "Custom"
+                    text_color: rgba(26, 24, 58, 255)
+                    on_release:
+                        root.manager.transition.direction = "right"
+                        root.manager.current = "about"
                 MDFillRoundFlatIconButton:
                     text: "Sign out"
                     # icon: "sign out"

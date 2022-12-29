@@ -72,15 +72,22 @@ class Admin(MDScreen):
 
     def spinner_clicked(self, value):
         data = """You are enter in the admin site"""
-        if value.lower() == "raw materials":
-            # on_release:
+
+        if value == "Raw Materials analysis":
             self.manager.transition.direction = "left"
-            self.manager.current = "table"
+            self.manager.current = "raw_material"
 
-        # elif value.lower() == "data analysis":
+        elif value == "Product analysis":
+            self.manager.transition.direction = "left"
+            self.manager.current = "salesdata"
 
-        # elif value.lower() == "sales":
-        #     data= '''Now , You can see the sales analysis.'''
+        elif value == "Sales analysis":
+            self.manager.transition.direction = "left"
+            self.manager.current = "in_out"
+
+        elif value == "User Data Analysis":
+            self.manager.transition.direction = "left"
+            self.manager.current = "userdata"
 
         self.spinner_text = data
         print(value)
@@ -114,7 +121,21 @@ class Employee(MDScreen):
         print(value)
 
 
-class UserDataTable(MDScreen):
+class UserData(MDScreen):
+    pass
+
+class UserDataGraph(MDBoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        
+        x = np.array([0, 6, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
+        y = np.array([0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2050, 2250, 2500])
+        plt.plot(x, y)
+        plt.ylabel("Y Axis")
+        plt.xlabel("X Axis")
+        self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+
+class UserDataTable(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         user_data = list(CLIENT["aviskar"]["users_data"].find({}, limit=100))
@@ -135,8 +156,8 @@ class UserDataTable(MDScreen):
                 ("favorite color", dp(30)),
                 ("address", dp(30)),
                 ("phone", dp(30)),
-                ("account_created_on",dp(30)),
-                ("account_created_at",dp(30)),
+                ("account_created_on", dp(30)),
+                ("account_created_at", dp(30)),
                 ("privilege", dp(30)),
             ],
             row_data=[
@@ -160,7 +181,43 @@ class UserDataTable(MDScreen):
         )
         self.add_widget(self.data_tables)
 
-class Sales(MDScreen):
+
+class MenuData(MDScreen):
+    pass
+
+
+class MenuDataTable(MDBoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        meun_item = list(CLIENT["aviskar"]["menu_item"].find({}))
+        self.data_table = MDDataTable(
+            pos_hint={"center_y": 0.5, "center_x": 0.5},
+            size_hint=(1, 1),
+            use_pagination=True,
+            # check=True,
+            rows_num=10,
+            column_data=[
+                ("item-name", dp(30)),
+                ("price", dp(30)),
+                ("helf-plate", dp(30)),
+                ("full-plate", dp(30)),
+                ("discount", dp(30)),
+            ],
+            row_data=[
+                (
+                    i["name"],
+                    i["price"],
+                    i["quantity"]["half"],
+                    i["quantity"]["full"],
+                    i["discount"],
+                )
+                for i in meun_item
+            ],
+        )
+        self.add_widget(self.data_table)
+
+
+class SalesData(MDScreen):
     pass
 
 
@@ -187,7 +244,6 @@ class SalesTableData(MDBoxLayout):
                     i["email"],
                     i["phone"],
                     i["bought"],
-                    # list(i["you_are"].keys())[0],
                     i["date"],
                     i["time"],
                 )
@@ -197,7 +253,7 @@ class SalesTableData(MDBoxLayout):
         self.add_widget(self.data_tables)
 
 
-class Raw_material(MDScreen):
+class RawMaterial(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         raw_material = list(CLIENT["aviskar"]["raw_material"].find({}, limit=100))
@@ -225,7 +281,7 @@ class Raw_material(MDScreen):
         self.add_widget(self.data_tables)
 
 
-class In_out(MDScreen):
+class InOut(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         in_out = list(CLIENT["aviskar"]["in_out"].find({}, limit=100))
@@ -271,6 +327,7 @@ class Account(MDScreen):
         elif self.ids.password_data.password == False:
             self.ids.password_data.password = True
             self.ids.p_password_icon.icon = "eye-off"
+
 
 class Login(MDScreen):
     invalid_message = StringProperty("")

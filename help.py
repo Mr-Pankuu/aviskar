@@ -164,7 +164,7 @@ while True:
             you_are = choice(you_are_data_list)
             account_created_on = str(
                 randomtimestamp.random_date(
-                    start=datetime.datetime.strptime("2012-01-01", "%Y-%m-%d").date()
+                    start=datetime.datetime.strptime("2019-01-01", "%Y-%m-%d").date()
                 )
             )
 

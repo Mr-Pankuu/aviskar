@@ -264,7 +264,11 @@ while True:
                 "items": item,
                 "total": sum([i["price"] * i["quantity"] for i in item.values()]),
             }
-            date = str(faker_data.date_this_year())
+            date = str(
+                randomtimestamp.random_date(
+                    start=datetime.datetime.strptime("2021-01-01", "%Y-%m-%d").date()
+                )
+            )
 
             start_time_object = datetime.datetime.strptime(
                 "09::00::00", "%H::%M::%S"

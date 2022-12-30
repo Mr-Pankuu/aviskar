@@ -4,10 +4,11 @@
         ScreenManage:
             Screen: 
                 MDBoxLayout:
-                    orientation: 'vertical'
+                    orientation: 'vertical' 
+                    size: 1, 1
                     MDTopAppBar:
                         title: "Menu"
-                        md_bg_color: [0,0,1,1]
+                        # md_bg_color: [0,0,1,1]
                         left_action_items: [['menu', lambda x :  nav_drawer.set_state("open")]]
                         right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
 
@@ -16,223 +17,98 @@
                             # mode: 'end'
                             # icon: 'plus'
                             # icon_color: rgba[0,0,1,1]
-
+                    Image:
+                        source: "restorant.jpg"
+                        allow_stretch: True
                     ScrollView:
-                        MDGridLayout:
-                            cols: 2
-                            size_hint_y: 2.4
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/tea.png"
-                                    MDLabel:
-                                        text : "Tea"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "10 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-                                # Button:
-                                #     id: btn
-                                #     text: 'Qua'
-                                #     on_release: dropdown.open(self)
-                                #     size_hint_y: None
-                                #     height: '20dp'
-
-                                Spinner:
-                                    id: dropdown
-                                    size_hint: .4, .2
-                                    text: "Qty"
-                                    values: "1","2","3","4","5"
+                        # MDBoxLayout:
+                        #     orientation: 'vertical'
+                        #     MDBoxLayout:
                                 
-                                Button:
-                                    text: 'Add +'
-                                    size_hint: .4, .2
-                                    height: '20dp'
-                                            # on_release: dropdown.select('First Item')
+                        MDList:
+                        #     ThreeLineAvatarListItem:
+                        #         text: "SAMOSA"
+                        #         secondary_text: "Rs: 20 "
+                        #         ImageLeftWidget:
+                        #             source: "samosa.jpg"
+                        #     MDFillRoundFlatIconButton:
+                        #         text: "Add+"
+                        #         pos_hint: {"center_x":.8,"center_y": .3}
+                                
+                            ThreeLineAvatarListItem:
+                                text: "MOMOS"
+                                secondary_text: "Rs: 20 "
+                                ImageLeftWidget:
+                                    source: "Menu/momos.png"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
+                            ThreeLineAvatarListItem:
+                                text: "PLAIN DOSA"
+                                secondary_text: "Rs: 20 "
+                                ImageLeftWidget:
+                                    source: "Menu/dosa.png"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
+                            ThreeLineAvatarListItem:
+                                text: "MASALA DOSA"
+                                secondary_text: "Rs: 25 "
+                                ImageLeftWidget:
+                                    source: "Menu/masala_dosa.png"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
+                            ThreeLineAvatarListItem:
+                                text: "IDLY"
+                                secondary_text: "Rs: 15 "
+                                ImageLeftWidget:
+                                    source: "Menu/idli.png"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
 
-                                        # MDLabel:
-                                        #     text: 'Second Item'
-                                        #     size_hint_y: None
-                                        #     height: '20dp'
+                            ThreeLineAvatarListItem:
+                                text: "CUT PIECE DOSA"
+                                secondary_text: "Rs: 30 "
+                                ImageLeftWidget:
+                                    source: "cut_piece.jpg"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
+                            ThreeLineAvatarListItem:
+                                text: "POHA"
+                                secondary_text: "Rs: 15 "
+                                ImageLeftWidget:
+                                    source: "poha.jpg"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
+                            ThreeLineAvatarListItem:
+                                text: "SAMBHAR VADA"
+                                secondary_text: "Rs: 20 "
+                                ImageLeftWidget:
+                                    source: "Menu/vada.png"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
+                            ThreeLineAvatarListItem:
+                                text: "UTTAPAM"
+                                secondary_text: "Rs: 25 "
+                                ImageLeftWidget:
+                                    source: "Menu/uttapam.png"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
 
-                                        # Button:
-                                        #     text: 'Third Item'
-                                        #     size_hint_y: None
-                                        #     height: '20dp'
-                                            # on_release: dropdown.select('Third Item')
-
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/dosa.png"
-                                    MDLabel:
-                                        text : "Dosa"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "25 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/idli.png"
-                                    MDLabel:
-                                        text : "Idli"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "15 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/burger.png"
-                                    MDLabel:
-                                        text : "Burger"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "30 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/masala_dosa.png"
-                                    MDLabel:
-                                        text : "Masala Dosa"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "30 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/momos.png"
-                                    MDLabel:
-                                        text : "Momos"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "30 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/plain_dosa.png"
-                                    MDLabel:
-                                        text : "Plain Dosa"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "20 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/sandwich.png"
-                                    MDLabel:
-                                        text : "Veg Sandwich"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "20 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/uttapam.png"
-                                    MDLabel:
-                                        text : "Uttapam"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "25 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/vada.png"
-                                    MDLabel:
-                                        text : "Vada"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "20 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
-                            MDCard:
-                                size_hint_x: .5
-                                size_hint_y: .3
-                                MDBoxLayout:
-                                    orientation:'vertical'       
-                                    padding: '5dp'
-                                    Image:
-                                        source: "Menu/masala_dosa.png"
-                                    MDLabel:
-                                        text : "Masala Dosa"
-                                        size_hint_y: .2
-                                        font_style: 'H6'
-                                    MDLabel:
-                                        text: "25 RS:"
-                                        size_hint_y:.2
-                                        font_size:"15dp"
+                            ThreeLineAvatarListItem:
+                                text: "VEG SANDWICH"
+                                secondary_text: "Rs: 20 "
+                                ImageLeftWidget:
+                                    source: "Menu/sandwich.png"
+                                MDFillRoundFlatIconButton:
+                                    text: "Add+"
+                                    pos_hint: {"center_x":.8,"center_y": .3}
 
 
         MDNavigationDrawer:

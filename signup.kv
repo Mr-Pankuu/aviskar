@@ -43,6 +43,17 @@
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
         MDBoxLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .57}
+            MDTextField:
+                id: email_data
+                hint_text: "OTP"
+                font_name: "Lato"
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
+            
+                
+        MDBoxLayout:
             orientation: 'horizontal'
             size_hint: .7, .07
             pos_hint: {"center_x": .5,"center_y": .46}
@@ -98,36 +109,6 @@
                     size: self.size
                     pos: self.pos
                     radius:[5]
-        MDLabel:
-            text: "or"
-            color: rgba(52, 0, 231, 255)
-            pos_hint: {"center_y": .18}
-            font_size: "13sp"
-            font_name: "Lato"
-            halign: "center"
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .3,"center_y": .18}
-        MDFloatLayout:
-            md_bg_color: rgba(178, 178, 178, 255)
-            size_hint: .3, .002
-            pos_hint: {"center_x": .7,"center_y": .18}
-        # MDLabel:
-        #     text: "Social media login"
-        #     font_name: "Lato"
-        #     font_size: "13sp"
-        #     halign: "center"
-        #     pos_hint: {"center_y": .143}
-        #     color: rgba(135, 133, 193, 255)
-        # MDGridLayout:
-        #     cols: 3
-        #     size_hint: .48, .07
-        #     pos_hint: {"center_x": .5,"center_y": .1}
-        #     Image:
-        #         source: "google.png"   
-        #     Image:
-        #         source: "facebook.png"  
         MDLabel:
             text: "Already have an account ->"
             font_name: "Lato"

@@ -1,21 +1,18 @@
 <InOut>
-    name: "in_out"
+    name:'in_out'
+    on_pre_enter: root.graph()
     MDNavigationLayout:
         ScreenManage:
             Screen:
-                MDIconButton:
-                    icon: "arrow-left"
-                    pos_hint: {"center_y": .95}
-                    user_font_size: "30sp"
-                    text_color: rgba(26, 24, 58, 255)
-                    on_release:
-                        root.manager.transition.direction = "right"
-                        root.manager.current = "admin"
-                MDLabel:
-                    text: "Hello! You are now in a Inventory Page"
-                    font_name: "Lato"
-                    font_size: "20sp"
-                    size_hint_x: .85
-                    pos_hint: {"center_x": .5,"center_y": .94}
-                    halign:"center"
-                    color: rgba(127,127,127,255)
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    MDIconButton:
+                        icon: "arrow-left"
+                        pos_hint: {"center_y": .95}
+                        user_font_size: "30sp"
+                        text_color: rgba(26, 24, 58, 255)
+                        on_release:
+                            root.manager.transition.direction = "right"
+                            root.manager.current = "admin"
+                    InOutGraph:
+                    InOutDataTable:

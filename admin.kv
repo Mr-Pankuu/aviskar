@@ -82,14 +82,25 @@
                                 root.manager.current = "menudata"
 
                         OneLineListItem:
-                            text: 'RAW DATA ANALYSIS'
+                            text: 'USER DATA ANALYSIS'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "userdata"
                         OneLineListItem:
                             text: 'SALES DATA ANALYSIS'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "salesdata"
                         OneLineListItem:
-                            text: 'PRODUCT DATA ANALYSIS'
+                            text: 'IN OUT DATA ANALYSIS'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "in_out"
                         OneLineListItem:
-                            text: 'USER DATA ANALYSIS'
-
+                            text: 'RAW DATA ANALYSIS'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "raw_material"
                 BoxLayout:
                     orientation:'vertical'
                     MDFillRoundFlatIconButton:

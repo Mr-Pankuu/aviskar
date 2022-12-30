@@ -13,6 +13,7 @@ from kivymd.uix.datatables import MDDataTable
 from kivy.properties import StringProperty
 from kivy.config import Config
 from kivymd.uix.floatlayout import MDFloatLayout
+from kivy.uix.dropdown import DropDown
 from kivy.metrics import dp
 from kivy.uix.button import Button
 import pymongo
@@ -451,7 +452,13 @@ class Signup(MDScreen):
             self.ids.cp_password_icon.icon = "eye-off"
 
 
+class Profile(MDScreen):
+    pass
+
 class LoadingPage(MDScreen):
+    pass
+
+class UserPage(MDScreen):
     pass
 
 

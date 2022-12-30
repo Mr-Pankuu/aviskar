@@ -41,8 +41,6 @@ class Test(BoxLayout):
         plt.xlabel("X Axis")
         self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 
-    def save_it(self):
-        pass
 
 
 class GraphApp(MDApp):

@@ -21,18 +21,12 @@ from kivy.animation import Animation
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 import matplotlib.pyplot as plt
 import numpy as np
+from kivy.clock import Clock
 from kivymd.uix.screen import Screen
 
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
-
-
-x = np.array([0, 6,10,20,30,40,50,60,70,80,90,100])
-y = np.array([0, 250,500,750,1000,1250,1500,1750,2000,2050,2250,2500])
-plt.plot(x, y)
-plt.ylabel("Y Axis")
-plt.xlabel("X Axis")
 
 
 class Test(MDBoxLayout):
@@ -68,38 +62,11 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
-    spinner_text = StringProperty("Hello")
-
-    def spinner_clicked(self, value):
-        data = """You are enter in the admin site"""
-
-        if value == "Raw Materials analysis":
-            self.manager.transition.direction = "left"
-            self.manager.current = "raw_material"
-
-        elif value == "Product analysis":
-            self.manager.transition.direction = "left"
-            self.manager.current = "salesdata"
-
-        elif value == "Sales analysis":
-            self.manager.transition.direction = "left"
-            self.manager.current = "in_out"
-
-        elif value == "User Data Analysis":
-            self.manager.transition.direction = "left"
-            self.manager.current = "userdata"
-
-        self.spinner_text = data
-        print(value)
+    pass
 
 
 class Admin_main(BoxLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-        # size = dp(100)
-        # b = Button(text=f"{i}", size_hint=(None, None), size=(size, size))
-        # self.add_widget(b)
+    pass
 
 
 class Employee(MDScreen):
@@ -122,29 +89,51 @@ class Employee(MDScreen):
 
 
 class UserData(MDScreen):
-    pass
+    def on_pre_enter(self):
+        self.graph()
+
+    def graph(self):
+        user_data = CLIENT["aviskar"]["users_data"]
+        account_created_on = [i["account_created_on"][:4] for i in user_data.find({})]
+        account_data_on_count = [
+            (i, account_created_on.count(str(i)))
+            for i in sorted([int(i) for i in set(account_created_on)])
+        ]
+
+        account_created_at = [i["account_created_at"][:2] for i in user_data.find({})]
+        account_data_at_count = [
+            (i, account_created_at.count(str(i)))
+            for i in sorted([int(i) for i in set(account_created_at)])
+        ]
+
+        x = [i[0] for i in account_data_on_count]
+        y = [i[1] for i in account_data_on_count]
+
+        # x = [i[0] for i in account_data_at_count]
+        # y = [i[1] for i in account_data_at_count]
+        plt.clf()
+        plt.plot(x, y)
+        plt.ylabel("Account")
+        plt.xlabel("Year")
+
 
 class UserDataGraph(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        
-        x = np.array([0, 6, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
-        y = np.array([0, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2050, 2250, 2500])
-        plt.plot(x, y)
-        plt.ylabel("Y Axis")
-        plt.xlabel("X Axis")
+
         self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+
 
 class UserDataTable(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        user_data = list(CLIENT["aviskar"]["users_data"].find({}, limit=100))
+        user_data = list(CLIENT["aviskar"]["users_data"].find({}, limit=1000))
         self.data_tables = MDDataTable(
             pos_hint={"center_y": 0.5, "center_x": 0.5},
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
-            rows_num=10,
+            rows_num=20,
             column_data=[
                 ("username", dp(30)),
                 ("email", dp(30)),
@@ -183,19 +172,40 @@ class UserDataTable(MDBoxLayout):
 
 
 class MenuData(MDScreen):
-    pass
+    def on_pre_enter(self):
+        self.graph()
+
+    def graph(self):
+        data = CLIENT["aviskar"]["menu_item"]
+        menu_data = [(i["name"], i["price"]) for i in data.find({})]
+
+        x = [i[0] for i in menu_data]
+        y = [i[1] for i in menu_data]
+
+        plt.clf()
+        plt.plot(x, y)
+        plt.ylabel("Price")
+        plt.xlabel("Item")
+
+
+class MenuDataGraph(MDBoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 
 
 class MenuDataTable(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
         meun_item = list(CLIENT["aviskar"]["menu_item"].find({}))
         self.data_table = MDDataTable(
             pos_hint={"center_y": 0.5, "center_x": 0.5},
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
-            rows_num=10,
+            rows_num=20,
             column_data=[
                 ("item-name", dp(30)),
                 ("price", dp(30)),
@@ -218,7 +228,37 @@ class MenuDataTable(MDBoxLayout):
 
 
 class SalesData(MDScreen):
-    pass
+    def on_pre_enter(self):
+        self.graph()
+
+    def graph(self):
+        sale_data = CLIENT["aviskar"]["sales"]
+        sales_date_set = sorted(set([int(i["date"][:4]) for i in sale_data.find({})]))
+        sales_time_set = sorted(set([int(i["time"][:2]) for i in sale_data.find({})]))
+
+        year = {str(i):[] for i in sales_date_set}
+        print(year)
+        for i in sale_data.find({}):
+            year[i["date"][:4]].append(i["bought"]["total"])
+
+        x = [int(i) for i in year.keys()]
+        y = [sum(i) for i in year.values()]
+        print(x)
+        print(y)
+        # x = [i[0] for i in account_data_at_count]
+        # y = [i[1] for i in account_data_at_count]
+
+        plt.clf()
+        plt.plot(x, y)
+        plt.ylabel("Sales")
+        plt.xlabel("Year")
+
+
+class SalesDataGraph(MDBoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 
 
 class SalesTableData(MDBoxLayout):
@@ -227,14 +267,15 @@ class SalesTableData(MDBoxLayout):
         sales = list(CLIENT["aviskar"]["sales"].find({}, limit=100))
         self.data_tables = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
-            size_hint=(0.5, 0.7),
+            size_hint=(1, 1),
             use_pagination=True,
             # check=True,
+            rows_num=20,
             column_data=[
                 ("username", dp(30)),
                 ("email", dp(30)),
                 ("phone", dp(30)),
-                ("bought", dp(30)),
+                ("sales_of", dp(30)),
                 ("date", dp(30)),
                 ("time", dp(30)),
             ],
@@ -243,7 +284,7 @@ class SalesTableData(MDBoxLayout):
                     i["username"],
                     i["email"],
                     i["phone"],
-                    i["bought"],
+                    i["bought"]["total"],
                     i["date"],
                     i["time"],
                 )
@@ -262,6 +303,7 @@ class RawMaterial(MDScreen):
             size_hint=(0.35, 0.65),
             use_pagination=True,
             # check=True,
+            rows_num=20,
             column_data=[
                 ("item_name", dp(30)),
                 ("item_price", dp(30)),
@@ -290,6 +332,7 @@ class InOut(MDScreen):
             size_hint=(0.35, 0.65),
             use_pagination=True,
             # check=True,
+            rows_num=20,
             column_data=[
                 ("_id", dp(30)),
             ],
@@ -406,7 +449,8 @@ class Signup(MDScreen):
         elif self.ids.confirm_password_data.password == False:
             self.ids.confirm_password_data.password = True
             self.ids.cp_password_icon.icon = "eye-off"
-            
+
+
 class LoadingPage(MDScreen):
     pass
 

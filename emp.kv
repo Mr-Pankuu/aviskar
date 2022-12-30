@@ -29,21 +29,40 @@
             id: nav_drawer
             BoxLayout:
                 orientation:'vertical'
-                Button:
-                    id: spinner_id
-                    bg_color: rgba(1,1,1,1)
-                    size_hint: (.98,.02)
-                    text: "Menu"
-                    on_press:          
-                        root.manager.transition.direction = "left"
-                        root.manager.current = "menu"
+                spacing: '8dp'
+                padding: '8dp'
+                MDFillRoundFlatIconButton:
+                    text: "YOUR PROFILE"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "38sp"
 
-                Button:
-                    id: spinner_id
-                    size_hint: (.98,.02)
-                    text: "Sales"
-                    on_press:          
-                        root.manager.transition.direction = "left"
-                        root.manager.current = "sales"
-                    
-                
+                Image: 
+                    source: "Employee\employe.png"
+                    size_hint: .5, .5
+                    pos_hint: {"center_x": .5}
+
+                MDLabel:
+                    text: "              Tuleshwar Sahu"
+                    size_hint_y: None
+                    pos_hint: {"center_x": .5}
+                    height: self.texture_size[1] 
+                ScrollView: 
+                    MDList:
+                        OneLineListItem:
+                            text: 'MENU'
+                        OneLineListItem:
+                            text: 'SALES'
+                        OneLineListItem:
+                            text: 'PRODUCT'
+
+            
+                MDFillRoundFlatIconButton:
+                    text: "About"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "50sp"
+
+                MDIconButton:
+                    Image:
+                        source: "Admin-image\log-out.png"
+                        size_hint: .9, .9
+                        pos_hint: {"center_x": .5}

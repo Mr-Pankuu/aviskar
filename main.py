@@ -237,7 +237,7 @@ class SalesData(MDScreen):
         sales_date_set = sorted(set([int(i["date"][:4]) for i in sale_data.find({})]))
         sales_time_set = sorted(set([int(i["time"][:2]) for i in sale_data.find({})]))
 
-        year = {str(i):[] for i in sales_date_set}
+        year = {str(i): [] for i in sales_date_set}
         print(year)
         for i in sale_data.find({}):
             year[i["date"][:4]].append(i["bought"]["total"])
@@ -296,20 +296,22 @@ class SalesTableData(MDBoxLayout):
 
 
 class RawMaterial(MDScreen):
+    pass
+
+class RawMaterialDataTable(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        raw_material = list(CLIENT["aviskar"]["raw_material"].find({}, limit=100))
+        raw_material = list(CLIENT["aviskar"]["raw_material"].find({}))
         self.data_tables = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
-            size_hint=(0.35, 0.65),
+            size_hint=(1,1),
             use_pagination=True,
-            # check=True,
             rows_num=20,
             column_data=[
-                ("item_name", dp(30)),
-                ("item_price", dp(30)),
-                ("item_in_stock", dp(30)),
-                ("total_items_worth", dp(30)),
+                ("Item_name", dp(30)),
+                ("Item_price", dp(30)),
+                ("Item_in_stock", dp(30)),
+                ("Total_items_worth", dp(30)),
             ],
             row_data=[
                 (
@@ -323,21 +325,95 @@ class RawMaterial(MDScreen):
         )
         self.add_widget(self.data_tables)
 
-
 class InOut(MDScreen):
+    def on_pre_enter(self):
+        self.graph()
+
+    def graph(self):
+        month_name_data = {
+            "01": ("January", 31),
+            "02": ("February", 28),
+            "03": ("March", 31),
+            "04": ("April", 30),
+            "05": ("May", 31),
+            "06": ("June", 30),
+            "07": ("July", 31),
+            "08": ("August", 31),
+            "09": ("September", 30),
+            "10": ("October", 31),
+            "11": ("November", 30),
+            "12": ("December", 31),
+        }
+        inout_data = CLIENT["aviskar"]["in_out"]
+        data = [
+            (
+                list(i.keys())[1],
+                len(list(i.values())[1]["in"]),
+                len(list(i.values())[1]["out"]),
+                list(i.values())[1]["total_in"],
+                list(i.values())[1]["total_out"],
+            )
+            for i in inout_data.find({})
+        ]
+        month_set = [
+            "0" + str(i) if len(str(i)) == 1 else str(i)
+            for i in sorted([int(i) for i in set([i[0][5:7] for i in data])])
+        ]
+        month_in_data = []
+        month_out_data = []
+
+        for i in month_set:
+            in_item_sum = sum([j[3] for j in data if i == j[0][5:7]])
+            out_item_sum = sum([j[4] for j in data if i == j[0][5:7]])
+
+            month_in_data.append((i, in_item_sum))
+            month_out_data.append((i, out_item_sum))
+
+        x = [month_name_data[i[0]][0] for i in month_in_data]
+        y = [i[1] / month_name_data[i[0]][1] for i in month_out_data]
+        print(x)
+        print(y)
+
+        plt.clf()
+        plt.plot(x, y)
+        plt.ylabel("In")
+        plt.xlabel("Year")
+
+
+class InOutGraph(MDBoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+        self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+
+
+class InOutDataTable(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         in_out = list(CLIENT["aviskar"]["in_out"].find({}, limit=100))
         self.data_tables = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
-            size_hint=(0.35, 0.65),
+            size_hint=(1, 1),
             use_pagination=True,
             # check=True,
             rows_num=20,
             column_data=[
-                ("_id", dp(30)),
+                ("Date", dp(30)),
+                ("In-Count", dp(30)),
+                ("Out-Count", dp(30)),
+                ("In-Total-Cost", dp(30)),
+                ("Out-Total-Cost", dp(30)),
             ],
-            row_data=[(i["_id"],) for i in in_out],
+            row_data=[
+                (
+                    list(i.keys())[1],
+                    len(list(i.values())[1]["in"]),
+                    len(list(i.values())[1]["out"]),
+                    list(i.values())[1]["total_in"],
+                    list(i.values())[1]["total_out"],
+                )
+                for i in in_out
+            ],
         )
         self.add_widget(self.data_tables)
 

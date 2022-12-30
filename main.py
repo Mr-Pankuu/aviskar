@@ -55,6 +55,7 @@ class Menu(MDScreen):
 
         self.spinner_text = data
         print(value)
+        
 
 
 class MyLayout(MDWidget):
@@ -533,10 +534,6 @@ class Profile(MDScreen):
 
 class LoadingPage(MDScreen):
     pass
-
-class UserPage(MDScreen):
-    pass
-
 
 class ScreenManage(MDScreenManager):
     pass

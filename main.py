@@ -23,7 +23,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 from kivy.clock import Clock
 from kivymd.uix.screen import Screen
+from twilio.rest import Client
+from random import randint
 
+client = Client(
+    "AC07a81f1226651d58932b3890f2aa5e65", "606344a8e18280136fc06755e7489eec"
+)
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
@@ -297,13 +302,14 @@ class SalesTableData(MDBoxLayout):
 class RawMaterial(MDScreen):
     pass
 
+
 class RawMaterialDataTable(MDBoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         raw_material = list(CLIENT["aviskar"]["raw_material"].find({}))
         self.data_tables = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
-            size_hint=(1,1),
+            size_hint=(1, 1),
             use_pagination=True,
             rows_num=20,
             column_data=[
@@ -323,6 +329,7 @@ class RawMaterialDataTable(MDBoxLayout):
             ],
         )
         self.add_widget(self.data_tables)
+
 
 class InOut(MDScreen):
     def on_pre_enter(self):
@@ -486,6 +493,15 @@ class Login(MDScreen):
 class Signup(MDScreen):
     message = StringProperty("")
 
+    def send_otp(self):
+        global mess
+        mess = randint(0, 999999)
+        message = client.messages.create(
+            body=mess,
+            from_="+12017206236",
+            to="+917247477955",
+        )
+
     def sign_up(self):
         data = {
             "username": self.ids.user_name_data.text,
@@ -501,6 +517,9 @@ class Signup(MDScreen):
             self.message = "User of this name already exists."
         elif self.ids.password_data.text != self.ids.confirm_password_data.text:
             self.message = "Password are not equal."
+        elif self.ids.otp_data.text != str(mess):
+            self.message = "Invalid OTP"
+            self.ids.otp_button.text = "Resend OTP"
         else:
             CLIENT["aviskar"]["users_data"].insert_one(data)
             self.message = ""

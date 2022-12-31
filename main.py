@@ -592,7 +592,7 @@ class ScreenManage(MDScreenManager):
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "Orange"
 
 
 if __name__ == "__main__":
@@ -600,3 +600,4 @@ if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Bold.ttf")
 
     MainApp().run()
+#  ['Red', 'Pink', 'Purple', 'DeepPurple', 'Indigo', 'Blue', 'LightBlue', 'Cyan', 'Teal', 'Green', 'LightGreen', 'Lime', 'Yellow', 'Amber', 'Orange', 'DeepOrange', 'Brown', 'Gray', 'BlueGray']

@@ -19,7 +19,7 @@ from kivy.uix.dropdown import DropDown
 from kivymd.material_resources import STANDARD_INCREMENT
 from kivy.metrics import dp
 from kivy.uix.button import Button
-from kivymd.uix.list import ImageRightWidget , OneLineListItem
+from kivymd.uix.list import ImageRightWidget, OneLineListItem
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivy.uix.image import Image
 import pymongo
@@ -32,13 +32,16 @@ from kivy.clock import Clock
 from kivymd.uix.screen import Screen
 from twilio.rest import Client
 from random import randint
+import math
+from os import system
 
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "606344a8e18280136fc06755e7489eec"
+    "AC07a81f1226651d58932b3890f2aa5e65", "24581999d659aed4f1b079b84016aab0"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
+DATATABLE_PAGE_ROW_LIMIT = 100
 
 
 class Test(MDBoxLayout):
@@ -54,7 +57,27 @@ class Main(MDScreen):
     pass
 
 
-class Menu(MDScreen):
+class Tool:
+    def on_row_press(self, instance_table, instance_row):
+        row_index = int(instance_row.index)
+        try:
+            for i in range(
+                math.floor(
+                    int(instance_table.pagination.ids.label_rows_per_page.text[:3])
+                    / DATATABLE_PAGE_ROW_LIMIT
+                )
+            ):
+                row_index += len(instance_table.column_data) * DATATABLE_PAGE_ROW_LIMIT
+        except:
+            pass
+
+        row_index = math.floor(row_index / len(instance_table.column_data))
+        row_data = instance_table.row_data[row_index]
+
+        print(row_data)
+
+
+class Menuxx(MDScreen):
     spinner_text = StringProperty("Hello")
 
     def spinner_clicked(self, value):
@@ -66,7 +89,6 @@ class Menu(MDScreen):
 
         self.spinner_text = data
         print(value)
-        
 
 
 class MyLayout(MDWidget):
@@ -137,16 +159,16 @@ class UserDataGraph(MDBoxLayout):
         self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 
 
-class UserDataTable(MDBoxLayout):
+class UserDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         user_data = list(CLIENT["aviskar"]["users_data"].find({}, limit=1000))
-        self.data_tables = MDDataTable(
+        self.data_table = MDDataTable(
             pos_hint={"center_y": 0.5, "center_x": 0.5},
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
-            rows_num=20,
+            rows_num=DATATABLE_PAGE_ROW_LIMIT,
             column_data=[
                 ("username", dp(30)),
                 ("email", dp(30)),
@@ -181,7 +203,8 @@ class UserDataTable(MDBoxLayout):
                 for i in user_data
             ],
         )
-        self.add_widget(self.data_tables)
+        self.data_table.bind(on_row_press=self.on_row_press)
+        self.add_widget(self.data_table)
 
 
 class MenuData(MDScreen):
@@ -208,7 +231,7 @@ class MenuDataGraph(MDBoxLayout):
         self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 
 
-class MenuDataTable(MDBoxLayout):
+class MenuDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -218,7 +241,7 @@ class MenuDataTable(MDBoxLayout):
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
-            rows_num=20,
+            rows_num=DATATABLE_PAGE_ROW_LIMIT,
             column_data=[
                 ("item-name", dp(30)),
                 ("price", dp(30)),
@@ -237,6 +260,7 @@ class MenuDataTable(MDBoxLayout):
                 for i in meun_item
             ],
         )
+        self.data_table.bind(on_row_press=self.on_row_press)
         self.add_widget(self.data_table)
 
 
@@ -274,16 +298,16 @@ class SalesDataGraph(MDBoxLayout):
         self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 
 
-class SalesTableData(MDBoxLayout):
+class SalesTableData(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        sales = list(CLIENT["aviskar"]["sales"].find({}, limit=100))
-        self.data_tables = MDDataTable(
+        sales = list(CLIENT["aviskar"]["sales"].find({}, limit=1000))
+        self.data_table = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
-            rows_num=20,
+            rows_num=DATATABLE_PAGE_ROW_LIMIT,
             column_data=[
                 ("username", dp(30)),
                 ("email", dp(30)),
@@ -304,22 +328,23 @@ class SalesTableData(MDBoxLayout):
                 for i in sales
             ],
         )
-        self.add_widget(self.data_tables)
+        self.data_table.bind(on_row_press=self.on_row_press)
+        self.add_widget(self.data_table)
 
 
 class RawMaterial(MDScreen):
     pass
 
 
-class RawMaterialDataTable(MDBoxLayout):
+class RawMaterialDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         raw_material = list(CLIENT["aviskar"]["raw_material"].find({}))
-        self.data_tables = MDDataTable(
+        self.data_table = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
             size_hint=(1, 1),
             use_pagination=True,
-            rows_num=20,
+            rows_num=DATATABLE_PAGE_ROW_LIMIT,
             column_data=[
                 ("Item_name", dp(30)),
                 ("Item_price", dp(30)),
@@ -336,7 +361,8 @@ class RawMaterialDataTable(MDBoxLayout):
                 for i in raw_material
             ],
         )
-        self.add_widget(self.data_tables)
+        self.data_table.bind(on_row_press=self.on_row_press)
+        self.add_widget(self.data_table)
 
 
 class InOut(MDScreen):
@@ -401,16 +427,16 @@ class InOutGraph(MDBoxLayout):
         self.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 
 
-class InOutDataTable(MDBoxLayout):
+class InOutDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        in_out = list(CLIENT["aviskar"]["in_out"].find({}, limit=100))
-        self.data_tables = MDDataTable(
+        in_out = list(CLIENT["aviskar"]["in_out"].find({}, limit=1000))
+        self.data_table = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
             size_hint=(1, 1),
             use_pagination=True,
             # check=True,
-            rows_num=20,
+            rows_num=DATATABLE_PAGE_ROW_LIMIT,
             column_data=[
                 ("Date", dp(30)),
                 ("In-Count", dp(30)),
@@ -429,7 +455,8 @@ class InOutDataTable(MDBoxLayout):
                 for i in in_out
             ],
         )
-        self.add_widget(self.data_tables)
+        self.data_table.bind(on_row_press=self.on_row_press)
+        self.add_widget(self.data_table)
 
 
 class Account(MDScreen):
@@ -553,12 +580,13 @@ class Signup(MDScreen):
             self.ids.confirm_password_data.password = True
             self.ids.cp_password_icon.icon = "eye-off"
 
-class Foody(MDScreen):
+
+class Menu(MDScreen):
     pass
     # KV_FILES = {
     #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
     #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
-               
+
     # }
     # CLASSES = {
     #     "Foody": "foodlist_screen",
@@ -569,21 +597,24 @@ class Foody(MDScreen):
 
     # def build_app(self):
     #     import foodlist_screen
-        
+
     #     Window.bind(on_keyboard=self._rebuild)
     #     importlib.reload(foodlist_screen)
 
     #     return foodlist_screen.Foody()
-    
+
     # def _rebuild(self, *args):
     #     if args[1] == 32:
     #         self._rebuild()
 
+
 class Profile(MDScreen):
     pass
 
+
 class LoadingPage(MDScreen):
     pass
+
 
 class ScreenManage(MDScreenManager):
     pass

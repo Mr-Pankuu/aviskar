@@ -77,7 +77,7 @@ class Tool:
         print(row_data)
 
 
-class Menu(MDScreen):
+class Menuxx(MDScreen):
     spinner_text = StringProperty("Hello")
 
     def spinner_clicked(self, value):
@@ -581,7 +581,7 @@ class Signup(MDScreen):
             self.ids.cp_password_icon.icon = "eye-off"
 
 
-class Foody(MDScreen):
+class Menu(MDScreen):
     pass
     # KV_FILES = {
     #     os.path.join(os.getcwd(), "foodlist_screen.kv"),

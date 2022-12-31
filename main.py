@@ -578,6 +578,9 @@ class Foody(MDScreen):
     # def _rebuild(self, *args):
     #     if args[1] == 32:
     #         self._rebuild()
+    
+class SouthIndian:
+    pass
 
 class Profile(MDScreen):
     pass

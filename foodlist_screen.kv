@@ -1,4 +1,6 @@
 #:include food.kv
+# :include south.kv
+
 
 <Foody>
     ScrollView:
@@ -14,8 +16,9 @@
             Foodd:
             Foode:
             Foodf:
-            # Food:
-            # Food:
+            Foodg:
+            Foodi:
+            Foodj:
     MDTopAppBar:
         id: toolbar
         title: "Foods"
@@ -26,3 +29,52 @@
         right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
         pos_hint: {"top": 1}
     
+    MDNavigationLayout:
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation:'vertical'  
+                spacing: '8dp'
+                padding: '8dp'
+                MDFillRoundFlatIconButton:
+                    text: "YOUR PROFILE"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "38sp"
+
+                Image: 
+                    source: "Menu\man.png"
+                    size_hint: .5, .5
+                    pos_hint: {"center_x": .5}
+
+                MDLabel:
+                    text: "               Pankaj Gupta"
+                    size_hint_y: None
+                    pos_hint: {"center_x": .5}
+                    height: self.texture_size[1] 
+                ScrollView: 
+                    MDList:
+                        OneLineListItem:
+                            text: 'SOUTH INDIAN'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "south"
+                        OneLineListItem:
+                            text: 'NORTH INDIAN'
+                        OneLineListItem:
+                            text: 'SNACKS'
+                        OneLineListItem:
+                            text: 'BEVARAGE'
+                        OneLineListItem:
+                            text: 'FAST TIME'
+
+            
+                MDFillRoundFlatIconButton:
+                    text: "About"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "50sp"
+
+                MDIconButton:
+                    Image:
+                        source: "Admin-image\log-out.png"
+                        size_hint: .9, .9
+                        pos_hint: {"center_x": .5}

@@ -1,3 +1,5 @@
+import importlib
+import os
 from kivy.core.window import Window
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
@@ -13,8 +15,13 @@ from kivymd.uix.datatables import MDDataTable
 from kivy.properties import StringProperty
 from kivy.config import Config
 from kivymd.uix.floatlayout import MDFloatLayout
+from kivy.uix.dropdown import DropDown
+from kivymd.material_resources import STANDARD_INCREMENT
 from kivy.metrics import dp
 from kivy.uix.button import Button
+from kivymd.uix.list import ImageRightWidget, OneLineListItem
+from kivymd.uix.relativelayout import MDRelativeLayout
+from kivy.uix.image import Image
 import pymongo
 from pymongo import MongoClient
 from kivy.animation import Animation
@@ -68,6 +75,7 @@ class Tool:
         row_data = instance_table.row_data[row_index]
 
         print(row_data)
+
 
 class Menu(MDScreen):
     spinner_text = StringProperty("Hello")
@@ -573,6 +581,37 @@ class Signup(MDScreen):
             self.ids.cp_password_icon.icon = "eye-off"
 
 
+class Foody(MDScreen):
+    pass
+    # KV_FILES = {
+    #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
+    #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
+
+    # }
+    # CLASSES = {
+    #     "Foody": "foodlist_screen",
+    # }
+    # AUTORELOADER_PATH = [
+    #     (".", {"recursive": True}),
+    # ]
+
+    # def build_app(self):
+    #     import foodlist_screen
+
+    #     Window.bind(on_keyboard=self._rebuild)
+    #     importlib.reload(foodlist_screen)
+
+    #     return foodlist_screen.Foody()
+
+    # def _rebuild(self, *args):
+    #     if args[1] == 32:
+    #         self._rebuild()
+
+
+class Profile(MDScreen):
+    pass
+
+
 class LoadingPage(MDScreen):
     pass
 
@@ -584,7 +623,7 @@ class ScreenManage(MDScreenManager):
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "Orange"
 
 
 if __name__ == "__main__":
@@ -592,3 +631,4 @@ if __name__ == "__main__":
     LabelBase.register(name="Lato", fn_regular="Lato/Lato-Bold.ttf")
 
     MainApp().run()
+#  ['Red', 'Pink', 'Purple', 'DeepPurple', 'Indigo', 'Blue', 'LightBlue', 'Cyan', 'Teal', 'Green', 'LightGreen', 'Lime', 'Yellow', 'Amber', 'Orange', 'DeepOrange', 'Brown', 'Gray', 'BlueGray']

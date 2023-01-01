@@ -54,5 +54,5 @@ from pymongo import MongoClient
 
 CLIENT = MongoClient("mongodb://localhost:27017")
 
-x = CLIENT["aviskar"]["menu_item"].find({})
+x = CLIENT["aviskar"]["raw_material"].find({})
 print(list(x)[0])

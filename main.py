@@ -122,6 +122,18 @@ class EditPopup(Popup):
                     }
                 },
             )
+        elif self.table_name == "raw_material":
+            CLIENT["aviskar"]["raw_material"].update_one(
+                {"name": self.row_data[0]},
+                {
+                    "$set": {
+                        "item_name": widget_values["Item_name"],
+                        "item_price": int(widget_values["Item_price"]),
+                        "item_in_stock": int(widget_values["Item_in_stock"]),
+                        "total_items_worth": int(widget_values["Total_items_worth"]),
+                    }
+                },
+            )
         self.table_instance.update_row(self.row_data, [i.text for i in self.widgets])
 
 

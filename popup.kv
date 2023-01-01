@@ -1,0 +1,19 @@
+<EditPopup>
+    title: "Editer"
+    auto_dismiss: False
+    MDBoxLayout:
+        md_bg_color:1,1,1,0.7
+        orientation: 'vertical'
+        MDBoxLayout:   
+            id: popup_layout
+            orientation: 'vertical'
+        MDBoxLayout:
+            size_hint: 1,.05
+            Button:
+                text: "Close"
+                on_release: root.dismiss()
+            Button:
+                text: "Okey"
+                on_release: 
+                    root.update()
+                    root.dismiss()

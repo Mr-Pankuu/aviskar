@@ -1,6 +1,4 @@
 #:include food.kv
-# :include south.kv
-
 
 <Menu>
     name:"menu"
@@ -41,6 +39,9 @@
                     text: "YOUR PROFILE"
                     pos_hint: {"center_x": .5}
                     user_font_size: "38sp"
+                    on_press:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "userprofile"
 
                 Image: 
                     source: "Menu\man.png"
@@ -61,12 +62,24 @@
                                 root.manager.current = "south"
                         OneLineListItem:
                             text: 'NORTH INDIAN'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "north"
                         OneLineListItem:
                             text: 'SNACKS'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "snacks"
                         OneLineListItem:
                             text: 'BEVARAGE'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "bevarage"
                         OneLineListItem:
                             text: 'FAST TIME'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "fast_time"
 
             
                 MDFillRoundFlatIconButton:
@@ -74,8 +87,11 @@
                     pos_hint: {"center_x": .5}
                     user_font_size: "50sp"
 
-                MDIconButton:
-                    Image:
-                        source: "Admin-image\log-out.png"
-                        size_hint: .9, .9
-                        pos_hint: {"center_x": .5}
+                MDFillRoundFlatIconButton:
+                    text: "Logout"
+                    icon: "logout"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "36sp"
+                    on_press:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "main"

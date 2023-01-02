@@ -1,4 +1,117 @@
-<Profile>
+<ProfileEdit>
     name: "profile"
     MDFloatLayout:
+        md_bg_color: 1,1,1,1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "menu"
+        Image:
+            source: "namaste.png"
+            size_hint: (".25sp", ".25sp")
+            pos_hint: {"center_x": .5,"center_y": .86}
+            halign:"center"
+            # color: rgba(0,0,59,255)
+        MDLabel:
+            text: "Create a new account"
+            font_name: "Lato"
+            font_size: "18dp"
+            pos_hint: {"center_x": .5,"center_y": .75}
+            halign:"center"
+            color: rgba(135 ,133,193, 255)
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .68}
+            MDTextField:
+                id: username
+                hint_text: "Username"
+                font_name: "Lato"
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .57}
+            MDTextField:
+                id: email_data
+                hint_text: "Email "
+                font_name: "Lato"
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .35}
+            MDTextField:
+                id: password_data
+                hint_text: "Password"
+                font_name: "Lato"
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
+                password: True
+            MDIconButton:
+                id: p_password_icon
+                icon: "eye-off"
+                on_press: root.p_show_unshow()
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .25}
+            MDTextField:
+                id: confirm_password_data
+                hint_text: "Cofirm Password"
+                font_name: "Lato"
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
+                password: True
+            MDIconButton:
+                id: cp_password_icon
+                icon: "eye-off"
+                on_press: root.cp_show_unshow()
+        MDLabel:
+            id: info
+            text: root.message
+            font_name: "Lato"
+            font_size: "18sp"
+            pos_hint: {"center_x": .5,"center_y": .17}
+            halign:"center"
+            color: rgba(255 ,0,0, 170)
+        Button:
+            text: "EDIT CHANGES"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5,"center_y": .1}
+            background_color: 0,0,0,0
+            font_name: "Lato"
+            on_press:
+                root.sign_up()
+                # root.manager.transition.direction = "left"
+                # root.manager.current = "login"
+            canvas.before:
+                Color:
+                    rgb: rgba(52,0,231,255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius:[5]
+        MDLabel:
+            text: "IF you not want to changes >"
+            font_name: "Lato"
+            font_size: "11sp"
+            pos_hint: {"center_x": .68,"center_y": .04}
+            color: rgba(135, 133, 193, 255)
+        MDTextButton:
+            text: "sign-in"
+            font_name: "Lato"
+            font_size: "11sp"
+            pos_hint: {"center_x": .79,"center_y": .04}
+            color: rgba(52, 0 ,231, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "profile"
+
         

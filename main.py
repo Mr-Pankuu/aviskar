@@ -12,10 +12,13 @@ from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
 from kivymd.uix.datatables import MDDataTable
+from kivymd.uix.textfield import MDTextField
 from kivy.properties import StringProperty
 from kivy.config import Config
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.uix.dropdown import DropDown
+from kivy.uix.popup import Popup
+from kivy.factory import Factory
 from kivymd.material_resources import STANDARD_INCREMENT
 from kivy.metrics import dp
 from kivy.uix.button import Button
@@ -33,7 +36,6 @@ from kivymd.uix.screen import Screen
 from twilio.rest import Client
 from random import randint
 import math
-from os import system
 
 client = Client(
     "AC07a81f1226651d58932b3890f2aa5e65", "24581999d659aed4f1b079b84016aab0"
@@ -53,11 +55,99 @@ class Test(MDBoxLayout):
         pass
 
 
+class EditPopup(Popup):
+    def __init__(self, table_instance, column_data, row_data, table_name, **kwargs):
+        super().__init__(**kwargs)
+        self.column_data = [i[0] for i in column_data]
+        self.table_name = table_name
+        self.row_data = row_data
+        self.table_instance = table_instance
+        self.widgets = [
+            MDTextField(
+                text=str(j),
+                hint_text=i,
+            )
+            for i, j in zip(self.column_data, self.row_data)
+        ]
+        added_widget = [self.ids.popup_layout.add_widget(i) for i in self.widgets]
+
+    def update(self):
+        widget_values = {i: j.text for i, j in zip(self.column_data, self.widgets)}
+        print(self.table_name)
+        if self.table_name == "users_data":
+            CLIENT["aviskar"]["users_data"].update_one(
+                {"username": self.row_data[0]},
+                {
+                    "$set": {
+                        "username": widget_values["username"],
+                        "email": widget_values["email"],
+                        "password": widget_values["password"],
+                        "date_of_birth": widget_values["date_of_birth"],
+                        "gender": widget_values["gender"],
+                        "age": int(widget_values["age"]),
+                        "favorite_color": widget_values["favorite_color"],
+                        "address": widget_values["address"],
+                        "phone": widget_values["phone"],
+                        "privilege": widget_values["privilege"],
+                    }
+                },
+            )
+        elif self.table_name == "menu_item":
+            CLIENT["aviskar"]["menu_item"].update_one(
+                {"name": self.row_data[0]},
+                {
+                    "$set": {
+                        "name": widget_values["item-name"],
+                        "price": int(widget_values["price"]),
+                        "quantity": {
+                            "half": widget_values["half-plate"],
+                            "full": widget_values["full-plate"],
+                        },
+                        "discount": widget_values["discount"],
+                    }
+                },
+            )
+        elif self.table_name == "menu_item":
+            CLIENT["aviskar"]["menu_item"].update_one(
+                {"name": self.row_data[0]},
+                {
+                    "$set": {
+                        "name": widget_values["item-name"],
+                        "price": int(widget_values["price"]),
+                        "quantity": {
+                            "half": widget_values["half-plate"],
+                            "full": widget_values["full-plate"],
+                        },
+                        "discount": widget_values["discount"],
+                    }
+                },
+            )
+        elif self.table_name == "raw_material":
+            CLIENT["aviskar"]["raw_material"].update_one(
+                {"name": self.row_data[0]},
+                {
+                    "$set": {
+                        "item_name": widget_values["Item_name"],
+                        "item_price": int(widget_values["Item_price"]),
+                        "item_in_stock": int(widget_values["Item_in_stock"]),
+                        "total_items_worth": int(widget_values["Total_items_worth"]),
+                    }
+                },
+            )
+        self.table_instance.update_row(self.row_data, [i.text for i in self.widgets])
+
+
+Factory.register("EditPopup", cls=EditPopup)
+
+
 class Main(MDScreen):
     pass
 
 
 class Tool:
+    def __init__(self):
+        self.table_name = None
+
     def on_row_press(self, instance_table, instance_row):
         row_index = int(instance_row.index)
         try:
@@ -74,7 +164,9 @@ class Tool:
         row_index = math.floor(row_index / len(instance_table.column_data))
         row_data = instance_table.row_data[row_index]
 
-        print(row_data)
+        Factory.EditPopup(
+            instance_table, instance_table.column_data, row_data, self.table_name
+        ).open()
 
 
 class Menuxx(MDScreen):
@@ -162,6 +254,7 @@ class UserDataGraph(MDBoxLayout):
 class UserDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.table_name = "users_data"
         user_data = list(CLIENT["aviskar"]["users_data"].find({}, limit=1000))
         self.data_table = MDDataTable(
             pos_hint={"center_y": 0.5, "center_x": 0.5},
@@ -173,11 +266,11 @@ class UserDataTable(MDBoxLayout, Tool):
                 ("username", dp(30)),
                 ("email", dp(30)),
                 ("password", dp(30)),
-                ("date of birth", dp(30)),
-                ("you are", dp(30)),
+                ("date_of_birth", dp(30)),
+                ("you_are", dp(30)),
                 ("gender", dp(30)),
                 ("age", dp(30)),
-                ("favorite color", dp(30)),
+                ("favorite_color", dp(30)),
                 ("address", dp(30)),
                 ("phone", dp(30)),
                 ("account_created_on", dp(30)),
@@ -234,6 +327,7 @@ class MenuDataGraph(MDBoxLayout):
 class MenuDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.table_name = "menu_item"
 
         meun_item = list(CLIENT["aviskar"]["menu_item"].find({}))
         self.data_table = MDDataTable(
@@ -245,7 +339,7 @@ class MenuDataTable(MDBoxLayout, Tool):
             column_data=[
                 ("item-name", dp(30)),
                 ("price", dp(30)),
-                ("helf-plate", dp(30)),
+                ("half-plate", dp(30)),
                 ("full-plate", dp(30)),
                 ("discount", dp(30)),
             ],
@@ -301,6 +395,8 @@ class SalesDataGraph(MDBoxLayout):
 class SalesTableData(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.table_name = "sales"
+
         sales = list(CLIENT["aviskar"]["sales"].find({}, limit=1000))
         self.data_table = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
@@ -339,6 +435,7 @@ class RawMaterial(MDScreen):
 class RawMaterialDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.table_name = "raw_material"
         raw_material = list(CLIENT["aviskar"]["raw_material"].find({}))
         self.data_table = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
@@ -430,6 +527,7 @@ class InOutGraph(MDBoxLayout):
 class InOutDataTable(MDBoxLayout, Tool):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.table_name = "in_out"
         in_out = list(CLIENT["aviskar"]["in_out"].find({}, limit=1000))
         self.data_table = MDDataTable(
             pos_hint={"center_x": 0.5, "center_y": 0.47},
@@ -621,7 +719,7 @@ class ScreenManage(MDScreenManager):
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.theme_cls.primary_palette = "Orange"
+        # self.theme_cls.primary_palette = "Orange"
 
 
 if __name__ == "__main__":

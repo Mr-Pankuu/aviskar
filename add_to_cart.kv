@@ -1,0 +1,28 @@
+<Cart>
+    name: "cart"
+    MDBoxLayout:
+        orientation: 'vertical' 
+        size: 1, 1
+        MDTopAppBar:
+            title: "              CART"
+            # md_bg_color: [0,0,1,1]
+            # left_action_items: [['menu', lambda x :  arrow-left.set_state("open")]]
+            MDIconButton:
+                icon: "arrow-left"
+                y:root.height - self.height / 2 - STANDARD_INCREMENT / 2
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "menu"
+            
+
+        ScrollView:    
+            MDList: 
+                name:"cart_list"                           
+                ThreeLineAvatarListItem:
+                    text: "PLAIN DOSA"
+                    secondary_text: "Rs: 20 "
+                    ImageLeftWidget:
+                        source: "Menu/dosa.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}

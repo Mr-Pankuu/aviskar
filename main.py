@@ -8,6 +8,7 @@ from kivymd.uix.boxlayout import BoxLayout
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.list import MDList
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
@@ -35,10 +36,11 @@ from kivy.clock import Clock
 from kivymd.uix.screen import Screen
 from twilio.rest import Client
 from random import randint
+import kivy
 import math
 
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "9237b96b86e372b611bf098a64279230"
+    "AC07a81f1226651d58932b3890f2aa5e65", "f5a71e8e9c18880050dfb369c851b912"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
@@ -87,17 +89,56 @@ class Login(MDScreen):
 
 
 class PasswordPopup(Popup):
-    pass
+    lable = StringProperty("")
+
+    def __init__(self, user_name, user_password, **kwargs):
+        super().__init__(**kwargs)
+        self.user_name = user_name
+        self.password = user_password
+        print(self.user_name)
+        print(self.password)
+
+    def send_otp(self):
+        self.mess = randint(0, 999999)
+        message = client.messages.create(
+            body=self.mess,
+            from_="+12017206236",
+            to="+917247477955",
+        )
+
+    def change_password(self):
+        if self.password == str(self.ids.old_password.text):
+            if (
+                self.mess == self.ids.otp_textinput.text
+                or self.ids.otp_textinput.text != ""
+            ):
+                if self.ids.new_password.text == self.ids.confirm_new_password.text:
+                    CLIENT["aviskar"]["users_data"].update(
+                        {"username": self.user_name},
+                        {"$set": {"password": self.ids.new_password.text}},
+                    )
+                    self.password = self.ids.new_password.text
+                    self.dismiss()
+                else:
+                    self.lable = "New Passwprd don't match each other."
+            else:
+                self.lable = "Wrong OTP"
+                self.ids.old_textinput.text = "Resend OTP"
+        else:
+            self.lable = "Wrong Old Password"
+
+
+Factory.register("PasswordPopup", PasswordPopup)
 
 
 class ProfileEditer(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         main_layout = MDBoxLayout(orientation="vertical")
-        user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
+        self.user_data = CLIENT["aviskar"]["users_data"].find_one(
             {"username": "Damini Hari"}
         )
-        print(user_data)
+        print(self.user_data)
         user_textinput_name = [
             "username",
             "date_of_birth",
@@ -107,13 +148,16 @@ class ProfileEditer(MDScreen):
             "favorite_color",
             "address",
         ]
-        self.username = user_data["username"]
-        self.date_of_birth = user_data["date_of_birth"]
-        self.gender = user_data["gender"]
-        self.email = user_data["email"]
-        self.phone = user_data["phone"]
-        self.favorite_color = user_data["favorite_color"]
-        self.address = user_data["address"]
+        self.username = self.user_data["username"]
+        self.date_of_birth = self.user_data["date_of_birth"]
+        self.gender = self.user_data["gender"]
+        self.email = self.user_data["email"]
+        self.phone = self.user_data["phone"]
+        self.favorite_color = self.user_data["favorite_color"]
+        self.address = self.user_data["address"]
+
+    def open_popup(self):
+        Factory.PasswordPopup(self.username, self.user_data["password"]).open()
 
 
 class Test(MDBoxLayout):
@@ -728,6 +772,14 @@ class Signup(MDScreen):
 
 class Menu(MDScreen):
     pass
+
+
+class MDFoodList(MDList):
+    ordered_item_list = []
+
+    def add_to_cart(self, order):
+        self.ordered_item_list.append(order)
+        print(self.ordered_item_list)
 
 
 class SouthIndian(MDScreen):

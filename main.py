@@ -8,6 +8,7 @@ from kivymd.uix.boxlayout import BoxLayout
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.button.button import MDFillRoundFlatButton
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
@@ -38,21 +39,22 @@ from random import randint
 import math
 
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "24581999d659aed4f1b079b84016aab0"
+    "AC07a81f1226651d58932b3890f2aa5e65", "9237b96b86e372b611bf098a64279230"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 DATATABLE_PAGE_ROW_LIMIT = 100
 global user_name
-user_name = StringProperty(" ")
+user_name = StringProperty("Damini Hari")
+
 
 class Login(MDScreen):
     invalid_message = StringProperty("")
 
     def check_user(self):
         global user_name
-        
+
         email = self.ids.email_data.text
         password = self.ids.password_data.text
         user = CLIENT["aviskar"]["users_data"].find_one(
@@ -83,6 +85,41 @@ class Login(MDScreen):
         elif self.ids.password_data.password == False:
             self.ids.password_data.password = True
             self.ids.p_password_icon.icon = "eye-off"
+
+
+class PasswordPopup(Popup):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        
+Factory.register("PasswordPopup", cls=PasswordPopup)
+
+class ProfileEditer(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        main_layout = MDBoxLayout(orientation="vertical")
+        user_data = CLIENT["aviskar"]["users_data"].find_one({"username":"Damini Hari" })
+        print(user_data)
+        user_textinput_name = [
+            "username",
+            "date_of_birth",
+            "gender",
+            "email",
+            "phone",
+            "favorite_color",
+            "address",
+        ]
+        user_textinput_data = [user_data[i] for i in user_textinput_name]
+
+        textinput = [
+            MDTextField(text=j, hint_text=i)
+            for i, j in zip(user_textinput_name, user_textinput_data)
+        ]
+
+        [main_layout.add_widget(i) for i in textinput]        
+        change_password = MDFillRoundFlatButton(text="Change Password")
+        # change_password.bind()
+        
+        self.add_widget(main_layout)
 
 
 class Test(MDBoxLayout):
@@ -229,13 +266,15 @@ class MyLayout(MDWidget):
 
 class Admin(MDScreen):
     username = user_name
+
     def on_pre_enter(self):
         self.update
-    
+
     def update(self):
         self.username = user_name
         print(self.username)
         print(type(self.username))
+
 
 class Na(MDScreen):
     pass
@@ -243,6 +282,7 @@ class Na(MDScreen):
 
 class Admin_main(BoxLayout):
     pass
+
 
 class Employee(MDScreen):
     spinner_text = StringProperty("Hello")

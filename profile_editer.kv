@@ -1,0 +1,24 @@
+<PasswordPopup>
+    size_hint: .5,.5
+    MDBoxLayout:
+        MDBoxLayout:
+            orientation:"vertical"
+            MDTextField:
+                id:old_password
+                hint_text:"Old Password"
+            MDTextField:
+                id:new_password
+                hint_text:"New Password"
+            MDTextField:
+                id:confirm_new_password
+                hint_text:"Confirm New Password"
+        MDBoxLayout:
+            size_hint: 1,.3
+            Button:
+                text:"Close"
+                on_release: root.dismiss()
+            Button:
+                text:"Change"
+                on_release: root.dismiss()
+
+<ProfileEditer>

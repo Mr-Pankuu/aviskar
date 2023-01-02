@@ -9,7 +9,7 @@
             text_color: rgba(26, 24, 58, 255)
             on_release:
                 root.manager.transition.direction = "right"
-                root.manager.current = "menu"
+                root.manager.current = "admin"
         Image:
             source:"Menu/man.png"
             pos_hint:{"center_x":0.5,"center_y":0.85}
@@ -74,11 +74,11 @@
             font_size: "20sp"
             pos_hint: {"center_x": .7,"center_y": .27}
             color: rgba(34,34,34,255)
-        MDFillRoundFlatIconButton:
-            text: "Edit your profile"
-            pos_hint: {"center_x": .5, "center_y": .10}
-            user_font_size: "38sp"
-            on_press:
-                root.manager.transition.direction = "left"
-                root.manager.current = "admin"
+        # MDFillRoundFlatIconButton:
+        #     text: "Edit your profile"
+        #     pos_hint: {"center_x": .5, "center_y": .10}
+        #     user_font_size: "38sp"
+        #     on_press:
+        #         root.manager.transition.direction = "left"
+        #         root.manager.current = "admin"
         

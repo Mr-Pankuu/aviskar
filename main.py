@@ -49,72 +49,69 @@ global user_name
 user_name = StringProperty("")
 
 
-class Login(MDScreen):
-    invalid_message = StringProperty("")
+# class Login(MDScreen):
+#     invalid_message = StringProperty("")
 
-    def check_user(self):
-        global user_name
+#     def check_user(self):
+#         global user_name
 
-        email = self.ids.email_data.text
-        password = self.ids.password_data.text
-        user = CLIENT["aviskar"]["users_data"].find_one(
-            {"email": email, "password": password}
-        )
-        user_name = user["username"]
-        if user == None:
-            self.invalid_message = "Invalid username or password."
-            print("Invalid username or password.")
-        else:
-            self.invalid_message = ""
-            print(user)
-            if user["privilege"] == "admin":
-                self.manager.transition.direction = "left"
-                self.manager.current = "admin"
-            elif user["privilege"] == "employee":
-                self.manager.transition.direction = "left"
-                self.manager.current = "employee"
-            elif user["privilege"] == "user":
-                self.manager.transition.direction = "left"
-                self.manager.current = "Menuu"
+#         email = self.ids.email_data.text
+#         password = self.ids.password_data.text
+#         user = CLIENT["aviskar"]["users_data"].find_one(
+#             {"email": email, "password": password}
+#         )
+#         user_name = user["username"]
+#         if user == None:
+#             self.invalid_message = "Invalid username or password."
+#             print("Invalid username or password.")
+#         else:
+#             self.invalid_message = ""
+#             print(user)
+#             if user["privilege"] == "admin":
+#                 self.manager.transition.direction = "left"
+#                 self.manager.current = "admin"
+#             elif user["privilege"] == "employee":
+#                 self.manager.transition.direction = "left"
+#                 self.manager.current = "employee"
+#             elif user["privilege"] == "user":
+#                 self.manager.transition.direction = "left"
+#                 self.manager.current = "Menuu"
 
-    def p_show_unshow(self):
-        if self.ids.password_data.password == True:
-            self.ids.password_data.password = False
-            self.ids.p_password_icon.icon = "eye"
+#     def p_show_unshow(self):
+#         if self.ids.password_data.password == True:
+#             self.ids.password_data.password = False
+#             self.ids.p_password_icon.icon = "eye"
 
-        elif self.ids.password_data.password == False:
-            self.ids.password_data.password = True
-            self.ids.p_password_icon.icon = "eye-off"
+#         elif self.ids.password_data.password == False:
+#             self.ids.password_data.password = True
+#             self.ids.p_password_icon.icon = "eye-off"
 
 
 class PasswordPopup(Popup):
     pass
 
 
-class ProfileEditer(MDScreen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        main_layout = MDBoxLayout(orientation="vertical")
-        user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
-            {"username": "Damini Hari"}
-        )
-        print(user_data)
-        user_textinput_name = [
-            "username",
-            "date_of_birth",
-            "gender",
-            "email",
-            "phone",
-            "favorite_color",
-            "address",
-        ]
-        self.username = user_data["username"]
-        self.date_of_birth = user_data["date_of_birth"]
-        self.gender = user_data["gender"]
-        self.email = user_data["email"]
-        self.phone = user_data["phone"]
-        self.favorite_color = user_data["favorite_color"]
-        self.address = user_data["address"]
+# class ProfileEditer(MDScreen):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
+#         main_layout = MDBoxLayout(orientation="vertical")
+#         user_data: dict = CLIENT["aviskar"]["users_data"].find_one({"username": "Damini Hari"})
+#         user_textinput_name = [
+#             "username",
+#             "date_of_birth",
+#             "gender",
+#             "email",
+#             "phone",
+#             "favorite_color",
+#             "address",
+#         ]
+#         self.username = user_data["username"]
+#         self.date_of_birth = user_data["date_of_birth"]
+#         self.gender = user_data["gender"]
+#         self.email = user_data["email"]
+#         self.phone = user_data["phone"]
+#         self.favorite_color = user_data["favorite_color"]
+#         self.address = user_data["address"]
 
 
 class Test(MDBoxLayout):
@@ -379,7 +376,7 @@ class UserDataTable(MDBoxLayout, Tool):
                 for i in user_data
             ],
         )
-        self.data_table.bind(on_row_press=self.on_row_press)
+ # type: ignore        self.data_table.bind(on_row_press=self.on_row_press)
         self.add_widget(self.data_table)
 
 
@@ -671,7 +668,6 @@ class Account(MDScreen):
             self.ids.p_password_icon.icon = "eye-off"
 
 
-<<<<<<< HEAD
 class Login(MDScreen):
     invalid_message = StringProperty("")
 
@@ -708,8 +704,6 @@ class Login(MDScreen):
             self.ids.p_password_icon.icon = "eye-off"
 
 
-=======
->>>>>>> 31895d6e5d3a411cfae72e3e08a1d34bf913b0bb
 class Signup(MDScreen):
     message = StringProperty("")
 

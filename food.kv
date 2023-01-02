@@ -4,628 +4,676 @@
     size_hint_y: None
     height: "20dp"
 
-
-<Food@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
-
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
-            MDLabel:
-                text: "DOSA"
-                bold: True
-                font_style: "H5"
-                adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
-
-            MDLabel:
-                text: "Masala"
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                text: "From 25-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+<MDFoodList>:
+    id: food_list
+    RelativeLayout:
+        id: dosa
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/dosa.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
 
-<Fooda@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "DOSA"
+                    bold: True
+                    font_style: "H5"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
+                MDLabel:
+                    text: "Masala"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 25-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(dosa_back)
+                        root.remove_from_cart("dosa")
+                        root.add_to_cart("dosa")
+
+        MDRelativeLayout:
+            id: dosa_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: dosa.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 - dosa.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - dosa.width - STANDARD_INCREMENT,d=0.4, t="out_back").start(dosa_back)
+            Image:
+                source: "Menu/dosa.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: dosa.width - self.width + STANDARD_INCREMENT
+
             MDLabel:
-                text: "VADA"
-                bold: True
-                font_style: "H5"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "SAMBHAR"
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                text: "From 20-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: vada
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/vada.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
 
-<Foodb@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "VADA"
+                    bold: True
+                    font_style: "H5"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
+                MDLabel:
+                    text: "SAMBHAR"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 20-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(vada_back)
+                        root.remove_from_cart("vada")
+                        root.add_to_cart("vada")
+
+        MDRelativeLayout:
+            id: vada_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: vada.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -vada.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -vada.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(vada_back)
+            Image:
+                source: "Menu/vada.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: vada.width - self.width + STANDARD_INCREMENT
+
             MDLabel:
-                text: "IDLI"
-                bold: True
-                font_style: "H5"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "SAMBHAR"
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                text: "From 15-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: idli
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/idli.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
 
-<Foodc@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "IDLI"
+                    bold: True
+                    font_style: "H5"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
+                MDLabel:
+                    text: "SAMBHAR"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 15-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(idli_back)
+                        root.remove_from_cart("idli")
+                        root.add_to_cart("idli")
+
+
+        MDRelativeLayout:
+            id: idli_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: idli.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 - idli.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - idli.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(idli_back)
+            Image:
+                source: "Menu/idli.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: idli.width - self.width + STANDARD_INCREMENT
+
             MDLabel:
-                text: "COCA-COLA"
-                bold: True
-                font_style: "H6"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "BEVERAGE"
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                text: "From MRP"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: cocacola
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/coca_cola.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
 
-<Foodd@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "COCA-COLA"
+                    bold: True
+                    font_style: "H6"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
+                MDLabel:
+                    text: "BEVERAGE"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From MRP"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(cococola_back)
+                        root.remove_from_cart("coco-cola")
+                        root.add_to_cart("coco-cola")
+
+
+        MDRelativeLayout:
+            id: cococola_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: cocacola.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -cocacola.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -cocacola.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(cococola_back)
+            Image:
+                source: "Menu/coca_cola.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: cocacola.width - self.width + STANDARD_INCREMENT
+
             MDLabel:
-                text: "UTTAPAM"
-                bold: True
-                font_style: "H5"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "."
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                text: "From 25-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: uttapam
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/uttapam.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
 
-<Foode@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "UTTAPAM"
+                    bold: True
+                    font_style: "H5"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
+                MDLabel:
+                    text: "."
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 25-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(uttapam_back)
+                        root.remove_from_cart("uttapam")
+                        root.add_to_cart("uttapam")
+
+
+        MDRelativeLayout:
+            id: uttapam_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: uttapam.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -uttapam.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -uttapam.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(uttapam_back)
+            Image:
+                source: "Menu/uttapam.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: uttapam.width - self.width + STANDARD_INCREMENT
+
             MDLabel:
-                text: "MOMOS"
-                bold: True
-                font_style: "H5"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "6 pcs"
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                text: "From 20-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: momos
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/momos.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
 
-<Foodf@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "MOMOS"
+                    bold: True
+                    font_style: "H5"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
+                MDLabel:
+                    text: "6 pcs"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 20-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(momos_back)
+                        root.remove_from_cart("momos")
+                        root.add_to_cart("momos")
+
+
+        MDRelativeLayout:
+            id: momos_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: momos.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -momos.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -momos.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(momos_back)
+            Image:
+                source: "Menu/momos.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: momos.width - self.width + STANDARD_INCREMENT
+
             MDLabel:
-                text: "SANDWICH"
-                bold: True
-                font_style: "H6"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "VEG"
-                bold: True
-                adaptive_height: True
-
-            MDLabel:
-                text: "From 20-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: sandwich
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/sandwich.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
+
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "SANDWICH"
+                    bold: True
+                    font_style: "H6"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
+
+                MDLabel:
+                    text: "VEG"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 20-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(sandwich_back)
+                        root.remove_from_cart("sandwich")
+                        root.add_to_cart("sandwich")
 
 
-<Foodg@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDRelativeLayout:
+            id: sandwich_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: sandwich.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -sandwich.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -sandwich.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(sandwich_back)
+            Image:
+                source: "Menu/sandwich.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: sandwich.width - self.width + STANDARD_INCREMENT
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
             MDLabel:
-                text: "SAMOSA"
-                bold: True
-                font_style: "H6"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "DAHI"
-                bold: True
-                adaptive_height: True
 
-            MDLabel:
-                text: "From 30-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: samosa
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/dahi_samosa.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
+
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "SAMOSA"
+                    bold: True
+                    font_style: "H6"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
+
+                MDLabel:
+                    text: "DAHI"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 30-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(samosa_back)
+                        root.remove_from_cart("samosa")
+                        root.add_to_cart("samosa")
 
 
-<Foodi@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDRelativeLayout:
+            id: samosa_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: samosa.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -samosa.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -samosa.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(samosa_back)
+            Image:
+                source: "Menu/dahi_samosa.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: samosa.width - self.width + STANDARD_INCREMENT
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
             MDLabel:
-                text: "CHHOLE"
-                bold: True
-                font_style: "H6"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "BHATURE"
-                bold: True
-                adaptive_height: True
 
-            MDLabel:
-                text: "From 30-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: chhole
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/chhole_bhature.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
+
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "CHHOLE"
+                    bold: True
+                    font_style: "H6"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
+
+                MDLabel:
+                    text: "BHATURE"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 30-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(chhole_back)
+                        root.remove_from_cart("chhole")
+                        root.add_to_cart("chhole")
 
 
-<Foodj@RelativeLayout>
-    size_hint_y: None
-    height: "200dp"
+        MDRelativeLayout:
+            id: chhole_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: chhole.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -chhole.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -chhole.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(chhole_back)
+            Image:
+                source: "Menu/chhole_bhature.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: chhole.width - self.width + STANDARD_INCREMENT
 
-    MDCard:
-        padding: "96dp", 0, "68dp", "20dp"
-        elevation: 0
-        Widget:
-            size_hint_x: .3
-        MDBoxLayout:
-            id: box
-            orientation: "vertical"
             MDLabel:
-                text: "PARATHA"
-                bold: True
-                font_style: "H6"
+                text: "Added to the \nCart!"
+                font_style: "H4"
                 adaptive_height: True
-                color: app.theme_cls.primary_color
-            Spacer:
+                x: "12dp"
+                y: "4dp"
 
-            MDLabel:
-                text: "AALU"
-                bold: True
-                adaptive_height: True
 
-            MDLabel:
-                text: "From 25-/Rs"
-                font_style: "Caption"
-                font_style: "H6"
-                adaptive_height: True
-
-            Spacer:
-
-            MDFillRoundFlatButton:
-                text: "ORDER"
-                -width: box.width
-                -height: "48dp"
-                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
-
-    MDRelativeLayout:
-        id: box_info
-        radius: [0, 15, 15,0]
+    RelativeLayout:
+        id: paratha
         size_hint_y: None
-        height: root.height - dp(24)
-        md_bg_color: app.theme_cls.primary_color
-        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
-        y: dp(12)
-        on_touch_down: 
-            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-        Image:
-            source: "Menu/aalu_paratha.png"
-            size_hint_x: None
-            width: STANDARD_INCREMENT * 2
-            x: root.width - self.width + STANDARD_INCREMENT
-        
-        MDLabel:
-            text: "Welcome to the\n SRGI canteen!"
-            font_style: "H4"
-            adaptive_height: True
-            x: "12dp"
-            y: "4dp"
+        height: "200dp"
 
-    
+        MDCard:
+            padding: "96dp", 0, "68dp", "20dp"
+            elevation: 0
+            Widget:
+                size_hint_x: .3
+            MDBoxLayout:
+                id: box
+                orientation: "vertical"
+                MDLabel:
+                    text: "PARATHA"
+                    bold: True
+                    font_style: "H6"
+                    adaptive_height: True
+                    color: app.theme_cls.primary_color
+                Spacer:
+
+                MDLabel:
+                    text: "AALU"
+                    bold: True
+                    adaptive_height: True
+
+                MDLabel:
+                    text: "From 25-/Rs"
+                    font_style: "Caption"
+                    font_style: "H6"
+                    adaptive_height: True
+
+                Spacer:
+
+                MDFillRoundFlatButton:
+                    text: "ORDER"
+                    -width: box.width
+                    -height: "48dp"
+                    on_release: 
+                        Animation(x=0, d=0.4, t="in_back").start(paratha_back)
+                        root.remove_from_cart("paratha")
+                        root.add_to_cart("paratha")
+
+
+        MDRelativeLayout:
+            id: paratha_back
+            radius: [0, 15, 15,0]
+            size_hint_y: None
+            height: paratha.height - dp(24)
+            md_bg_color: app.theme_cls.primary_color
+            x: STANDARD_INCREMENT * 2 -paratha.width -STANDARD_INCREMENT
+            y: dp(12)
+            on_touch_down: 
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -paratha.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(paratha_back)
+            Image:
+                source: "Menu/aalu_paratha.png"
+                size_hint_x: None
+                width: STANDARD_INCREMENT * 2
+                x: paratha.width - self.width + STANDARD_INCREMENT
+
+            MDLabel:
+                text: "Added to the \nCart!"
+                font_style: "H4"
+                adaptive_height: True
+                x: "12dp"
+                y: "4dp"
+

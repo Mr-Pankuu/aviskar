@@ -5,19 +5,25 @@
     ScrollView:
         size_hint_y: None
         height: root.height - toolbar.height
-        MDList:
-            id: food_list
+        # MDList:
+        #     id: food_list
             
-            Food:
-            Fooda:
-            Foodb:
-            Foodc:
-            Foodd:
-            Foode:
-            Foodf:
-            Foodg:
-            Foodi:
-            Foodj:
+        #     Food:
+        #     Fooda:
+        #     Foodb:
+        #     Foodc:
+        #     Foodd:
+        #     Foode:
+        #     Foodf:
+        #     Foodg:
+        #     Foodi:
+        #     Foodj:
+        MDFoodList:
+    MDFillRoundFlatButton:
+        text:"Go to Cart"
+        size_hint:.9,.1
+        pos_hint:{"center_x":.5, "center_y":.08}
+
     MDTopAppBar:
         id: toolbar
         title: "Foods"
@@ -32,7 +38,7 @@
         MDNavigationDrawer:
             id: nav_drawer
             BoxLayout:
-                orientation:'vertical'  
+                orientation:'vertical'
                 spacing: '8dp'
                 padding: '8dp'
                 MDFillRoundFlatIconButton:

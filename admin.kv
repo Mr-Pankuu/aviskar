@@ -1,6 +1,6 @@
 <Admin>
     name:"admin"
-    on_pre_enter:root.update()
+    # on_pre_enter:root.update()
     MDNavigationLayout:
         ScreenManage:
             Screen: 
@@ -17,39 +17,73 @@
                                 Image:
                                     source:"farmer.png"
                                     size_hint: .12,.38
-                                    pos_hint: {"center_x":0.06,"center_y":0.94}
+                                    pos_hint: {"center_x":0.06,"center_y":0.91}
 
-                                MDLabel:
-                                    text: "Raw Materials:"
+                                MDFillRoundFlatIconButton:
+                                    text: "Raw Materials :"
                                     font_name: "Lato"
                                     font_size: "20sp"
-                                    pos_hint: {"center_y": .94}
-                                    halign:"center"
-                                    color: rgba(34,34,34,255)
+                                    pos_hint: {"center_x": .5,"center_y": .91}
+                                    on_press:
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "raw_material"
+                                    # halign:"center"
+                                    
+
+                                MDLabel:
+                                    text: "Hello here you can watch the \nanalysis of the raw material ."
+                                    font_name: "Lato"
+                                    font_size: "20sp"
+                                    pos_hint: {"center_x": .6,"center_y": .77}
+                                MDFloatLayout:
+                                    md_bg_color: rgba(178, 178, 178, 255)
+                                    size_hint: 4, .002
+                                    pos_hint: {"center_x": .01,"center_y": .67}
 
                                 Image:
                                     source:"ready-meal.png"
                                     size_hint: .12,.38
-                                    pos_hint: {"center_x":0.06,"center_y":0.54}
-                                MDLabel:
-                                    text: "Product:"
+                                    pos_hint: {"center_x":0.06,"center_y":0.61}
+                                MDFillRoundFlatIconButton:
+                                    text: "Menu Data :"
                                     font_name: "Lato"
                                     font_size: "20sp"
-                                    pos_hint: {"center_y": .54}
-                                    halign:"center"
-                                    color: rgba(34,34,34,255)
+                                    pos_hint: {"center_x": .5,"center_y": .61}
+                                    on_press: 
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "menudata"
 
+
+                                MDLabel:
+                                    text: "Hello here you can watch the \nanalysis of the Menu Data ."
+                                    font_name: "Lato"
+                                    font_size: "20sp"
+                                    pos_hint: {"center_x": .6,"center_y": .47}
+                                MDFloatLayout:
+                                    md_bg_color: rgba(178, 178, 178, 255)
+                                    size_hint: 4, .002
+                                    pos_hint: {"center_x": .01,"center_y": .37}
                                 Image:
                                     source:"sales.png"
                                     size_hint: .12,.38
-                                    pos_hint: {"center_x":0.06,"center_y":0.14}
-                                MDLabel:
-                                    text: "Sales:"
+                                    pos_hint: {"center_x":0.06,"center_y":0.31}
+
+                                MDFillRoundFlatIconButton:
+                                    text: "Sales Data :"
                                     font_name: "Lato"
                                     font_size: "20sp"
-                                    pos_hint: {"center_y": .14}
-                                    halign:"center"
-                                    color: rgba(34,34,34,255)
+                                    pos_hint: {"center_x": .5,"center_y": .31}
+                                    on_press:
+                                        root.manager.transition.direction = "left"
+                                        root.manager.current = "salesdata"
+                                    # SalesDataGraph:
+                                    #     size_hint: .5, .5
+                                MDLabel:
+                                    text: "Hello here you can watch the \nanalysis of the Sales Data ."
+                                    font_name: "Lato"
+                                    font_size: "20sp"
+                                    pos_hint: {"center_x": .6,"center_y": .17}
+                                
 
         MDNavigationDrawer:
             id: nav_drawer
@@ -61,9 +95,12 @@
                     text: "YOUR PROFILE"
                     pos_hint: {"center_x": .5}
                     user_font_size: "38sp"
+                    on_press:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "adminprofile"
 
                 Image: 
-                    source: "software-engineer.png"
+                    source: "Menu/man.png"
                     size_hint: .5, .5
                     pos_hint: {"center_x": .5}
 
@@ -77,6 +114,9 @@
                         OneLineListItem:
                             icon: 'account-plus'
                             text: 'Account Management'
+                            on_release:
+                                root.manager.transition.direction = "right"
+                                root.manager.current = "account"
                         OneLineListItem:
                             text: 'MENU'
                             on_press: 
@@ -110,8 +150,12 @@
                         pos_hint: {"center_x": .5}
                         user_font_size: "50sp"
     
-                    MDIconButton:
-                        Image:
-                            source: "Admin-image\log-out.png"
-                            size_hint: .9, .9
-                            pos_hint: {"center_x": .5}
+                    MDFillRoundFlatIconButton:
+                        text: "Logout"
+                        icon: "logout"
+                        pos_hint: {"center_x": .5}
+                        user_font_size: "36sp"
+                        on_press:
+                            root.manager.transition.direction = "left"
+                            root.manager.current = "main"
+

@@ -45,11 +45,12 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(dosa_back)
+                        root.remove_from_cart("dosa")
                         root.add_to_cart("dosa")
 
         MDRelativeLayout:
-            id: box_info
+            id: dosa_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: dosa.height - dp(24)
@@ -57,8 +58,7 @@
             x: STANDARD_INCREMENT * 2 - dosa.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - dosa.width - STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
-                print("hello world")
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - dosa.width - STANDARD_INCREMENT,d=0.4, t="out_back").start(dosa_back)
             Image:
                 source: "Menu/dosa.png"
                 size_hint_x: None
@@ -111,11 +111,12 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(vada_back)
+                        root.remove_from_cart("vada")
                         root.add_to_cart("vada")
 
         MDRelativeLayout:
-            id: box_info
+            id: vada_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: vada.height - dp(24)
@@ -123,7 +124,7 @@
             x: STANDARD_INCREMENT * 2 -vada.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -vada.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -vada.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(vada_back)
             Image:
                 source: "Menu/vada.png"
                 size_hint_x: None
@@ -176,12 +177,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(idli_back)
+                        root.remove_from_cart("idli")
                         root.add_to_cart("idli")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: idli_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: idli.height - dp(24)
@@ -189,7 +191,7 @@
             x: STANDARD_INCREMENT * 2 - idli.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - idli.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - idli.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(idli_back)
             Image:
                 source: "Menu/idli.png"
                 size_hint_x: None
@@ -242,12 +244,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(cococola_back)
+                        root.remove_from_cart("coco-cola")
                         root.add_to_cart("coco-cola")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: cococola_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: cocacola.height - dp(24)
@@ -255,7 +258,7 @@
             x: STANDARD_INCREMENT * 2 -cocacola.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -cocacola.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -cocacola.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(cococola_back)
             Image:
                 source: "Menu/coca_cola.png"
                 size_hint_x: None
@@ -308,12 +311,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(uttapam_back)
+                        root.remove_from_cart("uttapam")
                         root.add_to_cart("uttapam")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: uttapam_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: uttapam.height - dp(24)
@@ -321,7 +325,7 @@
             x: STANDARD_INCREMENT * 2 -uttapam.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -uttapam.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -uttapam.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(uttapam_back)
             Image:
                 source: "Menu/uttapam.png"
                 size_hint_x: None
@@ -374,12 +378,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(momos_back)
+                        root.remove_from_cart("momos")
                         root.add_to_cart("momos")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: momos_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: momos.height - dp(24)
@@ -387,7 +392,7 @@
             x: STANDARD_INCREMENT * 2 -momos.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -momos.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -momos.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(momos_back)
             Image:
                 source: "Menu/momos.png"
                 size_hint_x: None
@@ -440,12 +445,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(sandwich_back)
+                        root.remove_from_cart("sandwich")
                         root.add_to_cart("sandwich")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: sandwich_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: sandwich.height - dp(24)
@@ -453,7 +459,7 @@
             x: STANDARD_INCREMENT * 2 -sandwich.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -sandwich.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -sandwich.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(sandwich_back)
             Image:
                 source: "Menu/sandwich.png"
                 size_hint_x: None
@@ -507,12 +513,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(samosa_back)
+                        root.remove_from_cart("samosa")
                         root.add_to_cart("samosa")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: samosa_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: samosa.height - dp(24)
@@ -520,7 +527,7 @@
             x: STANDARD_INCREMENT * 2 -samosa.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -samosa.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -samosa.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(samosa_back)
             Image:
                 source: "Menu/dahi_samosa.png"
                 size_hint_x: None
@@ -574,12 +581,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(chhole_back)
+                        root.remove_from_cart("chhole")
                         root.add_to_cart("chhole")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: chhole_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: chhole.height - dp(24)
@@ -587,7 +595,7 @@
             x: STANDARD_INCREMENT * 2 -chhole.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -chhole.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -chhole.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(chhole_back)
             Image:
                 source: "Menu/chhole_bhature.png"
                 size_hint_x: None
@@ -641,12 +649,13 @@
                     -width: box.width
                     -height: "48dp"
                     on_release: 
-                        Animation(x=0, d=0.4, t="in_back").start(box_info)
+                        Animation(x=0, d=0.4, t="in_back").start(paratha_back)
+                        root.remove_from_cart("paratha")
                         root.add_to_cart("paratha")
 
 
         MDRelativeLayout:
-            id: box_info
+            id: paratha_back
             radius: [0, 15, 15,0]
             size_hint_y: None
             height: paratha.height - dp(24)
@@ -654,7 +663,7 @@
             x: STANDARD_INCREMENT * 2 -paratha.width -STANDARD_INCREMENT
             y: dp(12)
             on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -paratha.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -paratha.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(paratha_back)
             Image:
                 source: "Menu/aalu_paratha.png"
                 size_hint_x: None

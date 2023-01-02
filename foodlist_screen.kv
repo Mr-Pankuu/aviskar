@@ -31,7 +31,7 @@
         # anchor_title: "center"
         elevation: 10
         left_action_items: [['menu', lambda x :  nav_drawer.set_state("open")]]
-        right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
+        # right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
         pos_hint: {"top": 1}
     
     MDNavigationLayout:
@@ -50,12 +50,12 @@
                         root.manager.current = "userprofile"
 
                 Image: 
-                    source: "Menu\man.png"
+                    source: "software-engineer.png"
                     size_hint: .5, .5
                     pos_hint: {"center_x": .5}
 
                 MDLabel:
-                    text: "               Pankaj Gupta"
+                    text: "             Tuleshwar Sahu"
                     size_hint_y: None
                     pos_hint: {"center_x": .5}
                     height: self.texture_size[1] 

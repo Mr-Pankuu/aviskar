@@ -45,6 +45,76 @@ CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 DATATABLE_PAGE_ROW_LIMIT = 100
+global user_name
+user_name = StringProperty("")
+
+
+class Login(MDScreen):
+    invalid_message = StringProperty("")
+
+    def check_user(self):
+        global user_name
+
+        email = self.ids.email_data.text
+        password = self.ids.password_data.text
+        user = CLIENT["aviskar"]["users_data"].find_one(
+            {"email": email, "password": password}
+        )
+        user_name = user["username"]
+        if user == None:
+            self.invalid_message = "Invalid username or password."
+            print("Invalid username or password.")
+        else:
+            self.invalid_message = ""
+            print(user)
+            if user["privilege"] == "admin":
+                self.manager.transition.direction = "left"
+                self.manager.current = "admin"
+            elif user["privilege"] == "employee":
+                self.manager.transition.direction = "left"
+                self.manager.current = "employee"
+            elif user["privilege"] == "user":
+                self.manager.transition.direction = "left"
+                self.manager.current = "Menuu"
+
+    def p_show_unshow(self):
+        if self.ids.password_data.password == True:
+            self.ids.password_data.password = False
+            self.ids.p_password_icon.icon = "eye"
+
+        elif self.ids.password_data.password == False:
+            self.ids.password_data.password = True
+            self.ids.p_password_icon.icon = "eye-off"
+
+
+class PasswordPopup(Popup):
+    pass
+
+
+class ProfileEditer(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        main_layout = MDBoxLayout(orientation="vertical")
+        user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
+            {"username": "Damini Hari"}
+        )
+        print(user_data)
+        user_textinput_name = [
+            "username",
+            "date_of_birth",
+            "gender",
+            "email",
+            "phone",
+            "favorite_color",
+            "address",
+        ]
+        self.username = user_data["username"]
+        self.date_of_birth = user_data["date_of_birth"]
+        self.gender = user_data["gender"]
+        self.email = user_data["email"]
+        self.phone = user_data["phone"]
+        self.favorite_color = user_data["favorite_color"]
+        self.address = user_data["address"]
 
 
 class Test(MDBoxLayout):
@@ -190,6 +260,18 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
+    username = user_name
+
+    def on_pre_enter(self):
+        self.update
+
+    def update(self):
+        self.username = user_name
+        print(self.username)
+        print(type(self.username))
+
+
+class Na(MDScreen):
     pass
 
 
@@ -589,6 +671,7 @@ class Account(MDScreen):
             self.ids.p_password_icon.icon = "eye-off"
 
 
+<<<<<<< HEAD
 class Login(MDScreen):
     invalid_message = StringProperty("")
 
@@ -625,6 +708,8 @@ class Login(MDScreen):
             self.ids.p_password_icon.icon = "eye-off"
 
 
+=======
+>>>>>>> 31895d6e5d3a411cfae72e3e08a1d34bf913b0bb
 class Signup(MDScreen):
     message = StringProperty("")
 
@@ -685,7 +770,7 @@ class Signup(MDScreen):
 class Menu(MDScreen):
     pass
 
-    
+
 class SouthIndian(MDScreen):
     pass
 
@@ -693,11 +778,14 @@ class SouthIndian(MDScreen):
 class NorthIndian(MDScreen):
     pass
 
+
 class Snacks(MDScreen):
     pass
 
+
 class Bevarage(MDScreen):
     pass
+
 
 class FastTime(MDScreen):
     pass

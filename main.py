@@ -44,6 +44,45 @@ CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 DATATABLE_PAGE_ROW_LIMIT = 100
+global user_name
+user_name = StringProperty(" ")
+
+class Login(MDScreen):
+    invalid_message = StringProperty("")
+
+    def check_user(self):
+        global user_name
+        
+        email = self.ids.email_data.text
+        password = self.ids.password_data.text
+        user = CLIENT["aviskar"]["users_data"].find_one(
+            {"email": email, "password": password}
+        )
+        user_name = user["username"]
+        if user == None:
+            self.invalid_message = "Invalid username or password."
+            print("Invalid username or password.")
+        else:
+            self.invalid_message = ""
+            print(user)
+            if user["privilege"] == "admin":
+                self.manager.transition.direction = "left"
+                self.manager.current = "admin"
+            elif user["privilege"] == "employee":
+                self.manager.transition.direction = "left"
+                self.manager.current = "employee"
+            elif user["privilege"] == "user":
+                self.manager.transition.direction = "left"
+                self.manager.current = "Menuu"
+
+    def p_show_unshow(self):
+        if self.ids.password_data.password == True:
+            self.ids.password_data.password = False
+            self.ids.p_password_icon.icon = "eye"
+
+        elif self.ids.password_data.password == False:
+            self.ids.password_data.password = True
+            self.ids.p_password_icon.icon = "eye-off"
 
 
 class Test(MDBoxLayout):
@@ -189,12 +228,21 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
+    username = user_name
+    def on_pre_enter(self):
+        self.update
+    
+    def update(self):
+        self.username = user_name
+        print(self.username)
+        print(type(self.username))
+
+class Na(MDScreen):
     pass
 
 
 class Admin_main(BoxLayout):
     pass
-
 
 class Employee(MDScreen):
     spinner_text = StringProperty("Hello")
@@ -577,41 +625,6 @@ class Account(MDScreen):
             CLIENT["aviskar"]["users_data"].insert_one(data)
             self.already_exist_message = ""
             print(data)
-
-    def p_show_unshow(self):
-        if self.ids.password_data.password == True:
-            self.ids.password_data.password = False
-            self.ids.p_password_icon.icon = "eye"
-
-        elif self.ids.password_data.password == False:
-            self.ids.password_data.password = True
-            self.ids.p_password_icon.icon = "eye-off"
-
-
-class Login(MDScreen):
-    invalid_message = StringProperty("")
-
-    def check_user(self):
-        email = self.ids.email_data.text
-        password = self.ids.password_data.text
-        user = CLIENT["aviskar"]["users_data"].find_one(
-            {"email": email, "password": password}
-        )
-        if user == None:
-            self.invalid_message = "Invalid username or password."
-            print("Invalid username or password.")
-        else:
-            self.invalid_message = ""
-            print(user)
-            if user["privilege"] == "admin":
-                self.manager.transition.direction = "left"
-                self.manager.current = "admin"
-            elif user["privilege"] == "employee":
-                self.manager.transition.direction = "left"
-                self.manager.current = "employee"
-            elif user["privilege"] == "user":
-                self.manager.transition.direction = "left"
-                self.manager.current = "Menuu"
 
     def p_show_unshow(self):
         if self.ids.password_data.password == True:

@@ -1,5 +1,6 @@
 <Admin>
     name:"admin"
+    on_pre_enter:root.update()
     MDNavigationLayout:
         ScreenManage:
             Screen: 
@@ -67,9 +68,9 @@
                     pos_hint: {"center_x": .5}
 
                 MDLabel:
-                    text: "               Pankaj Gupta"
+                    text: root.username
                     size_hint_y: None
-                    pos_hint: {"center_x": .5}
+                    pos_hint: {"center_x": .8}
                     height: self.texture_size[1] 
                 ScrollView: 
                     MDList:

@@ -109,8 +109,12 @@
                         pos_hint: {"center_x": .5}
                         user_font_size: "50sp"
     
-                    MDIconButton:
-                        Image:
-                            source: "Admin-image\log-out.png"
-                            size_hint: .9, .9
-                            pos_hint: {"center_x": .5}
+                    MDFillRoundFlatIconButton:
+                        text: "Logout"
+                        icon: "logout"
+                        pos_hint: {"center_x": .5}
+                        user_font_size: "36sp"
+                        on_press:
+                            root.manager.transition.direction = "left"
+                            root.manager.current = "main"
+

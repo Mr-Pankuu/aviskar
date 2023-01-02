@@ -1,0 +1,44 @@
+<FastTime>
+    name: "fast_time"
+    MDBoxLayout:
+        orientation: 'vertical' 
+        size: 1, 1
+        MDTopAppBar:
+            title: "         FAST TIME MEAL"
+            # md_bg_color: [0,0,1,1]
+            # left_action_items: [['menu', lambda x :  arrow-left.set_state("open")]]
+            MDIconButton:
+                icon: "arrow-left"
+                y:root.height - self.height / 2 - STANDARD_INCREMENT / 2
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "menu"
+            
+
+        ScrollView:    
+            MDList:                            
+                ThreeLineAvatarListItem:
+                    text: "SABUDANA KHICHDI"
+                    secondary_text: "Rs: 20"
+                    ImageLeftWidget:
+                        source: "Menu/sabudana.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "SABUDANA VADA"
+                    secondary_text: "Rs: 20"
+                    ImageLeftWidget:
+                        source: "Menu/sabudana_vada.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "HOT MILK"
+                    secondary_text: "Rs: 15"
+                    ImageLeftWidget:
+                        source: "Menu/hot_milk.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                        

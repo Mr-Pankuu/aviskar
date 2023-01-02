@@ -20,7 +20,7 @@
             MDLabel:
                 text: "DOSA"
                 bold: True
-                font_style: "H4"
+                font_style: "H5"
                 adaptive_height: True
                 color: app.theme_cls.primary_color
             Spacer:
@@ -67,3 +67,565 @@
             x: "12dp"
             y: "4dp"
 
+<Fooda@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "VADA"
+                bold: True
+                font_style: "H5"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "SAMBHAR"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 20-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/vada.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+<Foodb@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "IDLI"
+                bold: True
+                font_style: "H5"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "SAMBHAR"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 15-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/idli.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+<Foodc@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "COCA-COLA"
+                bold: True
+                font_style: "H6"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "BEVERAGE"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From MRP"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/coca_cola.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+<Foodd@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "UTTAPAM"
+                bold: True
+                font_style: "H5"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "."
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 25-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/uttapam.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+<Foode@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "MOMOS"
+                bold: True
+                font_style: "H5"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "6 pcs"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 20-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/momos.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+<Foodf@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "SANDWICH"
+                bold: True
+                font_style: "H6"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "VEG"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 20-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/sandwich.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+
+<Foodg@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "SAMOSA"
+                bold: True
+                font_style: "H6"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "DAHI"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 30-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/dahi_samosa.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+
+<Foodi@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "CHHOLE"
+                bold: True
+                font_style: "H6"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "BHATURE"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 30-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/chhole_bhature.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+
+<Foodj@RelativeLayout>
+    size_hint_y: None
+    height: "200dp"
+
+    MDCard:
+        padding: "96dp", 0, "68dp", "20dp"
+        elevation: 0
+        Widget:
+            size_hint_x: .3
+        MDBoxLayout:
+            id: box
+            orientation: "vertical"
+            MDLabel:
+                text: "PARATHA"
+                bold: True
+                font_style: "H6"
+                adaptive_height: True
+                color: app.theme_cls.primary_color
+            Spacer:
+
+            MDLabel:
+                text: "AALU"
+                bold: True
+                adaptive_height: True
+
+            MDLabel:
+                text: "From 25-/Rs"
+                font_style: "Caption"
+                font_style: "H6"
+                adaptive_height: True
+
+            Spacer:
+
+            MDFillRoundFlatButton:
+                text: "ORDER"
+                -width: box.width
+                -height: "48dp"
+                on_release: Animation(x=0, d=0.4, t="in_back").start(box_info)
+
+    MDRelativeLayout:
+        id: box_info
+        radius: [0, 15, 15,0]
+        size_hint_y: None
+        height: root.height - dp(24)
+        md_bg_color: app.theme_cls.primary_color
+        x: STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT
+        y: dp(12)
+        on_touch_down: 
+            if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -root.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(box_info)
+        Image:
+            source: "Menu/aalu_paratha.png"
+            size_hint_x: None
+            width: STANDARD_INCREMENT * 2
+            x: root.width - self.width + STANDARD_INCREMENT
+        
+        MDLabel:
+            text: "Welcome to the\n SRGI canteen!"
+            font_style: "H4"
+            adaptive_height: True
+            x: "12dp"
+            y: "4dp"
+
+    

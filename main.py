@@ -734,32 +734,30 @@ class Signup(MDScreen):
 
 class Menu(MDScreen):
     pass
-    # KV_FILES = {
-    #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
-    #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
 
-    # }
-    # CLASSES = {
-    #     "Foody": "foodlist_screen",
-    # }
-    # AUTORELOADER_PATH = [
-    #     (".", {"recursive": True}),
-    # ]
-
-    # def build_app(self):
-    #     import foodlist_screen
-
-    #     Window.bind(on_keyboard=self._rebuild)
-    #     importlib.reload(foodlist_screen)
-
-    #     return foodlist_screen.Foody()
-
-    # def _rebuild(self, *args):
-    #     if args[1] == 32:
-    #         self._rebuild()
+    
+class SouthIndian(MDScreen):
+    pass
 
 
-class Profile(MDScreen):
+class NorthIndian(MDScreen):
+    pass
+
+class Snacks(MDScreen):
+    pass
+
+class Bevarage(MDScreen):
+    pass
+
+class FastTime(MDScreen):
+    pass
+
+
+class ProfileEdit(MDScreen):
+    pass
+
+
+class UserProfile(MDScreen):
     pass
 
 

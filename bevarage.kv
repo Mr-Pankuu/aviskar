@@ -1,0 +1,51 @@
+<Bevarage>
+    name: "bevarage"
+    MDBoxLayout:
+        orientation: 'vertical' 
+        size: 1, 1
+        MDTopAppBar:
+            title: "              BEVARAGE"
+            # md_bg_color: [0,0,1,1]
+            # left_action_items: [['menu', lambda x :  arrow-left.set_state("open")]]
+            MDIconButton:
+                icon: "arrow-left"
+                y:root.height - self.height / 2 - STANDARD_INCREMENT / 2
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "menu"
+            
+
+        ScrollView:    
+            MDList:                            
+                ThreeLineAvatarListItem:
+                    text: "TEA"
+                    secondary_text: "Rs: 10"
+                    ImageLeftWidget:
+                        source: "Menu/tea.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "COFFEE"
+                    secondary_text: "Rs: 15"
+                    ImageLeftWidget:
+                        source: "Menu/coffee.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "COLD DRINK"
+                    secondary_text: "MRP"
+                    ImageLeftWidget:
+                        source: "Menu/coca_cola.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "MINERAL WATER"
+                    secondary_text: "MRP"
+                    ImageLeftWidget:
+                        source: "Menu/mineral_water.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}

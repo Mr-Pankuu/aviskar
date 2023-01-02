@@ -1,4 +1,5 @@
-<PasswordPopup>
+<PasswordPopup>:
+    id : password_id
     size_hint: .5,.5
     MDBoxLayout:
         MDBoxLayout:
@@ -22,3 +23,37 @@
                 on_release: root.dismiss()
 
 <ProfileEditer>
+    ScrollView:
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDTextField:
+                id: username
+                text: root.username
+                hint_text:"User name"
+            MDTextField:
+                id: date_of_birth
+                text: root.date_of_birth
+                hint_text:"Date of Birth"
+            MDTextField:
+                id: gender
+                text: root.gender
+                hint_text:"Gender"
+            MDTextField:
+                id: email
+                text: root.email
+                hint_text:"Email"
+            MDTextField:
+                id: phone
+                text: root.phone
+                hint_text:"Phone"
+            MDTextField:
+                id: favorite_color
+                text: root.favorite_color
+                hint_text:"Favorite Color"
+            MDTextField:
+                id: address
+                text: root.address
+                hint_text:"Address"
+            Button:
+                text:"Change Password"
+                size_hint: 1,.5

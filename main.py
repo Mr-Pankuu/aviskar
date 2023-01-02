@@ -8,7 +8,6 @@ from kivymd.uix.boxlayout import BoxLayout
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivymd.uix.floatlayout import MDFloatLayout
-from kivymd.uix.button.button import MDFillRoundFlatButton
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
@@ -46,7 +45,7 @@ Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 DATATABLE_PAGE_ROW_LIMIT = 100
 global user_name
-user_name = StringProperty("Damini Hari")
+user_name = StringProperty("")
 
 
 class Login(MDScreen):
@@ -88,16 +87,16 @@ class Login(MDScreen):
 
 
 class PasswordPopup(Popup):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        
-Factory.register("PasswordPopup", cls=PasswordPopup)
+    pass
+
 
 class ProfileEditer(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         main_layout = MDBoxLayout(orientation="vertical")
-        user_data = CLIENT["aviskar"]["users_data"].find_one({"username":"Damini Hari" })
+        user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
+            {"username": "Damini Hari"}
+        )
         print(user_data)
         user_textinput_name = [
             "username",
@@ -108,18 +107,13 @@ class ProfileEditer(MDScreen):
             "favorite_color",
             "address",
         ]
-        user_textinput_data = [user_data[i] for i in user_textinput_name]
-
-        textinput = [
-            MDTextField(text=j, hint_text=i)
-            for i, j in zip(user_textinput_name, user_textinput_data)
-        ]
-
-        [main_layout.add_widget(i) for i in textinput]        
-        change_password = MDFillRoundFlatButton(text="Change Password")
-        # change_password.bind()
-        
-        self.add_widget(main_layout)
+        self.username = user_data["username"]
+        self.date_of_birth = user_data["date_of_birth"]
+        self.gender = user_data["gender"]
+        self.email = user_data["email"]
+        self.phone = user_data["phone"]
+        self.favorite_color = user_data["favorite_color"]
+        self.address = user_data["address"]
 
 
 class Test(MDBoxLayout):
@@ -735,7 +729,7 @@ class Signup(MDScreen):
 class Menu(MDScreen):
     pass
 
-    
+
 class SouthIndian(MDScreen):
     pass
 
@@ -743,11 +737,14 @@ class SouthIndian(MDScreen):
 class NorthIndian(MDScreen):
     pass
 
+
 class Snacks(MDScreen):
     pass
 
+
 class Bevarage(MDScreen):
     pass
+
 
 class FastTime(MDScreen):
     pass

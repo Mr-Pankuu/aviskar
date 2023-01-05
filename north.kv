@@ -1,0 +1,75 @@
+<NorthIndian>
+    name: "north"
+    MDBoxLayout:
+        orientation: 'vertical' 
+        size: 1, 1
+        MDTopAppBar:
+            title: "              NORTH INDIAN"
+            # md_bg_color: [0,0,1,1]
+            # left_action_items: [['menu', lambda x :  arrow-left.set_state("open")]]
+            MDIconButton:
+                icon: "arrow-left"
+                y:root.height - self.height / 2 - STANDARD_INCREMENT / 2
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "menu"
+            
+
+        ScrollView:    
+            MDList:                            
+                ThreeLineAvatarListItem:
+                    text: "AALO PARATHA"
+                    secondary_text: "Rs: 25 "
+                    ImageLeftWidget:
+                        source: "Menu/aalu_paratha.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "PANEER PARATHA"
+                    secondary_text: "Rs: 30 "
+                    ImageLeftWidget:
+                        source: "Menu/paneer_paratha.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "CHHOLE BHATURE"
+                    secondary_text: "Rs: 30 "
+                    ImageLeftWidget:
+                        source: "Menu/chhole_bhature.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "VEG SANDWITCH"
+                    secondary_text: "Rs: 20 "
+                    ImageLeftWidget:
+                        source: "Menu\sandwich.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "BREAD PAKODA"
+                    secondary_text: "Rs: 20 "
+                    ImageLeftWidget:
+                        source: "Menu/bread.JPG"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "PIYAGI VADA"
+                    secondary_text: "Rs: 20 "
+                    ImageLeftWidget:
+                        source: "Menu/piyagi_vada.JPG"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "BHAJIYA PIYAGI"
+                    secondary_text: "Rs: 15 "
+                    ImageLeftWidget:
+                        source: "Menu/bhajiya_piyagi.JPG"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}

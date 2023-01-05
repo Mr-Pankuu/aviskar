@@ -1,0 +1,87 @@
+<PasswordPopup>:
+    id : password_id
+    MDBoxLayout:
+        md_bg_color:1,1,1,0.7
+        orientation: 'vertical'
+        MDBoxLayout:
+            orientation:"vertical"
+            MDTextField:
+                id:old_password
+                hint_text:"Old Password"
+            MDBoxLayout:
+                size_hint_y: .4
+                MDTextField:
+                    id:otp_textinput
+                    hint_text:"OTP"
+                Button:
+                    id:otp_button
+                    text: "Send OTP"
+                    size_hint: .5, .5
+                    background_color: 0,0,0,0
+                    font_name: "Lato"
+                    on_press:
+                        root.send_otp()
+                    canvas.before:
+                        Color:
+                            rgb: rgba(52,0,231,255)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius:[5]
+            MDTextField:
+                id:new_password
+                hint_text:"New Password"
+            MDTextField:
+                id:confirm_new_password
+                hint_text:"Confirm New Password"
+            MDLabel:
+                text:root.lable
+        MDBoxLayout:
+            size_hint: 1,.3
+            Button:
+                text:"Close"
+                on_release: root.dismiss()
+            Button:
+                text:"Change"
+                on_release: root.change_password()
+
+<ProfileEditer>
+    MDBoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            size_hint_y: .9
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDTextField:
+                    id: username
+                    text: root.username
+                    hint_text:"User name"
+                MDTextField:
+                    id: date_of_birth
+                    text: root.date_of_birth
+                    hint_text:"Date of Birth"
+                MDTextField:
+                    id: gender
+                    text: root.gender
+                    hint_text:"Gender"
+                MDTextField:
+                    id: email
+                    text: root.email
+                    hint_text:"Email"
+                MDTextField:
+                    id: phone
+                    text: root.phone
+                    hint_text:"Phone"
+                MDTextField:
+                    id: favorite_color
+                    text: root.favorite_color
+                    hint_text:"Favorite Color"
+                MDTextField:
+                    id: address
+                    text: root.address
+                    hint_text:"Address"
+                MDBoxLayout:
+                    Button:
+                        text:"Change Password"
+                        size_hint: 1,.3
+                        on_release: root.open_popup()

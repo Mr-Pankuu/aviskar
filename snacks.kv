@@ -1,0 +1,77 @@
+<Snacks>
+    name: "snacks"
+    MDBoxLayout:
+        orientation: 'vertical' 
+        size: 1, 1
+        MDTopAppBar:
+            title: "              SNACKS"
+            # md_bg_color: [0,0,1,1]
+            # left_action_items: [['menu', lambda x :  arrow-left.set_state("open")]]
+            MDIconButton:
+                icon: "arrow-left"
+                y:root.height - self.height / 2 - STANDARD_INCREMENT / 2
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "menu"
+            
+
+        ScrollView:    
+            MDList:                            
+                ThreeLineAvatarListItem:
+                    text: "POHA"
+                    secondary_text: "Rs: 15 "
+                    ImageLeftWidget:
+                        source: "Menu/poha.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "CHANA POHA"
+                    secondary_text: "Rs: 20 "
+                    ImageLeftWidget:
+                        source: "Menu/chana_poha.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "SAMOSA"
+                    secondary_text: "Rs: 20 "
+                    ImageLeftWidget:
+                        source: "Menu/samosa.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "SAMOSA MUTTER"
+                    secondary_text: "Rs: 25 "
+                    ImageLeftWidget:
+                        source: "Menu/samosa_mutter.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "DAHI SAMOSA"
+                    secondary_text: "Rs: 30 "
+                    ImageLeftWidget:
+                        source: "Menu/dahi_samosa.png"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "AALU GUNDA"
+                    secondary_text: "Rs: 15 "
+                    ImageLeftWidget:
+                        source: "Menu/aalu_gunda.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                ThreeLineAvatarListItem:
+                    text: "AALU GUNDA MUTTER"
+                    secondary_text: "Rs: 20 "
+                    ImageLeftWidget:
+                        source: "Menu/aalu_gunda_mutter.jpg"
+                    MDFillRoundFlatIconButton:
+                        text: "Add+"
+                        pos_hint: {"center_x":.8,"center_y": .3}
+                
+            

@@ -8,7 +8,8 @@ import time
 import randomtimestamp
 from os import system
 
-system("cls")
+command = input("Enter the clear command:- ")
+system(command)
 
 raw_matirals = [
     ("Salt", "kg", 10),
@@ -145,7 +146,14 @@ while True:
     genrate_data_of = input("Enter what kind of data to genrate:- ")
 
     if genrate_data_of == "user":
-        for i in range(int(input("Enter the number of user to input:- "))):
+        print("customer, employee, admin")
+        privilege = input("Enter the privilege:- ")
+
+        for i in range(
+            int(input("Enter the number of user to input:- "))
+            if privilege == "customer"
+            else 1
+        ):
             while True:
                 phone = faker_data.phone_number()
                 if phone[0] == "+":
@@ -172,11 +180,19 @@ while True:
                 collage = None
                 course = None
                 collage_year = None
-
+            z = input("Enter name:- ")
             user = {
-                "username": faker_data.name(),
-                "email": faker_data.email(),
-                "password": faker_data.password(),
+                "username": faker_data.name()
+                if privilege == "customer"
+                else z
+                if z == ""
+                else faker_data.name(),
+                "email": faker_data.email()
+                if privilege == "customer"
+                else input("Enter email:- "),
+                "password": faker_data.password()
+                if privilege == "customer"
+                else input("Enter password:- "),
                 "date_of_birth": dob,
                 "you_are": {
                     you_are: {
@@ -185,14 +201,16 @@ while True:
                         "collage_year": collage_year,
                     }
                 },
-                "gender": choice(["Male", "Female"]),
+                "gender": choice(["Male", "Female"])
+                if privilege == "customer"
+                else input("Enter gender:- "),
                 "age": age,
                 "favorite_color": faker_data.color_name(),
                 "address": faker_data.address().replace("\n", " "),
                 "phone": phone,
                 "account_created_on": account_created_on,
                 "account_created_at": faker_data.time(),
-                "privilege": "user",
+                "privilege": privilege,
             }
             print(user)
             CLIENT["aviskar"]["users_data"].insert_one(user)
@@ -244,6 +262,12 @@ while True:
             )
         )
         menu_data = list(CLIENT["aviskar"]["menu_item"].find({}))
+        print("Formate:- %Y-%m-%d")
+        from_sales_date = input("Enter the sales from date:- ")
+        print("Formate:- %H::%M::%S")
+        sales_start_time = input("Enter the sales start time:- ")
+        sales_end_time = input("Enter the sales end time:- ")
+
         for i in data:
             item = {}
             for _ in range(randint(1, 10)):
@@ -266,15 +290,19 @@ while True:
             }
             date = str(
                 randomtimestamp.random_date(
-                    start=datetime.datetime.strptime("2021-01-01", "%Y-%m-%d").date()
+                    start=datetime.datetime.strptime(
+                        "2021-01-01" if from_sales_date == "" else from_sales_date,
+                        "%Y-%m-%d",
+                    ).date()
                 )
             )
 
             start_time_object = datetime.datetime.strptime(
-                "09::00::00", "%H::%M::%S"
+                "09::00::00" if sales_start_time == "" else sales_start_time,
+                "%H::%M::%S",
             ).time()
             end_time_object = datetime.datetime.strptime(
-                "18::00::00", "%H::%M::%S"
+                "18::00::00" if sales_end_time == "" else sales_end_time, "%H::%M::%S"
             ).time()
 
             rand_time = str(
@@ -318,6 +346,9 @@ while True:
         def cal_total_price(data: dict):
             return sum([i["total_price"] for i in data.values()])
 
+        print("Formate:- %Y-%m-%d")
+        in_out_data_from = input("Enter the date:- ")
+        in_out_data_to = input("Enter the date:- ")
         date_data = genrate_date("2022-01", "2022-12-23")
 
         i_data = []
@@ -394,9 +425,9 @@ while True:
         CLIENT["aviskar"]["raw_material"].insert_many(org_raw_matiral_data)
 
     if input("Want to insert more data (Yes or No):- ").lower() in ["yes", "y"]:
-        system("cls")
+        system(command)
         continue
     else:
-        system("cls")
+        system(command)
         print("Thank you for using my services.")
         break

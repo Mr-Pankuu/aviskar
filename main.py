@@ -1,3 +1,4 @@
+from email import message_from_binary_file
 import importlib
 import os
 from kivy.core.window import Window
@@ -8,6 +9,7 @@ from kivymd.uix.boxlayout import BoxLayout
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.list import MDList
 from kivy.lang import Builder
 from kivymd.uix.widget import MDWidget
 from kivy.core.text import LabelBase
@@ -35,15 +37,128 @@ from kivy.clock import Clock
 from kivymd.uix.screen import Screen
 from twilio.rest import Client
 from random import randint
+import kivy
 import math
 
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "24581999d659aed4f1b079b84016aab0"
+    "AC07a81f1226651d58932b3890f2aa5e65", "f5a71e8e9c18880050dfb369c851b912"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 DATATABLE_PAGE_ROW_LIMIT = 100
+global user_name
+user_name = StringProperty("")
+
+
+# class Login(MDScreen):
+#     invalid_message = StringProperty("")
+
+#     def check_user(self):
+#         global user_name
+
+#         email = self.ids.email_data.text
+#         password = self.ids.password_data.text
+#         user = CLIENT["aviskar"]["users_data"].find_one(
+#             {"email": email, "password": password}
+#         )
+#         user_name = user["username"]
+#         if user == None:
+#             self.invalid_message = "Invalid username or password."
+#             print("Invalid username or password.")
+#         else:
+#             self.invalid_message = ""
+#             print(user)
+#             if user["privilege"] == "admin":
+#                 self.manager.transition.direction = "left"
+#                 self.manager.current = "admin"
+#             elif user["privilege"] == "employee":
+#                 self.manager.transition.direction = "left"
+#                 self.manager.current = "employee"
+#             elif user["privilege"] == "user":
+#                 self.manager.transition.direction = "left"
+#                 self.manager.current = "Menuu"
+
+#     def p_show_unshow(self):
+#         if self.ids.password_data.password == True:
+#             self.ids.password_data.password = False
+#             self.ids.p_password_icon.icon = "eye"
+
+#         elif self.ids.password_data.password == False:
+#             self.ids.password_data.password = True
+#             self.ids.p_password_icon.icon = "eye-off"
+
+
+class PasswordPopup(Popup):
+    lable = StringProperty("")
+
+    def __init__(self, user_name, user_password, **kwargs):
+        super().__init__(**kwargs)
+        self.user_name = user_name
+        self.password = user_password
+        print(self.user_name)
+        print(self.password)
+
+    def send_otp(self):
+        self.mess = randint(0, 999999)
+        message = client.messages.create(
+            body=self.mess,
+            from_="+12017206236",
+            to="+917247477955",
+        )
+
+    def change_password(self):
+        if self.password == str(self.ids.old_password.text):
+            if (
+                self.mess == self.ids.otp_textinput.text
+                or self.ids.otp_textinput.text != ""
+            ):
+                if self.ids.new_password.text == self.ids.confirm_new_password.text:
+                    CLIENT["aviskar"]["users_data"].update(
+                        {"username": self.user_name},
+                        {"$set": {"password": self.ids.new_password.text}},
+                    )
+                    self.password = self.ids.new_password.text
+                    self.dismiss()
+                else:
+                    self.lable = "New Passwprd don't match each other."
+            else:
+                self.lable = "Wrong OTP"
+                self.ids.old_textinput.text = "Resend OTP"
+        else:
+            self.lable = "Wrong Old Password"
+
+
+Factory.register("PasswordPopup", PasswordPopup)
+
+
+class ProfileEditer(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        main_layout = MDBoxLayout(orientation="vertical")
+        self.user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
+            {"username": "Damini Hari"}
+        )
+        print(self.user_data)
+        user_textinput_name = [
+            "username",
+            "date_of_birth",
+            "gender",
+            "email",
+            "phone",
+            "favorite_color",
+            "address",
+        ]
+        self.username = self.user_data["username"]
+        self.date_of_birth = self.user_data["date_of_birth"]
+        self.gender = self.user_data["gender"]
+        self.email = self.user_data["email"]
+        self.phone = self.user_data["phone"]
+        self.favorite_color = self.user_data["favorite_color"]
+        self.address = self.user_data["address"]
+
+    def open_popup(self):
+        Factory.PasswordPopup(self.username, self.user_data["password"]).open()
 
 
 class Test(MDBoxLayout):
@@ -189,6 +304,18 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
+    username = user_name
+
+    def on_pre_enter(self):
+        self.update
+
+    def update(self):
+        self.username = user_name
+        print(self.username)
+        print(type(self.username))
+
+
+class Na(MDScreen):
     pass
 
 
@@ -296,7 +423,7 @@ class UserDataTable(MDBoxLayout, Tool):
                 for i in user_data
             ],
         )
-        self.data_table.bind(on_row_press=self.on_row_press)
+        # type: ignore        self.data_table.bind(on_row_press=self.on_row_press)
         self.add_widget(self.data_table)
 
 
@@ -593,6 +720,7 @@ class Login(MDScreen):
 
     def check_user(self):
         email = self.ids.email_data.text
+        # phone = self.ids.phone_data.text
         password = self.ids.password_data.text
         user = CLIENT["aviskar"]["users_data"].find_one(
             {"email": email, "password": password}
@@ -611,7 +739,7 @@ class Login(MDScreen):
                 self.manager.current = "employee"
             elif user["privilege"] == "user":
                 self.manager.transition.direction = "left"
-                self.manager.current = "Menuu"
+                self.manager.current = "menu"
 
     def p_show_unshow(self):
         if self.ids.password_data.password == True:
@@ -626,19 +754,20 @@ class Login(MDScreen):
 class Signup(MDScreen):
     message = StringProperty("")
 
-    def send_otp(self):
-        global mess
-        mess = randint(0, 999999)
-        message = client.messages.create(
-            body=mess,
-            from_="+12017206236",
-            to="+917247477955",
-        )
+    # def send_otp(self):
+    #     global mess
+    #     mess = randint(0, 999999)
+    #     message = client.messages.create(
+    #         body=mess,
+    #         from_="+12017206236",
+    #         to="+917247477955",
+    #     )
 
     def sign_up(self):
         data = {
             "username": self.ids.user_name_data.text,
             "email": self.ids.email_data.text,
+            # "phone" : self.ids.phone_data.text,
             "password": self.ids.password_data.text,
             "privilege": "user",
         }
@@ -650,9 +779,9 @@ class Signup(MDScreen):
             self.message = "User of this name already exists."
         elif self.ids.password_data.text != self.ids.confirm_password_data.text:
             self.message = "Password are not equal."
-        elif self.ids.otp_data.text != str(mess):
-            self.message = "Invalid OTP"
-            self.ids.otp_button.text = "Resend OTP"
+        # elif self.ids.otp_data.text != str(message_from_binary_file):
+        #     self.message = "Invalid OTP"
+        # self.ids.otp_button.text = "Resend OTP"
         else:
             CLIENT["aviskar"]["users_data"].insert_one(data)
             self.message = ""
@@ -681,32 +810,55 @@ class Signup(MDScreen):
 
 class Menu(MDScreen):
     pass
-    # KV_FILES = {
-    #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
-    #     os.path.join(os.getcwd(), "foodlist_screen.kv"),
-
-    # }
-    # CLASSES = {
-    #     "Foody": "foodlist_screen",
-    # }
-    # AUTORELOADER_PATH = [
-    #     (".", {"recursive": True}),
-    # ]
-
-    # def build_app(self):
-    #     import foodlist_screen
-
-    #     Window.bind(on_keyboard=self._rebuild)
-    #     importlib.reload(foodlist_screen)
-
-    #     return foodlist_screen.Foody()
-
-    # def _rebuild(self, *args):
-    #     if args[1] == 32:
-    #         self._rebuild()
 
 
-class Profile(MDScreen):
+class MDFoodList(MDList):
+    ordered_item_list = []
+
+    def add_to_cart(self, order):
+        self.ordered_item_list.append(order)
+        print(self.ordered_item_list)
+
+    def remove_from_cart(self, order):
+        try:
+            self.ordered_item_list.remove(order)
+        except Exception as e:
+            print(e)
+
+
+class SouthIndian(MDScreen):
+    pass
+
+
+class NorthIndian(MDScreen):
+    pass
+
+
+class Snacks(MDScreen):
+    pass
+
+
+class Bevarage(MDScreen):
+    pass
+
+
+class FastTime(MDScreen):
+    pass
+
+
+class ProfileEdit(MDScreen):
+    pass
+
+
+class UserProfile(MDScreen):
+    pass
+
+
+class AdminProfile(MDScreen):
+    pass
+
+
+class EmployeeProfile(MDScreen):
     pass
 
 
@@ -721,7 +873,7 @@ class ScreenManage(MDScreenManager):
 class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # self.theme_cls.primary_palette = "Orange"
+        self.theme_cls.primary_palette = "Orange"
 
 
 if __name__ == "__main__":

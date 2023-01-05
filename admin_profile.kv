@@ -1,0 +1,84 @@
+<AdminProfile>
+    name:"adminprofile"
+    MDFloatLayout:
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .96}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "admin"
+        Image:
+            source:"Menu/man.png"
+            pos_hint:{"center_x":0.5,"center_y":0.85}
+            size_hint:.3, .3
+        MDLabel:
+            text: "Pankaj Gupta"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .719}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "DOB:  12-02-2003"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .67}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "Phone: xxxxxxxxxx"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .62}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "ID: xxxxxxxxx"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .57}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "Password: xxxx"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .52}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "Gender: Male"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .47}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "Age: 20"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .42}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "Favourite Color: Black"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .37}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "Address: Rungta H4"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .32}
+            color: rgba(34,34,34,255)
+        MDLabel:
+            text: "E-mail:pankaj@gmail.com"
+            font_name: "Lato"
+            font_size: "20sp"
+            pos_hint: {"center_x": .7,"center_y": .27}
+            color: rgba(34,34,34,255)
+        # MDFillRoundFlatIconButton:
+        #     text: "Edit your profile"
+        #     pos_hint: {"center_x": .5, "center_y": .10}
+        #     user_font_size: "38sp"
+        #     on_press:
+        #         root.manager.transition.direction = "left"
+        #         root.manager.current = "admin"
+        

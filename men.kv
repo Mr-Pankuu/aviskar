@@ -10,7 +10,7 @@
                         title: "Menu"
                         # md_bg_color: [0,0,1,1]
                         left_action_items: [['menu', lambda x :  nav_drawer.set_state("open")]]
-                        right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
+                        # right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
 
                             # left_action_items: [['menu', lambda x : print('menu')], ['bell', lambda x : print('notification')],['share-variant', lambda x : print('share')]]
                             # type: 'top'
@@ -21,19 +21,8 @@
                         source: "restorant.jpg"
                         allow_stretch: True
                     ScrollView:
-                        # MDBoxLayout:
-                        #     orientation: 'vertical'
-                        #     MDBoxLayout:
                                 
                         MDList:
-                        #     ThreeLineAvatarListItem:
-                        #         text: "SAMOSA"
-                        #         secondary_text: "Rs: 20 "
-                        #         ImageLeftWidget:
-                        #             source: "samosa.jpg"
-                        #     MDFillRoundFlatIconButton:
-                        #         text: "Add+"
-                        #         pos_hint: {"center_x":.8,"center_y": .3}
                                 
                             ThreeLineAvatarListItem:
                                 text: "MOMOS"

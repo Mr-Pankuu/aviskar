@@ -30,7 +30,7 @@
             pos_hint: {"center_x": .5,"center_y": .63}
             MDTextField:
                 id: email_data
-                hint_text: "Email"
+                hint_text: "Email / Phone Number"
                 font_name: "Lato"
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
@@ -71,19 +71,19 @@
                     size: self.size
                     pos: self.pos
                     radius:[5]    
-        MDTextButton:
-            text: "Frogot Password?"
-            pos_hint: {"center_x": .5,"center_y": .28}
-            color: rgba(68, 78, 132, 255) 
-            font_size: "12sp"
-            font_name: "Lato"
-        MDLabel:
-            text: "or"
-            color: rgba(52, 0, 231, 255)
-            pos_hint: {"center_y": .22}
-            font_size: "13sp"
-            font_name: "Lato"
-            halign: "center"
+        # MDTextButton:
+        #     text: "Frogot Password?"
+        #     pos_hint: {"center_x": .5,"center_y": .28}
+        #     color: rgba(68, 78, 132, 255) 
+        #     font_size: "12sp"
+        #     font_name: "Lato"
+        # MDLabel:
+        #     text: "or"
+        #     color: rgba(52, 0, 231, 255)
+        #     pos_hint: {"center_y": .22}
+        #     font_size: "13sp"
+        #     font_name: "Lato"
+        #     halign: "center"
         MDFloatLayout:
             md_bg_color: rgba(178, 178, 178, 255)
             size_hint: .3, .002
@@ -92,21 +92,21 @@
             md_bg_color: rgba(178, 178, 178, 255)
             size_hint: .3, .002
             pos_hint: {"center_x": .7,"center_y": .218}
-        MDLabel:
-            text: "Social media login"
-            font_name: "Lato"
-            font_size: "13sp"
-            halign: "center"
-            pos_hint: {"center_y": .16}
-            color: rgba(135, 133, 193, 255)
-        MDGridLayout:
-            cols: 3
-            size_hint: .48, .07
-            pos_hint: {"center_x": .5,"center_y": .1}
-            Image:
-                source: "google.png"   
-            Image:
-                source: "facebook.png" 
+        # MDLabel:
+        #     text: "Social media login"
+        #     font_name: "Lato"
+        #     font_size: "13sp"
+        #     halign: "center"
+        #     pos_hint: {"center_y": .16}
+        #     color: rgba(135, 133, 193, 255)
+        # MDGridLayout:
+        #     cols: 3
+        #     size_hint: .48, .07
+        #     pos_hint: {"center_x": .5,"center_y": .1}
+        #     Image:
+        #         source: "google.png"   
+        #     Image:
+        #         source: "facebook.png" 
         MDLabel:
             text: "Don't have an account?"
             font_name: "Lato"

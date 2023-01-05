@@ -5,18 +5,25 @@
     ScrollView:
         size_hint_y: None
         height: root.height - toolbar.height
-        MDList:
-            id: food_list
+        # MDList:
+        #     id: food_list
             
-            Food:
-            Food:
-            Food:
-            Food:
-            Food:
-            Food:
-            Food:
-            Food:
-            Food:
+        #     Food:
+        #     Fooda:
+        #     Foodb:
+        #     Foodc:
+        #     Foodd:
+        #     Foode:
+        #     Foodf:
+        #     Foodg:
+        #     Foodi:
+        #     Foodj:
+        MDFoodList:
+    MDFillRoundFlatButton:
+        text:"Go to Cart"
+        size_hint:.9,.1
+        pos_hint:{"center_x":.5, "center_y":.08}
+
     MDTopAppBar:
         id: toolbar
         title: "Foods"
@@ -24,6 +31,73 @@
         # anchor_title: "center"
         elevation: 10
         left_action_items: [['menu', lambda x :  nav_drawer.set_state("open")]]
-        right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
+        # right_action_items: [['magnify', lambda x :print('search')], ['dots-vertical', lambda x : print('vertical dots')]]
         pos_hint: {"top": 1}
     
+    MDNavigationLayout:
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                orientation:'vertical'
+                spacing: '8dp'
+                padding: '8dp'
+                MDFillRoundFlatIconButton:
+                    text: "YOUR PROFILE"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "38sp"
+                    on_press:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "userprofile"
+
+                Image: 
+                    source: "software-engineer.png"
+                    size_hint: .5, .5
+                    pos_hint: {"center_x": .5}
+
+                MDLabel:
+                    text: "             Tuleshwar Sahu"
+                    size_hint_y: None
+                    pos_hint: {"center_x": .5}
+                    height: self.texture_size[1] 
+                ScrollView: 
+                    MDList:
+                        OneLineListItem:
+                            text: 'SOUTH INDIAN'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "south"
+                        OneLineListItem:
+                            text: 'NORTH INDIAN'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "north"
+                        OneLineListItem:
+                            text: 'SNACKS'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "snacks"
+                        OneLineListItem:
+                            text: 'BEVARAGE'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "bevarage"
+                        OneLineListItem:
+                            text: 'FAST TIME'
+                            on_press:
+                                root.manager.transition.direction = "left"
+                                root.manager.current = "fast_time"
+
+            
+                MDFillRoundFlatIconButton:
+                    text: "About"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "50sp"
+
+                MDFillRoundFlatIconButton:
+                    text: "Logout"
+                    icon: "logout"
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "36sp"
+                    on_press:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "main"

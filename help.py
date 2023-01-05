@@ -180,13 +180,8 @@ while True:
                 collage = None
                 course = None
                 collage_year = None
-            z = input("Enter name:- ")
             user = {
-                "username": faker_data.name()
-                if privilege == "customer"
-                else z
-                if z == ""
-                else faker_data.name(),
+                "username": faker_data.name(),
                 "email": faker_data.email()
                 if privilege == "customer"
                 else input("Enter email:- "),

@@ -148,7 +148,7 @@ while True:
     if genrate_data_of == "user":
         print("customer, employee, admin")
         privilege = input("Enter the privilege:- ")
-
+        dd = input("Format:- %Y-%m-%d\nEnter the date:- ")
         for i in range(
             int(input("Enter the number of user to input:- "))
             if privilege == "customer"
@@ -172,7 +172,7 @@ while True:
             you_are = choice(you_are_data_list)
             account_created_on = str(
                 randomtimestamp.random_date(
-                    start=datetime.datetime.strptime("2019-01-01", "%Y-%m-%d").date()
+                    start=datetime.datetime.strptime(dd, "%Y-%m-%d").date()
                 )
             )
 
@@ -180,13 +180,8 @@ while True:
                 collage = None
                 course = None
                 collage_year = None
-            z = input("Enter name:- ")
             user = {
-                "username": faker_data.name()
-                if privilege == "customer"
-                else z
-                if z == ""
-                else faker_data.name(),
+                "username": faker_data.name(),
                 "email": faker_data.email()
                 if privilege == "customer"
                 else input("Enter email:- "),

@@ -136,26 +136,26 @@ class ProfileEditer(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         main_layout = MDBoxLayout(orientation="vertical")
-        self.user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
-            {"username": "Damini Hari"}
-        )
-        print(self.user_data)
-        user_textinput_name = [
-            "username",
-            "date_of_birth",
-            "gender",
-            "email",
-            "phone",
-            "favorite_color",
-            "address",
-        ]
-        self.username = self.user_data["username"]
-        self.date_of_birth = self.user_data["date_of_birth"]
-        self.gender = self.user_data["gender"]
-        self.email = self.user_data["email"]
-        self.phone = self.user_data["phone"]
-        self.favorite_color = self.user_data["favorite_color"]
-        self.address = self.user_data["address"]
+        # self.user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
+        #     {"username": user_name}
+        # )
+        # print(self.user_data)
+        # user_textinput_name = [
+        #     "username",
+        #     "date_of_birth",
+        #     "gender",
+        #     "email",
+        #     "phone",
+        #     "favorite_color",
+        #     "address",
+        # ]
+        # self.username = self.user_data["username"]
+        # self.date_of_birth = self.user_data["date_of_birth"]
+        # self.gender = self.user_data["gender"]
+        # self.email = self.user_data["email"]
+        # self.phone = self.user_data["phone"]
+        # self.favorite_color = self.user_data["favorite_color"]
+        # self.address = self.user_data["address"]
 
     def open_popup(self):
         Factory.PasswordPopup(self.username, self.user_data["password"]).open()

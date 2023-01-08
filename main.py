@@ -820,10 +820,9 @@ class MDFoodList(MDList):
         print(self.ordered_item_list)
 
     def remove_from_cart(self, order):
-        try:
+        if order in self.ordered_item_list:
             self.ordered_item_list.remove(order)
-        except Exception as e:
-            print(e)
+        print(self.ordered_item_list)
 
 
 class SouthIndian(MDScreen):

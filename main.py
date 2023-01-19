@@ -817,13 +817,12 @@ class MDFoodList(MDList):
 
     def add_to_cart(self, order):
         self.ordered_item_list.append(order)
-        if order in self.ordered_item_list:
-            print(self.ordered_item_list)
+        print(self.ordered_item_list)
 
     def remove_from_cart(self, order):
+        print(order)
         if order in self.ordered_item_list:
             self.ordered_item_list.remove(order)
-        if order in self.ordered_item_list:
             print(self.ordered_item_list)
 
 class SouthIndian(MDScreen):

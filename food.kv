@@ -58,10 +58,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 - dosa.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - dosa.width - STANDARD_INCREMENT,d=0.4, t="out_back").start(dosa_back)
-                dosa_order_button.disabled = False
-                root.remove_from_cart("dosa")
             Image:
                 source: "Menu/dosa.png"
                 size_hint_x: None
@@ -127,10 +123,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -vada.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -vada.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(vada_back)
-                vada_order_button.disabled = False
-                root.remove_from_cart("vada")
             Image:
                 source: "Menu/vada.png"
                 size_hint_x: None
@@ -197,10 +189,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 - idli.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 - idli.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(idli_back)
-                idli_order_button.disabled = False
-                root.remove_from_cart("idli")
             Image:
                 source: "Menu/idli.png"
                 size_hint_x: None
@@ -267,10 +255,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -cocacola.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -cocacola.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(cococola_back)
-                cococola_order_button.disabled = False
-                root.remove_from_cart("coco-cola")
             Image:
                 source: "Menu/coca_cola.png"
                 size_hint_x: None
@@ -337,10 +321,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -uttapam.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -uttapam.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(uttapam_back)
-                uttapam_order_button.disabled = False
-                root.remove_from_cart("uttapam")
             Image:
                 source: "Menu/uttapam.png"
                 size_hint_x: None
@@ -407,10 +387,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -momos.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -momos.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(momos_back)
-                momos_order_button.disabled = False
-                root.remove_from_cart("momos")
             Image:
                 source: "Menu/momos.png"
                 size_hint_x: None
@@ -477,10 +453,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -sandwich.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -sandwich.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(sandwich_back)
-                sandwich_order_button.disabled = False
-                root.remove_from_cart("sandwich")
             Image:
                 source: "Menu/sandwich.png"
                 size_hint_x: None
@@ -526,9 +498,7 @@
                     font_style: "Caption"
                     font_style: "H6"
                     adaptive_height: True
-
                 Spacer:
-
                 MDFillRoundFlatButton:
                     id: samosa_order_button
                     text: "ORDER"
@@ -548,10 +518,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -samosa.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -samosa.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(samosa_back)
-                samosa_order_button.disabled = False
-                root.remove_from_cart("samosa")
             Image:
                 source: "Menu/dahi_samosa.png"
                 size_hint_x: None
@@ -619,10 +585,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -chhole.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -chhole.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(chhole_back)
-                chhole_order_button.disabled = False
-                root.remove_from_cart("chhole")
             Image:
                 source: "Menu/chhole_bhature.png"
                 size_hint_x: None
@@ -690,10 +652,6 @@
             md_bg_color: app.theme_cls.primary_color
             x: STANDARD_INCREMENT * 2 -paratha.width -STANDARD_INCREMENT
             y: dp(12)
-            on_touch_down: 
-                if self.collide_point(*args[1].pos):Animation(x=STANDARD_INCREMENT * 2 -paratha.width -STANDARD_INCREMENT,d=0.4, t="out_back").start(paratha_back)
-                paratha_order_button.disabled = False
-                root.remove_from_cart("paratha")
             Image:
                 source: "Menu/aalu_paratha.png"
                 size_hint_x: None

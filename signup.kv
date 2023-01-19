@@ -42,34 +42,34 @@
                 font_name: "Lato"
                 helper_text_mode: "on_error"
                 pos_hint: {"center_x": .5,"center_y": .5}
-        # MDBoxLayout:
-        #     size_hint: .7, .07
-        #     pos_hint: {"center_x": .5,"center_y": .46}
-        #     MDTextField:
-        #         id: otp_data
-        #         hint_text: "OTP"
-        #         font_name: "Lato"
-        #         helper_text_mode: "on_error"
-        #         pos_hint: {"center_x": .5,"center_y": .5}
-        #     Button:
-        #         id:otp_button
-        #         text: "Send OTP"
-        #         size_hint: .66, .5
-        #         background_color: 0,0,0,0
-        #         font_name: "Lato"
-        #         on_press:
-        #             root.send_otp()
-        #         canvas.before:
-        #             Color:
-        #                 rgb: rgba(52,0,231,255)
-        #             RoundedRectangle:
-        #                 size: self.size
-        #                 pos: self.pos
-        #                 radius:[5]
+        MDBoxLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5,"center_y": .46}
+            MDTextField:
+                id: otp_data
+                hint_text: "OTP"
+                font_name: "Lato"
+                helper_text_mode: "on_error"
+                pos_hint: {"center_x": .5,"center_y": .5}
+            Button:
+                id:otp_button
+                text: "Send OTP"
+                size_hint: .66, .5
+                background_color: 0,0,0,0
+                font_name: "Lato"
+                on_press:
+                    root.send_otp()
+                canvas.before:
+                    Color:
+                        rgb: rgba(52,0,231,255)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius:[5]
         MDBoxLayout:
             orientation: 'horizontal'
             size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .46}
+            pos_hint: {"center_x": .5,"center_y": .36}
             MDTextField:
                 id: password_data
                 hint_text: "Password"
@@ -85,7 +85,7 @@
         MDBoxLayout:
             orientation: 'horizontal'
             size_hint: .7, .07
-            pos_hint: {"center_x": .5,"center_y": .36}
+            pos_hint: {"center_x": .5,"center_y": .26}
             MDTextField:
                 id: confirm_password_data
                 hint_text: "Cofirm Password"
@@ -102,7 +102,7 @@
             text: root.message
             font_name: "Lato"
             font_size: "18sp"
-            pos_hint: {"center_x": .5,"center_y": .26}
+            pos_hint: {"center_x": .5,"center_y": .16}
             halign:"center"
             color: rgba(255 ,0,0, 170)
         Button:

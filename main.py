@@ -803,20 +803,20 @@ class MDFoodList(MDList):
     def order(self, order):
         if order in self.ordered_item_list:
             self.ordered_item_list.remove(order)
-            eval("self.ids.{order}_order_button.text = 'Added To Cart'")
+            exec("self.ids.{order}_order_button.text = 'Added To Cart'")
         elif order not in self.ordered_item_list:
             self.ordered_item_list.append(order)
-            eval("self.ids.{order}_order_button.text = 'Order'")
+            exec(f"self.ids.{order}_order_button.text = 'Order'")
         
-    def add_to_cart(self, order):
-        self.ordered_item_list.append(order)
-        print(self.ordered_item_list)
+    # def add_to_cart(self, order):
+    #     self.ordered_item_list.append(order)
+    #     print(self.ordered_item_list)
 
-    def remove_from_cart(self, order):
-        print(order)
-        if order in self.ordered_item_list:
-            self.ordered_item_list.remove(order)
-            print(self.ordered_item_list)
+    # def remove_from_cart(self, order):
+    #     print(order)
+    #     if order in self.ordered_item_list:
+    #         self.ordered_item_list.remove(order)
+    #         print(self.ordered_item_list)
 
 
 class SouthIndian(MDScreen):

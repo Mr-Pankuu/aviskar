@@ -38,8 +38,8 @@ from random import randint
 import kivy
 import math
 from faker import Faker
-import randomtimestamp
-import datetime
+from datetime import date
+from datetime import datetime
 
 
 faker_data = Faker(locale="en_IN")
@@ -55,6 +55,7 @@ user__name = StringProperty("nico")
 print(type(user__name))
 print(user__name)
 print(user__name)
+
 
 class PasswordPopup(Popup):
     lable = StringProperty("")
@@ -740,24 +741,19 @@ class Signup(MDScreen):
         )
 
     def sign_up(self):
-        account_created_on = str(
-                randomtimestamp.random_date(
-                    start=datetime.datetime.strptime(dd, "%Y-%m-%d").date()
-                )
-            )
         data = {
             "username": self.ids.user_name_data.text,
             "email": self.ids.email_data.text,
             "password": self.ids.password_data.text,
-            "date_of_birth":None,
-            "you_are":None,
-            "gender":None,
-            "age":None,
-            "favorite_color":None,
-            "address":None,
-            "phone" : None,
-            "account_created_on":account_created_on,
-            "account_updated_at":faker_data.time(),
+            "date_of_birth": None,
+            "you_are": None,
+            "gender": None,
+            "age": None,
+            "favorite_color": None,
+            "address": None,
+            "phone": None,
+            "account_created_on": str(date.today()),
+            "account_updated_at": str(datetime.now().strftime("%H:%M:%S")),
             "privilege": "user",
         }
         if (

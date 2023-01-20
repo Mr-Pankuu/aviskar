@@ -800,6 +800,10 @@ class Menu(MDScreen):
 class MDFoodList(MDList):
     ordered_item_list = []
 
+    def order(self, order):
+        if order in self.ordered_item_list:
+            self.ordered_item_list.remove(order)
+
     def add_to_cart(self, order):
         self.ordered_item_list.append(order)
         print(self.ordered_item_list)

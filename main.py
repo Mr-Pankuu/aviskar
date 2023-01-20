@@ -801,12 +801,13 @@ class MDFoodList(MDList):
     ordered_item_list = []
 
     def order(self, order):
-        if order in self.ordered_item_list:
-            self.ordered_item_list.remove(order)
-            exec("self.ids.{order}_order_button.text = 'Added To Cart'")
-        elif order not in self.ordered_item_list:
+        if order not in self.ordered_item_list:
             self.ordered_item_list.append(order)
+            exec(f"self.ids.{order}_order_button.text = 'Added To Cart'")
+        elif order in self.ordered_item_list:
+            self.ordered_item_list.remove(order)
             exec(f"self.ids.{order}_order_button.text = 'Order'")
+        print(self.ordered_item_list)
         
     # def add_to_cart(self, order):
     #     self.ordered_item_list.append(order)

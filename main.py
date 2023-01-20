@@ -1,5 +1,3 @@
-from email import message_from_binary_file
-import importlib
 import os
 from kivy.core.window import Window
 from kivymd.app import MDApp
@@ -41,15 +39,17 @@ import kivy
 import math
 
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "2d3ee3933ff235dbca2de6ce860f8dc8"
+    "AC07a81f1226651d58932b3890f2aa5e65", "9809727517852901c1044c30e3305fea"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 DATATABLE_PAGE_ROW_LIMIT = 100
-global user_name
-user_name = StringProperty("")
 
+user__name = StringProperty("nico")
+print(type(user__name))
+print(user__name)
+print(user__name)
 
 class PasswordPopup(Popup):
     lable = StringProperty("")
@@ -99,7 +99,7 @@ class ProfileEditer(MDScreen):
         super().__init__(**kwargs)
         main_layout = MDBoxLayout(orientation="vertical")
         self.user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
-            {"username": str(user_name)}
+            {"username": str(user__name)}
         )
         if self.user_data != None:
             user_textinput_name = [
@@ -227,6 +227,7 @@ class Tool:
 
     def on_row_press(self, instance_table, instance_row):
         row_index = int(instance_row.index)
+        print(row_index)
         try:
             for i in range(
                 math.floor(
@@ -266,13 +267,16 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
-    username = user_name
+    global user__name
+    username = str(user__name)
 
     def on_pre_enter(self):
         self.update
 
     def update(self):
-        self.username = user_name
+        print(user__name)
+
+        self.username = str(user__name)
         print(self.username)
         print(type(self.username))
 
@@ -385,7 +389,7 @@ class UserDataTable(MDBoxLayout, Tool):
                 for i in user_data
             ],
         )
-        # type: ignore        self.data_table.bind(on_row_press=self.on_row_press)
+        self.data_table.bind(on_row_press=self.on_row_press)
         self.add_widget(self.data_table)
 
 
@@ -678,6 +682,8 @@ class Account(MDScreen):
 
 
 class Login(MDScreen):
+    global user__name
+    user__name = StringProperty("")
     invalid_message = StringProperty("")
 
     def check_user(self):
@@ -692,6 +698,8 @@ class Login(MDScreen):
             print("Invalid username or password.")
         else:
             self.invalid_message = ""
+            user__name = user["username"]
+            print(user__name)
             print(user)
             if user["privilege"] == "admin":
                 self.manager.transition.direction = "left"

@@ -37,7 +37,12 @@ from twilio.rest import Client
 from random import randint
 import kivy
 import math
+from faker import Faker
+import randomtimestamp
+import datetime
 
+
+faker_data = Faker(locale="en_IN")
 client = Client(
     "AC07a81f1226651d58932b3890f2aa5e65", "9809727517852901c1044c30e3305fea"
 )
@@ -735,11 +740,24 @@ class Signup(MDScreen):
         )
 
     def sign_up(self):
+        account_created_on = str(
+                randomtimestamp.random_date(
+                    start=datetime.datetime.strptime(dd, "%Y-%m-%d").date()
+                )
+            )
         data = {
             "username": self.ids.user_name_data.text,
             "email": self.ids.email_data.text,
-            # "phone" : self.ids.phone_data.text,
             "password": self.ids.password_data.text,
+            "date_of_birth":None,
+            "you_are":None,
+            "gender":None,
+            "age":None,
+            "favorite_color":None,
+            "address":None,
+            "phone" : None,
+            "account_created_on":account_created_on,
+            "account_updated_at":faker_data.time(),
             "privilege": "user",
         }
         if (

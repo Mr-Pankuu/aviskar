@@ -1,6 +1,6 @@
 <Admin>
     name:"admin"
-    # on_pre_enter:root.update()
+    on_pre_enter:root.update()
     MDNavigationLayout:
         ScreenManage:
             Screen: 
@@ -83,7 +83,6 @@
                                     font_name: "Lato"
                                     font_size: "20sp"
                                     pos_hint: {"center_x": .6,"center_y": .17}
-                                
 
         MDNavigationDrawer:
             id: nav_drawer

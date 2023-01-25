@@ -10,6 +10,9 @@
         text:"Go to Cart"
         size_hint:.9,.1
         pos_hint:{"center_x":.5, "center_y":.08}
+        on_press:
+            root.manager.transition.direction = "left"
+            root.manager.current = "cart"
 
     MDTopAppBar:
         id: toolbar

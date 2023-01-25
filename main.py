@@ -1,5 +1,3 @@
-from email import message_from_binary_file
-import importlib
 import os
 from kivy.core.window import Window
 from kivymd.app import MDApp
@@ -39,16 +37,24 @@ from twilio.rest import Client
 from random import randint
 import kivy
 import math
+from faker import Faker
+from datetime import date
+from datetime import datetime
 
+
+faker_data = Faker(locale="en_IN")
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "2d3ee3933ff235dbca2de6ce860f8dc8"
+    "AC07a81f1226651d58932b3890f2aa5e65", "9809727517852901c1044c30e3305fea"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
 Window.size = (310, 500)
 DATATABLE_PAGE_ROW_LIMIT = 100
-global user_name
-user_name = StringProperty("")
+
+user__name = StringProperty("nico")
+print(type(user__name))
+print(user__name)
+print(user__name)
 
 
 class PasswordPopup(Popup):
@@ -99,7 +105,7 @@ class ProfileEditer(MDScreen):
         super().__init__(**kwargs)
         main_layout = MDBoxLayout(orientation="vertical")
         self.user_data: dict = CLIENT["aviskar"]["users_data"].find_one(
-            {"username": str(user_name)}
+            {"username": str(user__name)}
         )
         if self.user_data != None:
             user_textinput_name = [
@@ -227,6 +233,7 @@ class Tool:
 
     def on_row_press(self, instance_table, instance_row):
         row_index = int(instance_row.index)
+        print(row_index)
         try:
             for i in range(
                 math.floor(
@@ -266,13 +273,16 @@ class MyLayout(MDWidget):
 
 
 class Admin(MDScreen):
-    username = user_name
+    global user__name
+    username = str(user__name)
 
     def on_pre_enter(self):
         self.update
 
     def update(self):
-        self.username = user_name
+        print(user__name)
+
+        self.username = str(user__name)
         print(self.username)
         print(type(self.username))
 
@@ -385,7 +395,7 @@ class UserDataTable(MDBoxLayout, Tool):
                 for i in user_data
             ],
         )
-        # type: ignore        self.data_table.bind(on_row_press=self.on_row_press)
+        self.data_table.bind(on_row_press=self.on_row_press)
         self.add_widget(self.data_table)
 
 
@@ -678,6 +688,8 @@ class Account(MDScreen):
 
 
 class Login(MDScreen):
+    global user__name
+    user__name = StringProperty("")
     invalid_message = StringProperty("")
 
     def check_user(self):
@@ -692,6 +704,8 @@ class Login(MDScreen):
             print("Invalid username or password.")
         else:
             self.invalid_message = ""
+            user__name = user["username"]
+            print(user__name)
             print(user)
             if user["privilege"] == "admin":
                 self.manager.transition.direction = "left"
@@ -730,8 +744,16 @@ class Signup(MDScreen):
         data = {
             "username": self.ids.user_name_data.text,
             "email": self.ids.email_data.text,
-            # "phone" : self.ids.phone_data.text,
             "password": self.ids.password_data.text,
+            "date_of_birth": None,
+            "you_are": None,
+            "gender": None,
+            "age": None,
+            "favorite_color": None,
+            "address": None,
+            "phone": None,
+            "account_created_on": str(date.today()),
+            "account_updated_at": str(datetime.now().strftime("%H:%M:%S")),
             "privilege": "user",
         }
         if (
@@ -776,18 +798,24 @@ class Menu(MDScreen):
 
 
 class MDFoodList(MDList):
+    global ordered_item_list
     ordered_item_list = []
 
-    def add_to_cart(self, order):
-        self.ordered_item_list.append(order)
+    def order(self, order):
+        if order not in self.ordered_item_list:
+            self.ordered_item_list.append(order)
+            exec(f"self.ids.{order}_order_button.text = 'Added To Cart'")
+        elif order in self.ordered_item_list:
+            self.ordered_item_list.remove(order)
+            exec(f"self.ids.{order}_order_button.text = 'Order'")
         print(self.ordered_item_list)
 
-    def remove_from_cart(self, order):
-        print(order)
-        if order in self.ordered_item_list:
-            self.ordered_item_list.remove(order)
-            print(self.ordered_item_list)
-
+class Cart(MDScreen):
+    def add_items(self):
+        print("Hello")
+        pass
+    def minus_item(self):
+        pass
 
 class SouthIndian(MDScreen):
     pass

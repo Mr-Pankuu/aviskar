@@ -1,4 +1,4 @@
-<Cart>
+<Cart>:
     name: "cart"
     MDBoxLayout:
         orientation: 'vertical' 
@@ -13,16 +13,188 @@
                 on_release:
                     root.manager.transition.direction = "right"
                     root.manager.current = "menu"
-            
 
         ScrollView:    
-            MDList: 
-                name:"cart_list"                           
-                ThreeLineAvatarListItem:
-                    text: "PLAIN DOSA"
-                    secondary_text: "Rs: 20 "
-                    ImageLeftWidget:
-                        source: "Menu/dosa.png"
-                    MDFillRoundFlatIconButton:
-                        text: "Add+"
-                        pos_hint: {"center_x":.8,"center_y": .3}
+            MDBoxLayout:
+                orientation: "vertical"
+                MDList: 
+                    id: dosa_list_item
+                    name:"dosa"                           
+                    ThreeLineAvatarListItem:
+                        text: "DOSA"
+                        secondary_text: "Rs: 25 "
+                        ImageLeftWidget:
+                            source: "Menu/dosa.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                            on_press:root.add_items()
+                        MDFillRoundFlatIconButton:
+                            id:dosa_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: vada_list_item
+                    name:"vada"                           
+                    ThreeLineAvatarListItem:
+                        text: "VADA"
+                        secondary_text: "Rs: 20 "
+                        ImageLeftWidget:
+                            source: "Menu/vada.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:vada_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: idli_list_item
+                    name:"idli"                           
+                    ThreeLineAvatarListItem:
+                        text: "IDLI"
+                        secondary_text: "Rs: 15 "
+                        ImageLeftWidget:
+                            source: "Menu/idli.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:idli_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: cococola_list_item
+                    name:"cococola"                           
+                    ThreeLineAvatarListItem:
+                        text: "COCOCOLA"
+                        secondary_text: "From MRP "
+                        ImageLeftWidget:
+                            source: "Menu/coca_cola.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:cococola_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: uttapam_list_item
+                    name:"uttapam"                           
+                    ThreeLineAvatarListItem:
+                        text: "UTTAPAM"
+                        secondary_text: "Rs: 25 "
+                        ImageLeftWidget:
+                            source: "Menu/uttapam.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:uttapam_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: momos_list_item
+                    name:"momos"                           
+                    ThreeLineAvatarListItem:
+                        text: "MOMOS"
+                        secondary_text: "Rs: 20 "
+                        ImageLeftWidget:
+                            source: "Menu/momos.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:momos_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: sandwich_list_item
+                    name:"sandwich"                           
+                    ThreeLineAvatarListItem:
+                        text: "SANDWICH"
+                        secondary_text: "Rs: 20 "
+                        ImageLeftWidget:
+                            source: "Menu/sandwich.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:sandwich_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: samosa_list_item
+                    name:"samosa"                           
+                    ThreeLineAvatarListItem:
+                        text: "SAMOSA"
+                        secondary_text: "Rs: 30 "
+                        ImageLeftWidget:
+                            source: "Menu/dahi_samosa.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:samosa_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: chhole_list_item
+                    name:"chhole"                           
+                    ThreeLineAvatarListItem:
+                        text: "CHHOLE"
+                        secondary_text: "Rs: 30 "
+                        ImageLeftWidget:
+                            source: "Menu/chhole_bhature.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:chhole_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}
+                MDList: 
+                    id: paratha_list_item
+                    name:"paratha"                           
+                    ThreeLineAvatarListItem:
+                        text: "PARATHA"
+                        secondary_text: "Rs: 25 "
+                        ImageLeftWidget:
+                            source: "Menu/aalu_paratha.png"
+                        MDFillRoundFlatIconButton:
+                            text: "+"
+                            pos_hint: {"center_x":.8,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            id:paratha_item_count
+                            text: "0"
+                            pos_hint: {"center_x":.6,"center_y": .3}
+                        MDFillRoundFlatIconButton:
+                            text: "-"
+                            pos_hint: {"center_x":.4,"center_y": .3}

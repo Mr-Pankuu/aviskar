@@ -798,6 +798,7 @@ class Menu(MDScreen):
 
 
 class MDFoodList(MDList):
+    global ordered_item_list
     ordered_item_list = []
 
     def order(self, order):
@@ -808,17 +809,13 @@ class MDFoodList(MDList):
             self.ordered_item_list.remove(order)
             exec(f"self.ids.{order}_order_button.text = 'Order'")
         print(self.ordered_item_list)
-        
-    # def add_to_cart(self, order):
-    #     self.ordered_item_list.append(order)
-    #     print(self.ordered_item_list)
 
-    # def remove_from_cart(self, order):
-    #     print(order)
-    #     if order in self.ordered_item_list:
-    #         self.ordered_item_list.remove(order)
-    #         print(self.ordered_item_list)
-
+class Cart(MDScreen):
+    def add_items(self):
+        print("Hello")
+        pass
+    def minus_item(self):
+        pass
 
 class SouthIndian(MDScreen):
     pass

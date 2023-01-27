@@ -43,7 +43,7 @@ from datetime import datetime
 
 faker_data = Faker(locale="en_IN")
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "2c503deac37d29cd616220664c4879c0"
+    "AC07a81f1226651d58932b3890f2aa5e65", "08e515332ac4a141c78fa7b3fe2e481e"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")

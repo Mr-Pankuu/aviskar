@@ -806,9 +806,9 @@ class Menu(MDScreen):
 
 
 class MDFoodList(MDList):
-    global ordered_item_list
+    # global ordered_item_list
     ordered_item_list = []
-
+    
     def order(self, order):
         if order not in self.ordered_item_list:
             self.ordered_item_list.append(order)

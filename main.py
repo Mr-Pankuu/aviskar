@@ -43,7 +43,7 @@ from datetime import datetime
 
 faker_data = Faker(locale="en_IN")
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "9809727517852901c1044c30e3305fea"
+    "AC07a81f1226651d58932b3890f2aa5e65", "2c503deac37d29cd616220664c4879c0"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
@@ -671,7 +671,7 @@ class Account(MDScreen):
             "address": None,
             "phone": None,
             "account_created_on": str(date.today()),
-            "account_updated_at": str(datetime.now().strftime("%H:%M:%S")),
+            "account_created_at": str(datetime.now().strftime("%H:%M:%S")),
             "privilege": self.ids.privilege_data.text,
         }
         if (
@@ -761,7 +761,7 @@ class Signup(MDScreen):
             "address": None,
             "phone": None,
             "account_created_on": str(date.today()),
-            "account_updated_at": str(datetime.now().strftime("%H:%M:%S")),
+            "account_created_at": str(datetime.now().strftime("%H:%M:%S")),
             "privilege": "user",
         }
         if (

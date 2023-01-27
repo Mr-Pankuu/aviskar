@@ -39,7 +39,6 @@ import kivy
 import math
 from faker import Faker
 from datetime import date
-
 from datetime import datetime
 
 faker_data = Faker(locale="en_IN")
@@ -664,6 +663,15 @@ class Account(MDScreen):
             "username": self.ids.user_name_data.text,
             "email": self.ids.email_data.text,
             "password": self.ids.password_data.text,
+            "date_of_birth": None,
+            "you_are": None,
+            "gender": None,
+            "age": None,
+            "favorite_color": None,
+            "address": None,
+            "phone": None,
+            "account_created_on": str(date.today()),
+            "account_updated_at": str(datetime.now().strftime("%H:%M:%S")),
             "privilege": self.ids.privilege_data.text,
         }
         if (

@@ -41,10 +41,9 @@ from faker import Faker
 from datetime import date
 from datetime import datetime
 
-
 faker_data = Faker(locale="en_IN")
 client = Client(
-    "AC07a81f1226651d58932b3890f2aa5e65", "9809727517852901c1044c30e3305fea"
+    "AC07a81f1226651d58932b3890f2aa5e65", "08e515332ac4a141c78fa7b3fe2e481e"
 )
 CLIENT = MongoClient("mongodb://localhost:27017")
 Config.set("kivy", "keyboard_mode", "systemanddock")
@@ -55,9 +54,6 @@ user__name = StringProperty("nico")
 print(type(user__name))
 print(user__name)
 print(user__name)
-
-
-
 
 class PasswordPopup(Popup):
     lable = StringProperty("")
@@ -666,6 +662,15 @@ class Account(MDScreen):
             "username": self.ids.user_name_data.text,
             "email": self.ids.email_data.text,
             "password": self.ids.password_data.text,
+            "date_of_birth": None,
+            "you_are": None,
+            "gender": None,
+            "age": None,
+            "favorite_color": None,
+            "address": None,
+            "phone": None,
+            "account_created_on": str(date.today()),
+            "account_created_at": str(datetime.now().strftime("%H:%M:%S")),
             "privilege": self.ids.privilege_data.text,
         }
         if (
@@ -755,7 +760,7 @@ class Signup(MDScreen):
             "address": None,
             "phone": None,
             "account_created_on": str(date.today()),
-            "account_updated_at": str(datetime.now().strftime("%H:%M:%S")),
+            "account_created_at": str(datetime.now().strftime("%H:%M:%S")),
             "privilege": "user",
         }
         if (
@@ -800,9 +805,9 @@ class Menu(MDScreen):
 
 
 class MDFoodList(MDList):
-    global ordered_item_list
+    # global ordered_item_list
     ordered_item_list = []
-
+    
     def order(self, order):
         if order not in self.ordered_item_list:
             self.ordered_item_list.append(order)

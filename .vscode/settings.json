@@ -1,7 +1,8 @@
 {
-    "python.analysis.typeCheckingMode": "basic",
-    "githubPullRequests.ignoredPullRequestBranches": [
-        "main"
-    ],
-    "python.formatting.provider": "black"
+	"python.analysis.typeCheckingMode": "basic",
+	"githubPullRequests.ignoredPullRequestBranches": ["main"],
+	"python.formatting.provider": "none",
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter"
+	}
 }
